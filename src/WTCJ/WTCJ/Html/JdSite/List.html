@@ -70,26 +70,32 @@
                     <td>
                         <select class="easyui-combobox" id="frm_JdSite_区域" name="区域" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
                     </td>
+                </tr>
+                <tr>
                     <td>客户：</td>
-                    <td>
-                        <select class="easyui-combobox" id="frm_JdSite_客户" name="客户" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    <td colspan="3">
+                        <select class="easyui-combobox width_full" id="frm_JdSite_客户" name="客户" data-options="valueField:'id',textField:'text',required:true"></select>
                     </td>
                 </tr>
                 <tr>
                     <td>站点编码：</td>
-                    <td>
-                        <input class="easyui-validatebox textbox" name="站点编码" data-options="required:true">
+                    <td colspan="3">
+                        <input class="easyui-validatebox textbox width_full_text" name="站点编码" data-options="required:true">
                     </td>
+                </tr>
+                <tr>
                     <td>站点名称：</td>
-                    <td>
-                        <input class="easyui-validatebox textbox" name="站点名称" data-options="required:true">
+                    <td colspan="3">
+                        <input class="easyui-validatebox textbox width_full_text" name="站点名称" data-options="required:true">
                     </td>
                 </tr>
                 <tr>
                     <td>地址：</td>
-                    <td>
-                        <input class="easyui-validatebox textbox" name="地址">
+                    <td colspan="3">
+                        <input class="easyui-validatebox textbox width_full_text" name="地址">
                     </td>
+                </tr>
+                <tr>
                     <td>建站类型：</td>
                     <td>
                         <input class="easyui-validatebox textbox" name="建站类型">
@@ -102,13 +108,13 @@
                     </td>
                     <td>预算表或损益表审批时间：</td>
                     <td>
-                        <input type="text" name="预算表或损益表审批时间" onclick="WdatePicker()" />
+                        <input type="text" name="预算表或损益表审批时间" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>与伟通签订单项合同日期：</td>
                     <td>
-                        <input type="text" name="与伟通签订单项合同日期" onclick="WdatePicker()" />
+                        <input type="text" name="与伟通签订单项合同日期" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
                     </td>
                     <td>最新状态：</td>
                     <td>
@@ -118,11 +124,11 @@
                 <tr>
                     <td>经度：</td>
                     <td>
-                        <input class="easyui-numberbox" name="经度" data-options="min:0.00,precision:6">
+                        <input class="easyui-numberbox" name="经度" data-options="min:0.00,precision:5">
                     </td>
                     <td>纬度：</td>
                     <td>
-                        <input class="easyui-numberbox" name="纬度" data-options="min:0.00,precision:6">
+                        <input class="easyui-numberbox" name="纬度" data-options="min:0.00,precision:5">
                     </td>
                 </tr>
                 <tr>
@@ -132,7 +138,7 @@
                     </td>
                     <td>年限：</td>
                     <td>
-                        <input class="easyui-numberbox" name="年限" data-options="precision:2">
+                        <input class="easyui-numberbox" name="年限">
                     </td>
                 </tr>
                 <tr>
@@ -148,17 +154,17 @@
                 <tr>
                     <td>摘牌时间：</td>
                     <td>
-                        <input type="text" name="摘牌时间" onclick="WdatePicker()" />
+                        <input type="text" name="摘牌时间" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
                     </td>
                     <td>预计进场日期：</td>
                     <td>
-                        <input type="text" name="预计进场日期" onclick="WdatePicker()" />
+                        <input type="text" name="预计进场日期" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>预计完工日期：</td>
                     <td>
-                        <input type="text" name="预计完工日期" onclick="WdatePicker()" />
+                        <input type="text" name="预计完工日期" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
                     </td>
                     <td>建站周期（天）：</td>
                     <td>
@@ -175,101 +181,101 @@
                 <tr>
                     <td>签订租赁合同开始日期：</td>
                     <td>
-                        <input type="text" name="签订租赁合同开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="签订租赁合同开始日期" id="JdSite_签订租赁合同开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_签订租赁合同完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>签订租赁合同完成日期：</td>
                     <td>
-                        <input type="text" name="签订租赁合同完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="签订租赁合同完成日期" id="JdSite_签订租赁合同完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_签订租赁合同开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>地墈开始日期：</td>
                     <td>
-                        <input type="text" name="地墈开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="地墈开始日期" id="JdSite_地墈开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_地墈完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>地墈完成日期：</td>
                     <td>
-                        <input type="text" name="地墈完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="地墈完成日期" id="JdSite_地墈完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_地墈开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>设计出图开始日期：</td>
                     <td>
-                        <input type="text" name="设计出图开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="设计出图开始日期" id="JdSite_设计出图开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_设计出图完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>设计出图完成日期：</td>
                     <td>
-                        <input type="text" name="设计出图完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="设计出图完成日期" id="JdSite_设计出图完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_设计出图开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>土建施工开始日期：</td>
                     <td>
-                        <input type="text" name="土建施工开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="土建施工开始日期" id="JdSite_土建施工开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_土建施工完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>土建施工完成日期：</td>
                     <td>
-                        <input type="text" name="土建施工完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="土建施工完成日期" id="JdSite_土建施工完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_土建施工开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>产品采购开始日期：</td>
                     <td>
-                        <input type="text" name="产品采购开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="产品采购开始日期" id="JdSite_产品采购开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_产品采购完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>产品采购完成日期：</td>
                     <td>
-                        <input type="text" name="产品采购完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="产品采购完成日期" id="JdSite_产品采购完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_产品采购开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>产品安装开始日期：</td>
                     <td>
-                        <input type="text" name="产品安装开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="产品安装开始日期" id="JdSite_产品安装开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_产品安装开始日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>产品安装完成日期：</td>
                     <td>
-                        <input type="text" name="产品安装完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="产品安装完成日期" id="JdSite_产品安装完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_产品安装完成日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>电力报建开始日期：</td>
                     <td>
-                        <input type="text" name="电力报建开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="电力报建开始日期" id="JdSite_电力报建开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_电力报建开始日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>电力报建完成日期：</td>
                     <td>
-                        <input type="text" name="电力报建完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="电力报建完成日期" id="JdSite_电力报建完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_电力报建完成日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>销售验收日期：</td>
                     <td>
-                        <input type="text" name="销售验收日期" onclick="WdatePicker()" />
+                        <input type="text" name="销售验收日期" onclick="WdatePicker({ maxDate:'%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>运营商验收、交付开始日期：</td>
                     <td>
-                        <input type="text" name="运营商验收交付开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="运营商验收交付开始日期" id="JdSite_运营商验收交付开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_运营商验收交付完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>运营商验收、交付完成日期：</td>
                     <td>
-                        <input type="text" name="运营商验收交付完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="运营商验收交付完成日期" id="JdSite_运营商验收交付完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_运营商验收交付开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>运营商签订合同开始日期：</td>
                     <td>
-                        <input type="text" name="运营商签订合同开始日期" onclick="WdatePicker()" />
+                        <input type="text" name="运营商签订合同开始日期" id="JdSite_运营商签订合同开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_运营商签订合同完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>运营商签订合同完成日期：</td>
                     <td>
-                        <input type="text" name="运营商签订合同完成日期" onclick="WdatePicker()" />
+                        <input type="text" name="运营商签订合同完成日期" id="JdSite_运营商签订合同完成日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_运营商签订合同开始日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
-                    <td>进场时间预警：</td>
+                    <!--<td>进场时间预警：</td>
                     <td>
                         <input class="easyui-numberbox" name="进场时间预警">
                     </td>
@@ -282,7 +288,7 @@
                     <td>运营合同签约时间预警：</td>
                     <td>
                         <input class="easyui-numberbox" name="运营合同签约时间预警">
-                    </td>
+                    </td>-->
                     <td>是否退点：</td>
                     <td>
                         <select class="easyui-combobox" name="是否退点" style="width: 180px;">
@@ -432,11 +438,11 @@
                 <tr>
                     <td>运营商签订合同开始日期<input type='checkbox' name='hideColumns' value='运营商签订合同开始日期'></td>
                     <td>运营商签订合同完成日期<input type='checkbox' name='hideColumns' value='运营商签订合同完成日期'></td>
-                    <td>进场时间预警<input type='checkbox' name='hideColumns' value='进场时间预警'></td>
+                 <!--   <td>进场时间预警<input type='checkbox' name='hideColumns' value='进场时间预警'></td>
                     <td>交付时间预警<input type='checkbox' name='hideColumns' value='交付时间预警'></td>
                 </tr>
                 <tr>
-                    <td>运营合同签约时间预警<input type='checkbox' name='hideColumns' value='运营合同签约时间预警'></td>
+                    <td>运营合同签约时间预警<input type='checkbox' name='hideColumns' value='运营合同签约时间预警'></td>-->
                     <td>是否退点<input type='checkbox' name='hideColumns' value='是否退点'></td>
                     <td>备注<input type='checkbox' name='hideColumns' value='备注'></td>
 
@@ -556,7 +562,7 @@
                 { title: '销售验收日期', field: '销售验收日期', width: 100, rowspan: 2 },
                 { title: '运营商验收、交付', width: 200, colspan: 2 },
                  { title: '运营商签订合同', width: 200, colspan: 2 },
-                 { title: '预警时间（以预算表/损益表通过时间为基准时间）', width: 300, colspan: 3 },
+                 //{ title: '预警时间（以预算表/损益表通过时间为基准时间）', width: 300, colspan: 3 },
                  { title: '是否退点', field: '是否退点', width: 100, rowspan: 2 },
                 { title: '创建时间', field: 'CreateTime', width: 180, rowspan: 2 },
                 { title: '修改时间', field: 'UpdateTime', width: 180, rowspan: 2 },
@@ -578,10 +584,11 @@
                 { title: '开始日期', field: '运营商验收交付开始日期', width: 100 },
                 { title: '完成日期', field: '运营商验收交付完成日期', width: 100 },
                 { title: '开始日期', field: '运营商签订合同开始日期', width: 100 },
-                { title: '完成日期', field: '运营商签订合同完成日期', width: 100 },
-                { title: '进场时间预警', field: '进场时间预警', width: 100 },
-                { title: '交付时间预警', field: '交付时间预警', width: 100 },
-                { title: '运营合同签约时间预警', field: '运营合同签约时间预警', width: 100 }
+                { title: '完成日期', field: '运营商签订合同完成日期', width: 100 }
+                //,
+                //{ title: '进场时间预警', field: '进场时间预警', width: 100 },
+                //{ title: '交付时间预警', field: '交付时间预警', width: 100 },
+                //{ title: '运营合同签约时间预警', field: '运营合同签约时间预警', width: 100 }
                 ]],
             toolbar: [{
                 id: 'btnAdd_JdSite',
