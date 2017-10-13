@@ -154,17 +154,17 @@
                 <tr>
                     <td>摘牌时间：</td>
                     <td>
-                        <input type="text" name="摘牌时间" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
+                        <input type="text" name="摘牌时间" id="JdSite_摘牌时间" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_签订租赁合同完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>预计进场日期：</td>
                     <td>
-                        <input type="text" name="预计进场日期" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
+                        <input type="text" name="预计进场日期" id="JdSite_预计进场日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_摘牌时间\')}', maxDate: '#F{$dp.$D(\'JdSite_预计完工日期\')}' || '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>预计完工日期：</td>
                     <td>
-                        <input type="text" name="预计完工日期" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
+                        <input type="text" name="预计完工日期" id="JdSite_预计完工日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_预计进场日期\')}', maxDate: '%y-%M-%d' })" />
                     </td>
                     <td>建站周期（天）：</td>
                     <td>
@@ -175,7 +175,7 @@
                 <tr>
                     <td>选址、定点：</td>
                     <td>
-                        <input type="text" name="选址定点" onclick="WdatePicker()" />
+                        <input type="text" name="选址定点" onclick="WdatePicker({ maxDate: '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
@@ -251,13 +251,13 @@
                 <tr>
                     <td>销售验收日期：</td>
                     <td>
-                        <input type="text" name="销售验收日期" onclick="WdatePicker({ maxDate:'%y-%M-%d' })" />
+                        <input type="text" name="销售验收日期" id="JdSite_销售验收日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_运营商验收交付开始日期\')}' || '%y-%M-%d' })" />
                     </td>
                 </tr>
                 <tr>
                     <td>运营商验收、交付开始日期：</td>
                     <td>
-                        <input type="text" name="运营商验收交付开始日期" id="JdSite_运营商验收交付开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_运营商验收交付完成日期\')}' || '%y-%M-%d' })" />
+                        <input type="text" name="运营商验收交付开始日期" id="JdSite_运营商验收交付开始日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_销售验收日期\')}', maxDate: '#F{$dp.$D(\'JdSite_运营商验收交付完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>运营商验收、交付完成日期：</td>
                     <td>
@@ -267,7 +267,7 @@
                 <tr>
                     <td>运营商签订合同开始日期：</td>
                     <td>
-                        <input type="text" name="运营商签订合同开始日期" id="JdSite_运营商签订合同开始日期" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'JdSite_运营商签订合同完成日期\')}' || '%y-%M-%d' })" />
+                        <input type="text" name="运营商签订合同开始日期" id="JdSite_运营商签订合同开始日期" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'JdSite_运营商验收交付完成日期\')}', maxDate: '#F{$dp.$D(\'JdSite_运营商签订合同完成日期\')}' || '%y-%M-%d' })" />
                     </td>
                     <td>运营商签订合同完成日期：</td>
                     <td>
@@ -438,7 +438,7 @@
                 <tr>
                     <td>运营商签订合同开始日期<input type='checkbox' name='hideColumns' value='运营商签订合同开始日期'></td>
                     <td>运营商签订合同完成日期<input type='checkbox' name='hideColumns' value='运营商签订合同完成日期'></td>
-                 <!--   <td>进场时间预警<input type='checkbox' name='hideColumns' value='进场时间预警'></td>
+                    <!--   <td>进场时间预警<input type='checkbox' name='hideColumns' value='进场时间预警'></td>
                     <td>交付时间预警<input type='checkbox' name='hideColumns' value='交付时间预警'></td>
                 </tr>
                 <tr>
