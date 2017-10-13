@@ -148,6 +148,7 @@
     <Compile Include="Controllers\JdSiteController.cs" />
     <Compile Include="Controllers\UserColumnsController.cs" />
     <Compile Include="Controllers\YzdjSyController.cs" />
+    <Compile Include="Excel\AreaExcel.cs" />
     <Compile Include="Excel\ContractMoneyExcel.cs" />
     <Compile Include="Excel\HealthXsExcel.cs" />
     <Compile Include="Excel\HealthZjExcel.cs" />
@@ -601,6 +602,7 @@
     <Content Include="Excel\Template\以租代建项目损益表模板.xlsx" />
     <Content Include="Excel\Template\销售健康度模板.xlsx" />
     <Content Include="Excel\Template\自持健康度模板.xlsx" />
+    <Content Include="Excel\Template\配置信息\区域管理模板.xlsx" />
     <None Include="Properties\PublishProfiles\WTGC.pubxml" />
     <None Include="Views\Home\index.cshtml" />
     <Content Include="style\css\bootstrap.min.css" />
