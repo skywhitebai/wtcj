@@ -384,7 +384,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["选址定点"].ToString().Trim(), out parmTime))
                     {
-                        model.选址定点 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",选址定点[" + dt.Rows[i]["选址定点"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.选址定点 = parmTime;
+                        }
                     }
                     else
                     {

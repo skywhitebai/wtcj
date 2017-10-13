@@ -45,6 +45,7 @@ namespace WTCJ.Excel
             DataTable dtCommonData = new BLL.Common_Data().GetList(" DataType in('最新状态')").Tables[0];
 
             DateTime parmTime = DateTime.Now;
+            DateTime dateTimeNow = DateTime.Now;
             decimal parmDecimal = 0;
             int parmInt = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -174,7 +175,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["预算表或损益表审批时间"].ToString().Trim(), out parmTime))
                     {
-                        model.预算表或损益表审批时间 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",预算表或损益表审批时间[" + dt.Rows[i]["预算表或损益表审批时间"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.预算表或损益表审批时间 = parmTime;
+                        }
                     }
                     else
                     {
@@ -186,7 +194,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["与伟通签订单项合同日期"].ToString().Trim(), out parmTime))
                     {
-                        model.与伟通签订单项合同日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",与伟通签订单项合同日期[" + dt.Rows[i]["与伟通签订单项合同日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.与伟通签订单项合同日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -286,7 +301,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["摘牌时间"].ToString().Trim(), out parmTime))
                     {
-                        model.摘牌时间 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",摘牌时间[" + dt.Rows[i]["摘牌时间"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.摘牌时间 = parmTime;
+                        }
                     }
                     else
                     {
@@ -298,7 +320,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["预计进场日期"].ToString().Trim(), out parmTime))
                     {
-                        model.预计进场日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",预计进场日期[" + dt.Rows[i]["预计进场日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.摘牌时间 != null && model.摘牌时间 > parmTime)
+                        {
+                            sbErroI.Append(",预计进场日期[" + dt.Rows[i]["预计进场日期"].ToString().Trim() + "]必须大于等于摘牌时间[" + dt.Rows[i]["摘牌时间"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.预计进场日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -310,7 +343,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["预计完工日期"].ToString().Trim(), out parmTime))
                     {
-                        model.预计完工日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",预计完工日期[" + dt.Rows[i]["预计完工日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.预计进场日期 != null && model.预计进场日期 > parmTime)
+                        {
+                            sbErroI.Append(",预计完工日期[" + dt.Rows[i]["预预计完工日期计进场日期"].ToString().Trim() + "]必须大于等于预计进场日期[" + dt.Rows[i]["预计进场日期"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.预计完工日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -334,7 +378,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["选址定点"].ToString().Trim(), out parmTime))
                     {
-                        model.选址定点 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",选址定点[" + dt.Rows[i]["选址定点"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.选址定点 = parmTime;
+                        }
                     }
                     else
                     {
@@ -347,7 +398,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["设计出图完成日期"].ToString().Trim(), out parmTime))
                     {
-                        model.设计出图完成日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",设计出图完成日期[" + dt.Rows[i]["设计出图完成日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.设计出图完成日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -383,7 +441,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["产品采购开始日期"].ToString().Trim(), out parmTime))
                     {
-                        model.产品采购开始日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",产品采购开始日期[" + dt.Rows[i]["产品采购开始日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.产品采购开始日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -480,7 +545,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["主机安装完成日期"].ToString().Trim(), out parmTime))
                     {
-                        model.主机安装完成日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",主机安装完成日期[" + dt.Rows[i]["主机安装完成日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.主机安装完成日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -492,7 +564,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["光缆到位完成日期"].ToString().Trim(), out parmTime))
                     {
-                        model.光缆到位完成日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",光缆到位完成日期[" + dt.Rows[i]["光缆到位完成日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.光缆到位完成日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -504,7 +583,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["设备开通完成日期"].ToString().Trim(), out parmTime))
                     {
-                        model.设备开通完成日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",设备开通完成日期[" + dt.Rows[i]["设备开通完成日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.设备开通完成日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -516,7 +602,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["销售验收日期"].ToString().Trim(), out parmTime))
                     {
-                        model.销售验收日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",销售验收日期[" + dt.Rows[i]["销售验收日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.销售验收日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -529,7 +622,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["运营商验收交付开始日期"].ToString().Trim(), out parmTime))
                     {
-                        model.运营商验收交付开始日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",运营商验收交付开始日期[" + dt.Rows[i]["运营商验收交付开始日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.销售验收日期 != null && model.销售验收日期 > parmTime)
+                        {
+                            sbErroI.Append(",运营商验收交付开始日期[" + dt.Rows[i]["运营商验收交付开始日期"].ToString().Trim() + "]必须大于等于销售验收日期[" + dt.Rows[i]["销售验收日期"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.运营商验收交付开始日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -541,7 +645,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["运营商验收交付完成日期"].ToString().Trim(), out parmTime))
                     {
-                        model.运营商验收交付完成日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",运营商验收交付完成日期[" + dt.Rows[i]["运营商验收交付完成日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.运营商验收交付开始日期 != null && model.运营商验收交付开始日期 > parmTime)
+                        {
+                            sbErroI.Append(",运营商验收交付完成日期[" + dt.Rows[i]["运营商验收交付完成日期"].ToString().Trim() + "]必须大于等于运营商验收交付开始日期[" + dt.Rows[i]["运营商验收交付开始日期"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.运营商验收交付完成日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -553,7 +668,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["运营商签订合同开始日期"].ToString().Trim(), out parmTime))
                     {
-                        model.运营商签订合同开始日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",运营商签订合同开始日期[" + dt.Rows[i]["运营商签订合同开始日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.运营商验收交付完成日期 != null && model.运营商验收交付完成日期 > parmTime)
+                        {
+                            sbErroI.Append(",运营商签订合同开始日期[" + dt.Rows[i]["运营商签订合同开始日期"].ToString().Trim() + "]必须大于等于运营商验收交付完成日期[" + dt.Rows[i]["运营商验收交付完成日期"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.运营商签订合同开始日期 = parmTime;
+                        }
                     }
                     else
                     {
@@ -565,7 +691,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["运营商签订合同完成日期"].ToString().Trim(), out parmTime))
                     {
-                        model.运营商签订合同完成日期 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",运营商签订合同完成日期[" + dt.Rows[i]["运营商签订合同完成日期"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.运营商签订合同开始日期 != null && model.运营商签订合同开始日期 > parmTime)
+                        {
+                            sbErroI.Append(",运营商签订合同完成日期[" + dt.Rows[i]["运营商签订合同完成日期"].ToString().Trim() + "]必须大于等于运营商签订合同开始日期[" + dt.Rows[i]["运营商签订合同开始日期"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.运营商签订合同完成日期 = parmTime;
+                        }
                     }
                     else
                     {
