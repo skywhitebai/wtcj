@@ -44,6 +44,7 @@ namespace WTCJ.Excel
             DataTable dtCustomer = new BLL.Customer().GetAllList().Tables[0];
             DataTable dtCompany = new BLL.Company().GetAllList().Tables[0];
             DateTime parmTime = DateTime.Now;
+            DateTime dateTimeNow = DateTime.Now;
             decimal parmDecimal = 0;
             int parmInt = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -171,7 +172,14 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["摘牌时间"].ToString().Trim(), out parmTime))
                     {
-                        model.摘牌时间 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",摘牌时间[" + dt.Rows[i]["摘牌时间"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else
+                        {
+                            model.摘牌时间 = parmTime;
+                        }
                     }
                     else
                     {
@@ -183,7 +191,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["进场施工时间"].ToString().Trim(), out parmTime))
                     {
-                        model.进场施工时间 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",进场施工时间[" + dt.Rows[i]["进场施工时间"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.摘牌时间 != null && model.摘牌时间 > parmTime)
+                        {
+                            sbErroI.Append(",进场施工时间[" + dt.Rows[i]["进场施工时间"].ToString().Trim() + "]必须大于等于摘牌时间[" + dt.Rows[i]["摘牌时间"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.进场施工时间 = parmTime;
+                        }
                     }
                     else
                     {
@@ -195,7 +214,18 @@ namespace WTCJ.Excel
 
                     if (DateTime.TryParse(dt.Rows[i]["预计完工时间"].ToString().Trim(), out parmTime))
                     {
-                        model.预计完工时间 = parmTime;
+                        if (parmTime > dateTimeNow)
+                        {
+                            sbErroI.Append(",预计完工时间[" + dt.Rows[i]["预计完工时间"].ToString().Trim() + "]必须小于等于今天");
+                        }
+                        else if (model.进场施工时间 != null && model.进场施工时间 > parmTime)
+                        {
+                            sbErroI.Append(",预计完工时间[" + dt.Rows[i]["预计完工时间"].ToString().Trim() + "]必须大于等于进场施工时间[" + dt.Rows[i]["进场施工时间"].ToString().Trim() + "]");
+                        }
+                        else
+                        {
+                            model.预计完工时间 = parmTime;
+                        }
                     }
                     else
                     {
