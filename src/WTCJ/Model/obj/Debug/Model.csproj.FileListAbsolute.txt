@@ -1,0 +1,24 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\Model\bin\Debug\Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\Model\bin\Debug\Model.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\Model\obj\Debug\Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\Model\obj\Debug\Model.pdb
+F:\life\项目\src\WTCJ\Model\bin\Debug\Model.dll
+F:\life\项目\src\WTCJ\Model\bin\Debug\Model.pdb
+F:\life\项目\src\WTCJ\Model\obj\Debug\Model.dll
+F:\life\项目\src\WTCJ\Model\obj\Debug\Model.pdb
+F:\life\项目\src\WTCJ\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+F:\life\项目\src\svn\trunk\WTCJ\Model\bin\Debug\Model.dll
+F:\life\项目\src\svn\trunk\WTCJ\Model\bin\Debug\Model.pdb
+F:\life\项目\src\svn\trunk\WTCJ\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+F:\life\项目\src\svn\trunk\WTCJ\Model\obj\Debug\Model.dll
+F:\life\项目\src\svn\trunk\WTCJ\Model\obj\Debug\Model.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\Model\bin\Debug\Model.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\Model\bin\Debug\Model.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\Model\obj\Debug\Model.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\Model\obj\Debug\Model.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\Model\bin\Debug\Model.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\Model\bin\Debug\Model.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\Model\obj\Debug\Model.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\Model\obj\Debug\Model.pdb

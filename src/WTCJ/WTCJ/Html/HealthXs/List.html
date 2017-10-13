@@ -1,0 +1,2051 @@
+﻿<div id="div_HealthXs">
+    <!--查询条件-->
+    <div class="easyui-panel">
+        区域：
+    <select class="easyui-combobox" id="HealthXs_区域" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        客户名称：
+    <select class="easyui-combobox" id="HealthXs_客户名称" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        站点编码：
+        <input id="HealthXs_站点编码" class="easyui-textbox" style="width: 180px;">
+        站点名称：
+        <input id="HealthXs_站点名称" class="easyui-textbox" style="width: 180px;"><br />
+        <a href="javascript:void(0)" id="search_HealthXs" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
+        <a href="javascript:void(0)" id="excel_import_HealthXs" class="easyui-linkbutton" style="width: 80px" onclick="Show_excel_import_HealthXs()">导 入</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_exportColumns_HealthXs()">自定义导出</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_hideColumns_HealthXs()">设置列表列</a>
+        <br />
+    </div>
+    <!--数据列表-->
+    <table id="dg_HealthXs" style="width: 100%; height: auto">
+    </table>
+    <!--编辑页面-->
+    <div id="dlg_HealthXs" class="easyui-dialog" style="width: 800px; height: 600px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div class="ftitle">
+            <b>销售健康度</b>
+            <hr />
+        </div>
+        <form id="frm_HealthXs" method="post" novalidate="novalidate">
+            <div>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr style="display: none">
+                        <td>ID：</td>
+                        <td>
+                            <input class="easyui-validatebox textbox" name="id">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>区域：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_HealthXs_区域" name="区域" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                        </td>
+                        <td>客户名称：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_HealthXs_客户名称" name="客户名称" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>站点编码：</td>
+                        <td>
+                            <input class="easyui-validatebox textbox" name="站点编码" data-options="required:true">
+                        </td>
+                        <td>站点名称：</td>
+                        <td>
+                            <input class="easyui-validatebox textbox" name="站点名称" data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>回款期限：</td>
+                        <td>
+                            <input class="easyui-validatebox textbox" name="回款期限">
+                        </td>
+                        <td>租金金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="租金金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>基站销售款：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="基站销售款" data-options="precision:2">
+                        </td>
+                        <td>累计应收金额(自动生成)：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" id="frm_HealthXs_累计应收金额" name="累计应收金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>税率%：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="税率" data-options="precision:2">
+                        </td>
+                        <td>伟通收入(不含税,自动生成)：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" id="frm_HealthXs_伟通收入不含税" name="伟通收入不含税" data-options="precision:2">
+                        </td>
+                    </tr>
+                </table>
+                <fieldset>
+                    <legend>2016年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2016年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2016年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2016年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2016年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2016年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2016年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2016年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2016年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2017年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2017年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2017年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2017年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2017年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2017年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2017年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2017年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2017年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2018年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2018年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2018年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2018年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2018年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2018年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2018年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2018年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2018年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2019年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2019年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2019年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2019年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2019年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2019年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2019年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2019年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2019年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2020年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2020年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2020年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2020年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2020年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2020年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2020年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2020年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2020年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2021年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2021年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2021年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2021年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2021年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2021年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2021年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2021年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2021年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2022年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2022年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2022年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2022年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2022年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2022年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2022年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2022年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2022年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2023年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2023年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2023年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2023年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2023年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2023年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2023年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2023年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2023年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2024年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2024年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2024年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2024年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2024年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2024年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2024年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2024年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2024年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2025年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2025年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2025年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2025年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2025年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2025年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2025年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2025年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2025年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2026年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2026年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2026年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2026年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2026年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2026年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2026年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2026年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2026年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2027年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2027年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2027年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2027年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2027年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2027年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2027年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2027年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2027年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2028年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2028年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2028年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2028年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2028年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2028年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2028年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2028年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2028年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2029年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2029年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2029年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2029年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2029年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2029年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2029年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2029年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2029年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2030年</legend>
+                    <table class="table_info">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="25%">
+                        </colgroup>
+                        <tr>
+                            <td>开票时间：</td>
+                            <td>
+                                <input type="text" name="_2030年开票时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>开票金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2030年开票金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合同收款时间：</td>
+                            <td>
+                                <input type="text" name="_2030年合同收款时间" onclick="WdatePicker()" />
+                            </td>
+                            <td>合同收款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2030年合同收款金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>实际回款金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2030年实际回款金额" data-options="precision:2">
+                            </td>
+                            <td>应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2030年应收未收金额" data-options="precision:2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到期应收未收金额：</td>
+                            <td>
+                                <input class="easyui-numberbox" name="_2030年到期应收未收金额" data-options="precision:2">
+                            </td>
+                            <td>实际回款时间：</td>
+                            <td>
+                                <input type="text" name="_2030年实际回款时间" onclick="WdatePicker()" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>推迟收款时间（天）：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="推迟收款时间" data-options="precision:2">
+                        </td>
+                        <td>实际竣工时间：</td>
+                        <td>
+                            <input type="text" name="实际竣工时间" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>竣工与实际收款时间差异（天）：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="竣工与实际收款时间差异" data-options="precision:2">
+                        </td>
+                        <td>移动交付：</td>
+                        <td>
+                            <input type="text" name="移动交付" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>电信交付：</td>
+                        <td>
+                            <input type="text" name="电信交付" onclick="WdatePicker()" />
+                        </td>
+                        <td>联通交付：</td>
+                        <td>
+                            <input type="text" name="联通交付" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>铁塔交付：</td>
+                        <td>
+                            <input type="text" name="铁塔交付" onclick="WdatePicker()" />
+                        </td>
+                        <td>运营商合同签订日期：</td>
+                        <td>
+                            <input type="text" name="运营商合同签订日期" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>运营商交付单与租赁合同时间差：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商交付单与租赁合同时间差" data-options="precision:2">
+                        </td>
+                        <td>移动实际付款时间：</td>
+                        <td>
+                            <input type="text" name="移动实际付款时间" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>电信实际付款时间：</td>
+                        <td>
+                            <input type="text" name="电信实际付款时间" onclick="WdatePicker()" />
+                        </td>
+                        <td>联通实际付款时间：</td>
+                        <td>
+                            <input type="text" name="联通实际付款时间" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr id="tr_time_HealthXs">
+                        <td>创建时间：</td>
+                        <td>
+                            <input class="easyui-validatebox textbox" readonly="readonly" name="CreateTime"></td>
+
+                        <td>更新时间：</td>
+                        <td>
+                            <input class="easyui-validatebox textbox" readonly="readonly" name="UpdateTime"></td>
+                    </tr>
+                    <tr>
+                        <td>备注:</td>
+                        <td colspan="3">
+                            <input class="easyui-textbox" type="text" name="备注" style="width: 90%">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="btn_save_HealthXs" onclick="Save_HealthXs()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_HealthXs()">关闭</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="dlg_excel_import_HealthXs" class="easyui-dialog" style="width: 500px; height: 320px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div>
+            <fieldset>
+                <legend>excel模版格式 </legend>
+                <p style="color: red">
+                    导入的模板格式如下，若模板格式不正确，则相应的数据不能导入<br />
+                    (第一列~开通的数据是表头或者示例数据不会被导入)!
+                </p>
+                <br />
+                <a href="../../Excel/Template/销售健康度模板.xlsx" title="下载模版">下载模版</a>
+            </fieldset>
+        </div>
+        <div style="margin-top: 20px;">
+            <fieldset>
+                <legend>信息导入</legend>
+                <form id="frm_excel_import_HealthXs" method="post" enctype="multipart/form-data">
+                    <p>
+                        选择文件：<input id="fileupload_excel_import_HealthXs" type="file" name="fileImport" style="width: 250px; height: 24px; background: White"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </p>
+                    <p>
+                        <br />
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'" onclick="Save_excel_import_HealthXs()">导入</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-cancel'" onclick="Close_excel_import_HealthXs()">关闭</a>
+                    </p>
+                </form>
+            </fieldset>
+        </div>
+        <div id="Conditionback_excel_import_HealthXs" style="display: none; position: fixed; opacity: 0.5; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #ccc; overflow: hidden;">
+        </div>
+        <div id="ConditionShow_excel_import_HealthXs" style="display: none; position: absolute; top: 100px; left: 40%; width: 20%; height: 50px; z-index: 1002; text-align: center; overflow: hidden; background-color: White;">
+            <img src="../../style/img/loadingbar.gif" />
+            <br />
+            数据上传中......
+        </div>
+    </div>
+
+
+    <!--自定义列页面-->
+    <div id="dlg_hideColumns_HealthXs" class="easyui-dialog" style="width: 800px; height: 600px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+
+        <form id="frm_hideColumns_HealthXs" method="post" novalidate="novalidate">
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>区域<input type='checkbox' name='hideColumns' value='区域Text'></td>
+                    <td>客户名称<input type='checkbox' name='hideColumns' value='客户名称Text'></td>
+                    <td>站点名称<input type='checkbox' name='hideColumns' value='站点名称'></td>
+                    <td>站点编码<input type='checkbox' name='hideColumns' value='站点编码'></td>
+                </tr>
+                <tr>
+                    <td>回款期限<input type='checkbox' name='hideColumns' value='回款期限'></td>
+                    <td>租金金额<input type='checkbox' name='hideColumns' value='租金金额'></td>
+                    <td>基站销售款<input type='checkbox' name='hideColumns' value='基站销售款'></td>
+                    <td>累计应收金额<input type='checkbox' name='hideColumns' value='累计应收金额'></td>
+                </tr>
+                <tr>
+                    <td>税率<input type='checkbox' name='hideColumns' value='税率'></td>
+                    <td>伟通收入不含税<input type='checkbox' name='hideColumns' value='伟通收入不含税'></td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>2016年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2016年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2016年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2016年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2016年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2016年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2016年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2016年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2016年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2017年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2017年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2017年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2017年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2017年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2017年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2017年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2017年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2017年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2018年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2018年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2018年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2018年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2018年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2018年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2018年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2018年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2018年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2019年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2019年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2019年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2019年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2019年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2019年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2019年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2019年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2019年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2020年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2020年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2020年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2020年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2020年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2020年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2020年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2020年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2020年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2021年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2021年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2021年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2021年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2021年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2021年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2021年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2021年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2021年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2022年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2022年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2022年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2022年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2022年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2022年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2022年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2022年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2022年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>2023年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2023年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2023年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2023年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2023年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2023年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2023年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2023年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2023年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>2024年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2024年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2024年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2024年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2024年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2024年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2024年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2024年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2024年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2025年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2025年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2025年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2025年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2025年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2025年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2025年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2025年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2025年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2026年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2026年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2026年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2026年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2026年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2026年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2026年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2026年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2026年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2027年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2027年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2027年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2027年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2027年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2027年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2027年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2027年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2027年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2028年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2028年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2028年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2028年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2028年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2028年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2028年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2028年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2028年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2029年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2029年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2029年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2029年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2029年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2029年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2029年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2029年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2029年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>2030年</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='_2030年开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='_2030年开票金额'></td>
+                        <td>合同收款时间<input type='checkbox' name='hideColumns' value='_2030年合同收款时间'></td>
+                        <td>合同收款金额<input type='checkbox' name='hideColumns' value='_2030年合同收款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>实际回款金额<input type='checkbox' name='hideColumns' value='_2030年实际回款金额'></td>
+                        <td>应收未收金额<input type='checkbox' name='hideColumns' value='_2030年应收未收金额'></td>
+                        <td>到期应收未收金额<input type='checkbox' name='hideColumns' value='_2030年到期应收未收金额'></td>
+                        <td>实际回款时间<input type='checkbox' name='hideColumns' value='_2030年实际回款时间'></td>
+
+                    </tr>
+                </table>
+            </fieldset>
+
+
+
+
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>推迟收款时间<input type='checkbox' name='hideColumns' value='推迟收款时间'></td>
+                    <td>实际竣工时间<input type='checkbox' name='hideColumns' value='实际竣工时间'></td>
+                    <td>竣工与实际收款时间差异<input type='checkbox' name='hideColumns' value='竣工与实际收款时间差异'></td>
+                    <td>移动交付<input type='checkbox' name='hideColumns' value='移动交付'></td>
+                </tr>
+                <tr>
+                    <td>电信交付<input type='checkbox' name='hideColumns' value='电信交付'></td>
+                    <td>联通交付<input type='checkbox' name='hideColumns' value='联通交付'></td>
+                    <td>铁塔交付<input type='checkbox' name='hideColumns' value='铁塔交付'></td>
+                    <td>运营商合同签订日期<input type='checkbox' name='hideColumns' value='运营商合同签订日期'></td>
+                </tr>
+                <tr>
+                    <td>运营商交付单与租赁合同时间差<input type='checkbox' name='hideColumns' value='运营商交付单与租赁合同时间差'></td>
+                    <td>移动实际付款时间<input type='checkbox' name='hideColumns' value='移动实际付款时间'></td>
+                    <td>电信实际付款时间<input type='checkbox' name='hideColumns' value='电信实际付款时间'></td>
+                    <td>联通实际付款时间<input type='checkbox' name='hideColumns' value='联通实际付款时间'></td>
+                </tr>
+                <tr>
+                    <td class="export_hide">备注<input type='checkbox' name='hideColumns' value='备注'></td>
+                    <td class="export_hide">创建时间<input type='checkbox' name='hideColumns' value='CreateTime'></td>
+                    <td class="export_hide">修改时间<input type='checkbox' name='hideColumns' value='UpdateTime'></td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="all_hideColumns_HealthXs()">全选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="unall_hideColumns_HealthXs()">全不选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="fx_hideColumns_HealthXs()">反选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="A2" onclick="Save_hideColumns_HealthXs()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_hideColumns_HealthXs()">关闭</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#search_HealthXs').click(function () { bindData_HealthXs() });
+    var hideColumns_HealthXs = "";
+    var exporthideColumns_HealthXs = "";
+    var hideType_HealthXs = "list";
+    $(function () {
+        bindCombobox_HealthXs();
+        getHideColumns_HealthXs();
+    });
+    function getHideColumns_HealthXs() {
+        $.post('UserColumns/GetHideColumns', { type: "list", tableName: "HealthXs" }, function (data) {
+            hideColumns_HealthXs = data.Data;
+            bindData_HealthXs();
+        });
+        $.post('UserColumns/GetHideColumns', { type: "export", tableName: "HealthXs" }, function (data) {
+            exporthideColumns_HealthXs = data.Data;
+        });
+    }
+    function bind_frm_hideColumns_HealthXs(hideColumns) {
+        $("form#frm_hideColumns_HealthXs input[name='hideColumns']").prop("checked", true);
+        if (hideColumns != "") {
+            hideColumnsarry = hideColumns.split(",");//以逗号作为分隔字符串
+            for (var i = 0; i < hideColumnsarry.length; i++) {
+                $("form#frm_hideColumns_HealthXs input[name='hideColumns'][value='" + hideColumnsarry[i] + "']").prop("checked", false);
+            }
+        }
+    }
+    function bindData_HealthXs() {
+        dg = '#dg_HealthXs';
+        url = "HealthXs/List";
+        title = "销售健康度管理";
+        区域 = $('#HealthXs_区域').combobox('getValue');
+        客户名称 = $('#HealthXs_客户名称').combobox('getValue');
+        站点编码 = $('#HealthXs_站点编码').val();
+        站点名称 = $('#HealthXs_站点名称').val();
+        queryParams = { 区域: 区域, 客户名称: 客户名称, 站点编码: 站点编码, 站点名称: 站点名称 };
+        $(dg).datagrid({   //定位到Table标签，Table标签的ID是grid  
+            url: url,   //指向后台的Action来获取当前菜单的信息的Json格式的数据  
+            title: title,
+            iconCls: 'icon-view',
+            nowrap: true,
+            autoRowHeight: false,
+            striped: true,
+            collapsible: true,
+            pagination: true,
+            singleSelect: true,
+            pageSize: 15,
+            pageList: [10, 15, 20, 30, 50],
+            rownumbers: true,
+            //sortName: 'ID',    //根据某个字段给easyUI排序  
+            //sortOrder: 'asc',
+            remoteSort: false,
+            idField: 'id',
+            queryParams: queryParams,  //异步查询的参数  
+            columns: [[
+                { field: 'ck', checkbox: true },   //选择  
+                { title: '区域', field: '区域Text', width: 100 },
+                { title: '客户名称', field: '客户名称Text', width: 100 },
+                { title: '站点名称', field: '站点名称', width: 100 },
+                { title: '站点编码', field: '站点编码', width: 100 },
+                { title: '回款期限', field: '回款期限', width: 100 },
+                { title: '租金金额', field: '租金金额', width: 100 },
+                { title: '基站销售款', field: '基站销售款', width: 100 },
+                { title: '累计应收金额', field: '累计应收金额', width: 100 },
+                { title: '税率', field: '税率', width: 100 },
+                { title: '伟通收入不含税', field: '伟通收入不含税', width: 100 },
+                { title: '2016年开票时间', field: '_2016年开票时间', width: 100 },
+                { title: '2016年开票金额', field: '_2016年开票金额', width: 100 },
+                { title: '2016年合同收款时间', field: '_2016年合同收款时间', width: 100 },
+                { title: '2016年合同收款金额', field: '_2016年合同收款金额', width: 100 },
+                { title: '2016年实际回款金额', field: '_2016年实际回款金额', width: 100 },
+                { title: '2016年应收未收金额', field: '_2016年应收未收金额', width: 100 },
+                { title: '2016年到期应收未收金额', field: '_2016年到期应收未收金额', width: 100 },
+                { title: '2016年实际回款时间', field: '_2016年实际回款时间', width: 100 },
+                { title: '2017年开票时间', field: '_2017年开票时间', width: 100 },
+                { title: '2017年开票金额', field: '_2017年开票金额', width: 100 },
+                { title: '2017年合同收款时间', field: '_2017年合同收款时间', width: 100 },
+                { title: '2017年合同收款金额', field: '_2017年合同收款金额', width: 100 },
+                { title: '2017年实际回款金额', field: '_2017年实际回款金额', width: 100 },
+                { title: '2017年应收未收金额', field: '_2017年应收未收金额', width: 100 },
+                { title: '2017年到期应收未收金额', field: '_2017年到期应收未收金额', width: 100 },
+                { title: '2017年实际回款时间', field: '_2017年实际回款时间', width: 100 },
+                { title: '2018年开票时间', field: '_2018年开票时间', width: 100 },
+                { title: '2018年开票金额', field: '_2018年开票金额', width: 100 },
+                { title: '2018年合同收款时间', field: '_2018年合同收款时间', width: 100 },
+                { title: '2018年合同收款金额', field: '_2018年合同收款金额', width: 100 },
+                { title: '2018年实际回款金额', field: '_2018年实际回款金额', width: 100 },
+                { title: '2018年应收未收金额', field: '_2018年应收未收金额', width: 100 },
+                { title: '2018年到期应收未收金额', field: '_2018年到期应收未收金额', width: 100 },
+                { title: '2018年实际回款时间', field: '_2018年实际回款时间', width: 100 },
+                { title: '2019年开票时间', field: '_2019年开票时间', width: 100 },
+                { title: '2019年开票金额', field: '_2019年开票金额', width: 100 },
+                { title: '2019年合同收款时间', field: '_2019年合同收款时间', width: 100 },
+                { title: '2019年合同收款金额', field: '_2019年合同收款金额', width: 100 },
+                { title: '2019年实际回款金额', field: '_2019年实际回款金额', width: 100 },
+                { title: '2019年应收未收金额', field: '_2019年应收未收金额', width: 100 },
+                { title: '2019年到期应收未收金额', field: '_2019年到期应收未收金额', width: 100 },
+                { title: '2019年实际回款时间', field: '_2019年实际回款时间', width: 100 },
+                { title: '2020年开票时间', field: '_2020年开票时间', width: 100 },
+                { title: '2020年开票金额', field: '_2020年开票金额', width: 100 },
+                { title: '2020年合同收款时间', field: '_2020年合同收款时间', width: 100 },
+                { title: '2020年合同收款金额', field: '_2020年合同收款金额', width: 100 },
+                { title: '2020年实际回款金额', field: '_2020年实际回款金额', width: 100 },
+                { title: '2020年应收未收金额', field: '_2020年应收未收金额', width: 100 },
+                { title: '2020年到期应收未收金额', field: '_2020年到期应收未收金额', width: 100 },
+                { title: '2020年实际回款时间', field: '_2020年实际回款时间', width: 100 },
+                { title: '2021年开票时间', field: '_2021年开票时间', width: 100 },
+                { title: '2021年开票金额', field: '_2021年开票金额', width: 100 },
+                { title: '2021年合同收款时间', field: '_2021年合同收款时间', width: 100 },
+                { title: '2021年合同收款金额', field: '_2021年合同收款金额', width: 100 },
+                { title: '2021年实际回款金额', field: '_2021年实际回款金额', width: 100 },
+                { title: '2021年应收未收金额', field: '_2021年应收未收金额', width: 100 },
+                { title: '2021年到期应收未收金额', field: '_2021年到期应收未收金额', width: 100 },
+                { title: '2021年实际回款时间', field: '_2021年实际回款时间', width: 100 },
+                { title: '2022年开票时间', field: '_2022年开票时间', width: 100 },
+                { title: '2022年开票金额', field: '_2022年开票金额', width: 100 },
+                { title: '2022年合同收款时间', field: '_2022年合同收款时间', width: 100 },
+                { title: '2022年合同收款金额', field: '_2022年合同收款金额', width: 100 },
+                { title: '2022年实际回款金额', field: '_2022年实际回款金额', width: 100 },
+                { title: '2022年应收未收金额', field: '_2022年应收未收金额', width: 100 },
+                { title: '2022年到期应收未收金额', field: '_2022年到期应收未收金额', width: 100 },
+                { title: '2022年实际回款时间', field: '_2022年实际回款时间', width: 100 },
+                { title: '2023年开票时间', field: '_2023年开票时间', width: 100 },
+                { title: '2023年开票金额', field: '_2023年开票金额', width: 100 },
+                { title: '2023年合同收款时间', field: '_2023年合同收款时间', width: 100 },
+                { title: '2023年合同收款金额', field: '_2023年合同收款金额', width: 100 },
+                { title: '2023年实际回款金额', field: '_2023年实际回款金额', width: 100 },
+                { title: '2023年应收未收金额', field: '_2023年应收未收金额', width: 100 },
+                { title: '2023年到期应收未收金额', field: '_2023年到期应收未收金额', width: 100 },
+                { title: '2023年实际回款时间', field: '_2023年实际回款时间', width: 100 },
+                { title: '2024年开票时间', field: '_2024年开票时间', width: 100 },
+                { title: '2024年开票金额', field: '_2024年开票金额', width: 100 },
+                { title: '2024年合同收款时间', field: '_2024年合同收款时间', width: 100 },
+                { title: '2024年合同收款金额', field: '_2024年合同收款金额', width: 100 },
+                { title: '2024年实际回款金额', field: '_2024年实际回款金额', width: 100 },
+                { title: '2024年应收未收金额', field: '_2024年应收未收金额', width: 100 },
+                { title: '2024年到期应收未收金额', field: '_2024年到期应收未收金额', width: 100 },
+                { title: '2024年实际回款时间', field: '_2024年实际回款时间', width: 100 },
+                { title: '2025年开票时间', field: '_2025年开票时间', width: 100 },
+                { title: '2025年开票金额', field: '_2025年开票金额', width: 100 },
+                { title: '2025年合同收款时间', field: '_2025年合同收款时间', width: 100 },
+                { title: '2025年合同收款金额', field: '_2025年合同收款金额', width: 100 },
+                { title: '2025年实际回款金额', field: '_2025年实际回款金额', width: 100 },
+                { title: '2025年应收未收金额', field: '_2025年应收未收金额', width: 100 },
+                { title: '2025年到期应收未收金额', field: '_2025年到期应收未收金额', width: 100 },
+                { title: '2025年实际回款时间', field: '_2025年实际回款时间', width: 100 },
+                { title: '2026年开票时间', field: '_2026年开票时间', width: 100 },
+                { title: '2026年开票金额', field: '_2026年开票金额', width: 100 },
+                { title: '2026年合同收款时间', field: '_2026年合同收款时间', width: 100 },
+                { title: '2026年合同收款金额', field: '_2026年合同收款金额', width: 100 },
+                { title: '2026年实际回款金额', field: '_2026年实际回款金额', width: 100 },
+                { title: '2026年应收未收金额', field: '_2026年应收未收金额', width: 100 },
+                { title: '2026年到期应收未收金额', field: '_2026年到期应收未收金额', width: 100 },
+                { title: '2026年实际回款时间', field: '_2026年实际回款时间', width: 100 },
+                { title: '2027年开票时间', field: '_2027年开票时间', width: 100 },
+                { title: '2027年开票金额', field: '_2027年开票金额', width: 100 },
+                { title: '2027年合同收款时间', field: '_2027年合同收款时间', width: 100 },
+                { title: '2027年合同收款金额', field: '_2027年合同收款金额', width: 100 },
+                { title: '2027年实际回款金额', field: '_2027年实际回款金额', width: 100 },
+                { title: '2027年应收未收金额', field: '_2027年应收未收金额', width: 100 },
+                { title: '2027年到期应收未收金额', field: '_2027年到期应收未收金额', width: 100 },
+                { title: '2027年实际回款时间', field: '_2027年实际回款时间', width: 100 },
+                { title: '2028年开票时间', field: '_2028年开票时间', width: 100 },
+                { title: '2028年开票金额', field: '_2028年开票金额', width: 100 },
+                { title: '2028年合同收款时间', field: '_2028年合同收款时间', width: 100 },
+                { title: '2028年合同收款金额', field: '_2028年合同收款金额', width: 100 },
+                { title: '2028年实际回款金额', field: '_2028年实际回款金额', width: 100 },
+                { title: '2028年应收未收金额', field: '_2028年应收未收金额', width: 100 },
+                { title: '2028年到期应收未收金额', field: '_2028年到期应收未收金额', width: 100 },
+                { title: '2028年实际回款时间', field: '_2028年实际回款时间', width: 100 },
+                { title: '2029年开票时间', field: '_2029年开票时间', width: 100 },
+                { title: '2029年开票金额', field: '_2029年开票金额', width: 100 },
+                { title: '2029年合同收款时间', field: '_2029年合同收款时间', width: 100 },
+                { title: '2029年合同收款金额', field: '_2029年合同收款金额', width: 100 },
+                { title: '2029年实际回款金额', field: '_2029年实际回款金额', width: 100 },
+                { title: '2029年应收未收金额', field: '_2029年应收未收金额', width: 100 },
+                { title: '2029年到期应收未收金额', field: '_2029年到期应收未收金额', width: 100 },
+                { title: '2029年实际回款时间', field: '_2029年实际回款时间', width: 100 },
+                { title: '2030年开票时间', field: '_2030年开票时间', width: 100 },
+                { title: '2030年开票金额', field: '_2030年开票金额', width: 100 },
+                { title: '2030年合同收款时间', field: '_2030年合同收款时间', width: 100 },
+                { title: '2030年合同收款金额', field: '_2030年合同收款金额', width: 100 },
+                { title: '2030年实际回款金额', field: '_2030年实际回款金额', width: 100 },
+                { title: '2030年应收未收金额', field: '_2030年应收未收金额', width: 100 },
+                { title: '2030年到期应收未收金额', field: '_2030年到期应收未收金额', width: 100 },
+                { title: '2030年实际回款时间', field: '_2030年实际回款时间', width: 100 },
+                { title: '推迟收款时间', field: '推迟收款时间', width: 100 },
+                { title: '实际竣工时间', field: '实际竣工时间', width: 100 },
+                { title: '竣工与实际收款时间差异', field: '竣工与实际收款时间差异', width: 100 },
+                { title: '移动交付', field: '移动交付', width: 100 },
+                { title: '电信交付', field: '电信交付', width: 100 },
+                { title: '联通交付', field: '联通交付', width: 100 },
+                { title: '铁塔交付', field: '铁塔交付', width: 100 },
+                { title: '运营商合同签订日期', field: '运营商合同签订日期', width: 100 },
+                { title: '运营商交付单与租赁合同时间差', field: '运营商交付单与租赁合同时间差', width: 100 },
+                { title: '移动实际付款时间', field: '移动实际付款时间', width: 100 },
+                { title: '电信实际付款时间', field: '电信实际付款时间', width: 100 },
+                { title: '联通实际付款时间', field: '联通实际付款时间', width: 100 },
+                { title: '创建时间', field: 'CreateTime', width: 180 },
+                { title: '修改时间', field: 'UpdateTime', width: 180 },
+                { title: '备注', field: '备注', width: 300 }
+            ]],
+            toolbar: [{
+                id: 'btnAdd_HealthXs',
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    ShowAddDialog_HealthXs();//实现添加记录的页面  
+                }
+            }, '-', {
+                id: 'btnEdit_HealthXs',
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    ShowEditDialog_HealthXs();//实现修改记录的方法  
+                }
+            }, '-', {
+                id: 'btnDelete_HealthXs',
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    Delete_HealthXs();//实现直接删除数据的方法  
+                }
+            }, '-', {
+                id: 'btnView_HealthXs',
+                text: '查看',
+                iconCls: 'icon-search',
+                handler: function () {
+                    ShowViewDialog_HealthXs();//实现查看记录详细信息的方法  
+                }
+            }, '-', {
+                id: 'btnReload_HealthXs',
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    //实现刷新栏目中的数据  
+                    $(dg).datagrid("reload");
+                }
+            }],
+            onDblClickRow: function (rowIndex, rowData) {
+                $(dg).datagrid('uncheckAll');
+                $(dg).datagrid('checkRow', rowIndex);
+                ShowViewDialog_HealthXs();
+            },
+            onLoadSuccess: function (data) {
+                if (hideColumns_HealthXs != "") {
+                    hideColumnsarry = hideColumns_HealthXs.split(",");//以逗号作为分隔字符串
+                    for (var i = 0; i < hideColumnsarry.length; i++) {
+                        $(dg).datagrid("hideColumn", hideColumnsarry[i]); // 设置隐藏列
+                    }
+                }
+            }
+        })
+    }
+    function ShowEditDialog_HealthXs() {
+        var rows = $('#dg_HealthXs').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_HealthXs').dialog('open').dialog('setTitle', '修改');
+            $('#frm_HealthXs').form('load', rows[0]);
+            $("#tr_time_HealthXs").hide();
+            $("#btn_save_HealthXs").show();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowViewDialog_HealthXs() {
+        var rows = $('#dg_HealthXs').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_HealthXs').dialog('open').dialog('setTitle', '查看');
+            $('#frm_HealthXs').form('load', rows[0]);
+            $("#tr_time_HealthXs").show();
+            $("#btn_save_HealthXs").hide();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowAddDialog_HealthXs() {
+        $('#dlg_HealthXs').dialog('open').dialog('setTitle', '添加');
+        $('#frm_HealthXs').form('clear');
+        $("#tr_time_HealthXs").hide();
+        $("#btn_save_HealthXs").show();
+    }
+    function Save_HealthXs() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var 区域 = $("#frm_HealthXs_区域").combobox('getValue');
+        var 客户名称 = $("#frm_HealthXs_客户名称").combobox('getValue');
+        var 站点编码 = $("div#frm_HealthXs input[name='站点编码']").val();
+        var 站点名称 = $("div#frm_HealthXs input[name='站点名称']").val();
+
+        if (区域 == '') {
+            $.messager.alert("提示", '请选择区域');
+            return;
+        }
+        if (客户名称 == '') {
+            $.messager.alert("提示", '请选择客户名称');
+            return;
+        }
+        if (站点编码 == '') {
+            $.messager.alert("提示", '请填写站点编码');
+            return;
+        }
+        if (站点名称 == '') {
+            $.messager.alert("提示", '请填写站点名称');
+            return;
+        }
+        $('#frm_HealthXs').form('submit', {
+            url: 'HealthXs/Save',
+            onSubmit: function () {
+                var validate = $(this).form('validate');
+                if (validate) {
+                    SaveStatus = 0;
+                }
+                return validate;
+            },
+            success: function (data) {
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $('#dlg_HealthXs').dialog('close');
+                    bindData_HealthXs();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_HealthXs() {
+        $('#dlg_HealthXs').dialog('close');
+    }
+    function Delete_HealthXs() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var rows = $('#dg_HealthXs').datagrid('getSelections');
+        if (!rows || rows.length == 0) {
+            $.messager.alert("提示", "请选择要删除的数据.");
+            return;
+        }
+        $.messager.confirm('提示', '确认删除这' + rows.length + '条数据吗？', function (r) {
+            if (r) {
+                SaveStatus = 0;
+                var IDS = '';
+                for (var i = 0; i < rows.length; i++) {
+                    IDS += ',' + rows[i].id;
+                }
+                $.post('HealthXs/Delete', { IDS: IDS }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_HealthXs').dialog('close');
+                        bindData_HealthXs();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+        });
+    }
+    function bindCombobox_HealthXs() {
+        $.post('Area/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_HealthXs_区域").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#HealthXs_区域").combobox('loadData', resall);
+        });
+        $.post('Customer/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_HealthXs_客户名称").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#HealthXs_客户名称").combobox('loadData', resall);
+        });
+    }
+
+
+    function Show_excel_import_HealthXs() {
+        $('#dlg_excel_import_HealthXs').dialog('open').dialog('setTitle', '导入信息');
+    }
+    function Save_excel_import_HealthXs() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        file = $('#fileupload_excel_import_HealthXs').val();
+        if (file == "") {
+            $.messager.alert("提示", "请选择要导入的数据.");
+            return;
+        }
+        SaveStatus = 0;
+        showdiv_excel_import_HealthXs();
+        $('#frm_excel_import_HealthXs').form('submit', {
+            url: 'HealthXs/ExcelImport',
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                closediv_excel_import_HealthXs();
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $.messager.alert("提示", res.Message);
+                    $('#dlg_excel_import_HealthXs').dialog('close');
+                    bindData_HealthXs();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_excel_import_HealthXs() {
+        $('#dlg_excel_import_HealthXs').dialog('close');
+    }
+    function closediv_excel_import_HealthXs() {
+        $("#Conditionback_excel_import_HealthXs").hide(); $("#ConditionShow_excel_import_HealthXs").hide();
+    }
+    function showdiv_excel_import_HealthXs() {
+        $("#Conditionback_excel_import_HealthXs").show(); $("#ConditionShow_excel_import_HealthXs").show();
+    }
+    function Do_excel_export_HealthXs() {
+        url = "HealthXs/ExcelExport";
+        区域 = $('#HealthXs_区域').combobox('getValue');
+        客户名称 = $('#HealthXs_客户名称').combobox('getValue');
+        站点编码 = $('#HealthXs_站点编码').val();
+        站点名称 = $('#HealthXs_站点名称').val();
+        params = "";
+        if (区域 != "") {
+            params += "区域=" + 区域 + "&&";
+        }
+        if (客户名称 != "") {
+            params += "客户名称=" + 客户名称 + "&&";
+        }
+        if (站点编码 != "") {
+            params += "站点编码=" + 站点编码 + "&&";
+        }
+        if (站点名称 != "") {
+            params += "站点名称=" + 站点名称 + "&&";
+        }
+        window.open(url + "?" + params);
+
+    }
+
+
+    function Show_hideColumns_HealthXs() {
+        hideType_HealthXs = "list";
+        bind_frm_hideColumns_HealthXs(hideColumns_HealthXs);
+        $("form#frm_hideColumns_HealthXs [class='export_hide']").show();
+        $('#dlg_hideColumns_HealthXs').dialog('open').dialog('setTitle', '列表显示列');
+    }
+    function Save_hideColumns_HealthXs() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        if (hideType_HealthXs == "list") {
+            $.messager.confirm('提示', '是否要保存数据？', function (r) {
+                if (r) {
+                    SaveStatus == 0
+                    var arry = $("form#frm_hideColumns_HealthXs input[name='hideColumns']");
+                    hideColumns_HealthXs = "";
+                    for (var i = 0; i < arry.length; i++) {
+                        if (!arry[i].checked) {
+                            hideColumns_HealthXs += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                        }
+                    }
+                    hideColumns_HealthXs = hideColumns_HealthXs.trim(',');
+                    if (hideColumns_HealthXs != "") {
+                        hideColumns_HealthXs = hideColumns_HealthXs.substring(0, hideColumns_HealthXs.length - 1);
+                    }
+                    $.post('UserColumns/Save', { type: "list", tableName: "HealthXs", hideColumns: hideColumns_HealthXs }, function (data) {
+                        SaveStatus = 1;
+                        if (data.Status == 1) {
+                            $('#dlg_hideColumns_HealthXs').dialog('close');
+                            bindData_HealthXs();
+                        }
+                        else {
+                            $.messager.alert("提示", data.ErroMessage);
+                        }
+                    });
+                }
+            });
+        }
+        else {//导出
+            var arry = $("form#frm_hideColumns_HealthXs input[name='hideColumns']");
+            var hideColumns = "";
+            for (var i = 0; i < arry.length; i++) {
+                if (!arry[i].checked) {
+                    hideColumns += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                }
+            }
+            hideColumns = hideColumns.trim(',');
+            if (hideColumns != "") {
+                hideColumns = hideColumns.substring(0, hideColumns.length - 1);
+            }
+            if (hideColumns != exporthideColumns_HealthXs) {
+                SaveStatus == 0
+                exporthideColumns_HealthXs = hideColumns;
+                $.post('UserColumns/Save', { type: "export", tableName: "HealthXs", hideColumns: hideColumns }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_hideColumns_HealthXs').dialog('close');
+                        Do_excel_export_HealthXs();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+            else {
+                Do_excel_export_HealthXs();
+            }
+        }
+    }
+    function Close_hideColumns_HealthXs() {
+        $('#dlg_hideColumns_HealthXs').dialog('close');
+    }
+    function all_hideColumns_HealthXs() {
+        $("form#frm_hideColumns_HealthXs input[name='hideColumns']").prop("checked", true);
+    }
+    function unall_hideColumns_HealthXs() {
+        $("form#frm_hideColumns_HealthXs input[name='hideColumns']").prop("checked", false);
+    }
+    function fx_hideColumns_HealthXs() {
+        $("form#frm_hideColumns_HealthXs input[name='hideColumns']").each(function () {
+            if ($(this).prop("checked")) {
+                $(this).prop("checked", false);
+            }
+            else {
+                $(this).prop("checked", true);
+            }
+        })
+    }
+    function Show_exportColumns_HealthXs() {
+        hideType_HealthXs = "export";
+        bind_frm_hideColumns_HealthXs(exporthideColumns_HealthXs);
+        $("form#frm_hideColumns_HealthXs [class='export_hide']").hide();
+        $('#dlg_hideColumns_HealthXs').dialog('open').dialog('setTitle', '导出指定列数据');
+    }
+
+    //页面自动计算
+    $("#frm_HealthXs input[name='基站销售款']").numberbox({
+        onChange: function () {
+            get_HealthXs_伟通收入不含税();
+        }
+    })
+    $("#frm_HealthXs input[name='税率']").numberbox({
+        onChange: function () {
+            get_HealthXs_伟通收入不含税();
+        }
+    })
+
+    function get_HealthXs_伟通收入不含税() {
+        基站销售款 = $("form#frm_HealthXs input[name='基站销售款']").val();
+        税率 = $("form#frm_HealthXs input[name='税率']").val();
+        伟通收入不含税 = (基站销售款 / (1 + 税率 / 100));
+        $("#frm_HealthXs_伟通收入不含税").numberbox('setValue', 伟通收入不含税);
+    }
+
+    $("#frm_HealthXs input[name$='合同收款金额']").each(
+        function () {
+            $(this).numberbox({
+                onChange: function () {
+                    get_HealthXs_累计应收金额();
+                }
+            })
+        })
+
+
+    function get_HealthXs_累计应收金额() {
+        累计应收金额 = 0;
+        $("#frm_HealthXs input[name$='合同收款金额']").each(
+        function () {
+            if( $(this).val()!=""){            
+                累计应收金额 = 累计应收金额 + parseInt($(this).val());
+            }
+        });
+       
+        $("#frm_HealthXs_累计应收金额").numberbox('setValue', 累计应收金额);
+    }
+
+</script>

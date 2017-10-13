@@ -1,0 +1,1055 @@
+﻿<div id="div_ContractMoney">
+    <!--查询条件-->
+    <div class="easyui-panel">
+        类别：
+    <select class="easyui-combobox" id="ContractMoney_类别" style="width: 180px;">
+        <option value="">全部</option>
+        <option value="销售">销售</option>
+        <option value="自持">自持</option>
+    </select>
+        区域：
+    <select class="easyui-combobox" id="ContractMoney_区域" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        客户名称：
+    <select class="easyui-combobox" id="ContractMoney_客户名称" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select><br />
+        站点编码：
+        <input id="ContractMoney_站点编码" class="easyui-textbox" style="width: 180px;">
+        站点名称：
+        <input id="ContractMoney_站点名称" class="easyui-textbox" style="width: 180px;"><br />
+        <a href="javascript:void(0)" id="search_ContractMoney" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
+        <a href="javascript:void(0)" id="excel_import_ContractMoney" class="easyui-linkbutton" style="width: 80px" onclick="Show_excel_import_ContractMoney()">导 入</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_exportColumns_ContractMoney()">自定义导出</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_hideColumns_ContractMoney()">设置列表列</a>
+        <br />
+    </div>
+    <!--数据列表-->
+    <table id="dg_ContractMoney" style="width: 100%; height: auto">
+    </table>
+    <!--编辑页面-->
+    <div id="dlg_ContractMoney" class="easyui-dialog" style="width: 800px; height: 600px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div class="ftitle">
+            <b>合同款项追踪</b>
+            <hr />
+        </div>
+        <form id="frm_ContractMoney" method="post" novalidate="novalidate">
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr style="display: none">
+                    <td>ID：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>区域：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_ContractMoney_区域" name="区域" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                    <td>类别：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_ContractMoney_类别" name="类别" style="width: 180px;" data-options="required:true">
+                            <option value="销售">销售</option>
+                            <option value="自持">自持</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>客户名称：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_ContractMoney_客户名称" name="客户名称" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>站点编码：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="站点编码" data-options="required:true">
+                    </td>
+                    <td>站点名称：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="站点名称" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <td>销售合同第一年回款日期：</td>
+                    <td colspan="3">
+                        <input type="text" name="销售合同第一年回款日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>合同签订时间建设合同：</td>
+                    <td>
+                        <input type="text" name="合同签订时间建设合同" onclick="WdatePicker()" />
+                    </td>
+                    <td>合同签订时间买卖合同：</td>
+                    <td>
+                        <input type="text" name="合同签订时间买卖合同" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>合同签订时间维护合同：</td>
+                    <td>
+                        <input type="text" name="合同签订时间维护合同" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>运营商收入信息</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>年限：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息年限">
+                        </td>
+                        <td>含税租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息含税租金" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>合同金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息合同金额" data-options="precision:2">
+                        </td>
+                        <td>不含税租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息不含税租金" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>不含税总额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息不含税总额" data-options="precision:2">
+                        </td>
+                        <td>税率：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息税率" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>税额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商收入信息税额" data-options="precision:2">
+                        </td>
+                        <td>生效时间：</td>
+                        <td>
+                            <input type="text" name="运营商收入信息生效时间" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>到期时间：</td>
+                        <td>
+                            <input type="text" name="运营商收入信息到期时间" onclick="WdatePicker()" />
+                        </td>
+                        <td>签订时间：</td>
+                        <td>
+                            <input type="text" name="运营商收入信息签订时间" onclick="WdatePicker()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>签订方：</td>
+                        <td>
+                            <input class="easyui-textbox" name="运营商收入信息签订方">
+                        </td>
+                        <td>合同编码：</td>
+                        <td>
+                            <input class="easyui-textbox" name="运营商收入信息合同编码">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>项目/区域：</td>
+                        <td>
+                            <input class="easyui-textbox" name="运营商收入信息项目区域">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>合同内容：</td>
+                        <td colspan="3">
+                            <input class="easyui-textbox" name="运营商收入信息合同内容" style="width: 90%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>合同付款方式条例：</td>
+                        <td colspan="3">
+                            <input class="easyui-textbox" name="运营商收入信息签订方" style="width: 90%">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>预估运营商收入：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="预估运营商收入" data-options="precision:2">
+                    </td>
+                    <td>运营商收入差额（预估-实际）：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="运营商收入差额" data-options="precision:2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>伟通预估收入：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="伟通预估收入" data-options="precision:2">
+                    </td>
+                    <td>伟通第一年应收销售款：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="伟通第一年应收销售款" data-options="precision:2">
+                    </td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>差额对比</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>收入：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="差额对比收入" data-options="precision:2">
+                        </td>
+                        <td>成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="差额对比成本" data-options="precision:2">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>运营商开票及回款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间：</td>
+                        <td>
+                            <input type="text" name="运营商开票及回款开票时间" onclick="WdatePicker()" />
+                        </td>
+                        <td>开票金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商开票及回款开票金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>回款时间：</td>
+                        <td>
+                            <input type="text" name="运营商开票及回款回款时间" onclick="WdatePicker()" />
+                        </td>
+                        <td>回款金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="运营商开票及回款回款金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>伟通开票及回款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间：</td>
+                        <td>
+                            <input type="text" name="伟通开票及回款开票时间" onclick="WdatePicker()" />
+                        </td>
+                        <td>开票金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="伟通开票及回款开票金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>回款时间：</td>
+                        <td>
+                            <input type="text" name="伟通开票及回款回款时间" onclick="WdatePicker()" />
+                        </td>
+                        <td>已回款金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="伟通开票及回款已回款金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>未回款金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="伟通开票及回款未回款金额" data-options="precision:2">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>运营商合同收款账号：</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" name="运营商合同收款账号" style="width: 90%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>运营商合同收款账号账号开户行：</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" name="运营商合同收款账号账号开户行" style="width: 90%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>销售共管账号：</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" name="销售共管账号" style="width: 90%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>销售共管账号账号开户行：</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" name="销售共管账号账号开户行" style="width: 90%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>建设验收单签订时间：</td>
+                    <td>
+                        <input type="text" name="建设验收单签订时间" onclick="WdatePicker()" />
+                    </td>
+                    <td>销售验收单签订时间：</td>
+                    <td>
+                        <input type="text" name="销售验收单签订时间" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>运营商验收交付单确认时间：</td>
+                    <td>
+                        <input type="text" name="运营商验收交付单确认时间" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr id="tr_time_ContractMoney">
+                    <td>创建时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="CreateTime"></td>
+
+                    <td>更新时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="UpdateTime"></td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" type="text" name="备注" style="width: 90%">
+                    </td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="btn_save_ContractMoney" onclick="Save_ContractMoney()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_ContractMoney()">关闭</a>
+            </div>
+        </form>
+    </div>
+    <div id="dlg_excel_import_ContractMoney" class="easyui-dialog" style="width: 500px; height: 320px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div>
+            <fieldset>
+                <legend>excel模版格式 </legend>
+                <p style="color: red">
+                    导入的模板格式如下，若模板格式不正确，则相应的数据不能导入<br />
+                    (第一列~开通的数据是表头或者示例数据不会被导入)!
+                </p>
+                <br />
+                <a href="../../Excel/Template/合同款项追踪表模板.xlsx" title="下载模版">下载模版</a>
+            </fieldset>
+        </div>
+        <div style="margin-top: 20px;">
+            <fieldset>
+                <legend>信息导入</legend>
+                <form id="frm_excel_import_ContractMoney" method="post" enctype="multipart/form-data">
+                    <p>
+                        选择文件：<input id="fileupload_excel_import_ContractMoney" type="file" name="fileImport" style="width: 250px; height: 24px; background: White"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </p>
+                    <p>
+                        <br />
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'" onclick="Save_excel_import_ContractMoney()">导入</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-cancel'" onclick="Close_excel_import_ContractMoney()">关闭</a>
+                    </p>
+                </form>
+            </fieldset>
+        </div>
+        <div id="Conditionback_excel_import_ContractMoney" style="display: none; position: fixed; opacity: 0.5; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #ccc; overflow: hidden;">
+        </div>
+        <div id="ConditionShow_excel_import_ContractMoney" style="display: none; position: absolute; top: 100px; left: 40%; width: 20%; height: 50px; z-index: 1002; text-align: center; overflow: hidden; background-color: White;">
+            <img src="../../style/img/loadingbar.gif" />
+            <br />
+            数据上传中......
+        </div>
+    </div>
+
+    <!--自定义列页面-->
+    <div id="dlg_hideColumns_ContractMoney" class="easyui-dialog" style="width: 850px; height: 550px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+
+        <form id="frm_hideColumns_ContractMoney" method="post" novalidate="novalidate">
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>区域<input type='checkbox' name='hideColumns' value='区域Text'></td>
+                    <td>类别<input type='checkbox' name='hideColumns' value='类别'></td>
+                    <td>客户名称<input type='checkbox' name='hideColumns' value='客户名称Text'></td>
+                    <td>站点编码<input type='checkbox' name='hideColumns' value='站点编码'></td>
+                </tr>
+                <tr>
+                    <td>站点名称<input type='checkbox' name='hideColumns' value='站点名称'></td>
+                    <td>销售合同第一年回款日期<input type='checkbox' name='hideColumns' value='销售合同第一年回款日期'></td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>合同签订时间</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>建设合同<input type='checkbox' name='hideColumns' value='合同签订时间建设合同'></td>
+                        <td>买卖合同<input type='checkbox' name='hideColumns' value='合同签订时间买卖合同'></td>
+                        <td>维护合同<input type='checkbox' name='hideColumns' value='合同签订时间维护合同'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>运营商收入信息</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>年限<input type='checkbox' name='hideColumns' value='运营商收入信息年限'></td>
+                        <td>含税租金<input type='checkbox' name='hideColumns' value='运营商收入信息含税租金'></td>
+                        <td>合同金额<input type='checkbox' name='hideColumns' value='运营商收入信息合同金额'></td>
+                        <td>不含税租金<input type='checkbox' name='hideColumns' value='运营商收入信息不含税租金'></td>
+                    </tr>
+                    <tr>
+                        <td>不含税总额<input type='checkbox' name='hideColumns' value='运营商收入信息不含税总额'></td>
+                        <td>税率<input type='checkbox' name='hideColumns' value='运营商收入信息税率'></td>
+                        <td>税额<input type='checkbox' name='hideColumns' value='运营商收入信息税额'></td>
+                        <td>生效时间<input type='checkbox' name='hideColumns' value='运营商收入信息生效时间'></td>
+                    </tr>
+                    <tr>
+                        <td>到期时间<input type='checkbox' name='hideColumns' value='运营商收入信息到期时间'></td>
+                        <td>签订时间<input type='checkbox' name='hideColumns' value='运营商收入信息签订时间'></td>
+                        <td>签订方<input type='checkbox' name='hideColumns' value='运营商收入信息签订方'></td>
+                        <td>合同编码<input type='checkbox' name='hideColumns' value='运营商收入信息合同编码'></td>
+                    </tr>
+                    <tr>
+                        <td>项目区域<input type='checkbox' name='hideColumns' value='运营商收入信息项目区域'></td>
+                        <td>合同内容<input type='checkbox' name='hideColumns' value='运营商收入信息合同内容'></td>
+                        <td>合同付款方式条例<input type='checkbox' name='hideColumns' value='运营商收入信息合同付款方式条例'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>预估运营商收入<input type='checkbox' name='hideColumns' value='预估运营商收入'></td>
+                    <td>运营商收入差额<input type='checkbox' name='hideColumns' value='运营商收入差额'></td>
+                    <td>伟通预估收入<input type='checkbox' name='hideColumns' value='伟通预估收入'></td>
+                    <td>伟通第一年应收销售款<input type='checkbox' name='hideColumns' value='伟通第一年应收销售款'></td>
+                </tr>
+                <tr>
+                    <td>差额对比收入<input type='checkbox' name='hideColumns' value='差额对比收入'></td>
+                    <td>差额对比成本<input type='checkbox' name='hideColumns' value='差额对比成本'></td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>运营商开票及回款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='运营商开票及回款开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='运营商开票及回款开票金额'></td>
+                        <td>回款时间<input type='checkbox' name='hideColumns' value='运营商开票及回款回款时间'></td>
+                        <td>回款金额<input type='checkbox' name='hideColumns' value='运营商开票及回款回款金额'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>伟通开票及回款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>开票时间<input type='checkbox' name='hideColumns' value='伟通开票及回款开票时间'></td>
+                        <td>开票金额<input type='checkbox' name='hideColumns' value='伟通开票及回款开票金额'></td>
+                        <td>回款时间<input type='checkbox' name='hideColumns' value='伟通开票及回款回款时间'></td>
+                        <td>已回款金额<input type='checkbox' name='hideColumns' value='伟通开票及回款已回款金额'></td>
+                    </tr>
+                    <tr>
+                        <td>未回款金额<input type='checkbox' name='hideColumns' value='伟通开票及回款未回款金额'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>运营商合同收款账号<input type='checkbox' name='hideColumns' value='运营商合同收款账号'></td>
+                    <td>运营商合同收款账号账号开户行<input type='checkbox' name='hideColumns' value='运营商合同收款账号账号开户行'></td>
+                    <td>销售共管账号<input type='checkbox' name='hideColumns' value='销售共管账号'></td>
+                    <td>销售共管账号账号开户行<input type='checkbox' name='hideColumns' value='销售共管账号账号开户行'></td>
+                </tr>
+                <tr>
+                    <td>建设验收单签订时间<input type='checkbox' name='hideColumns' value='建设验收单签订时间'></td>
+                    <td>销售验收单签订时间<input type='checkbox' name='hideColumns' value='销售验收单签订时间'></td>
+                    <td>运营商验收交付单确认时间<input type='checkbox' name='hideColumns' value='运营商验收交付单确认时间'></td>
+
+                </tr>
+
+                <tr>
+                    <td class="export_hide">备注<input type='checkbox' name='hideColumns' value='备注'></td>
+                    <td class="export_hide">创建时间<input type='checkbox' name='hideColumns' value='CreateTime'></td>
+                    <td class="export_hide">修改时间<input type='checkbox' name='hideColumns' value='UpdateTime'></td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="all_hideColumns_ContractMoney()">全选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="unall_hideColumns_ContractMoney()">全不选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="fx_hideColumns_ContractMoney()">反选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="A2" onclick="Save_hideColumns_ContractMoney()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_hideColumns_ContractMoney()">关闭</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#search_ContractMoney').click(function () { bindData_ContractMoney() });
+    var hideColumns_ContractMoney = "";
+    var exporthideColumns_ContractMoney = "";
+    var hideType_ContractMoney = "list";
+    $(function () {
+        bindCombobox_ContractMoney();
+        getHideColumns_ContractMoney();
+    });
+    function getHideColumns_ContractMoney() {
+        $.post('UserColumns/GetHideColumns', { type: "list", tableName: "ContractMoney" }, function (data) {
+            hideColumns_ContractMoney = data.Data;
+            bindData_ContractMoney();
+        });
+        $.post('UserColumns/GetHideColumns', { type: "export", tableName: "ContractMoney" }, function (data) {
+            exporthideColumns_ContractMoney = data.Data;
+        });
+    }
+    function bind_frm_hideColumns_ContractMoney(hideColumns) {
+        $("form#frm_hideColumns_ContractMoney input[name='hideColumns']").prop("checked", true);
+        if (hideColumns != "") {
+            hideColumnsarry = hideColumns.split(",");//以逗号作为分隔字符串
+            for (var i = 0; i < hideColumnsarry.length; i++) {
+                $("form#frm_hideColumns_ContractMoney input[name='hideColumns'][value='" + hideColumnsarry[i] + "']").prop("checked", false);
+            }
+        }
+    }
+    function bindData_ContractMoney() {
+        dg = '#dg_ContractMoney';
+        url = "ContractMoney/List";
+        title = "合同款项追踪管理";
+        类别 = $('#ContractMoney_类别').combobox('getValue');
+        区域 = $('#ContractMoney_区域').combobox('getValue');
+        客户名称 = $('#ContractMoney_客户名称').combobox('getValue');
+        站点编码 = $('#ContractMoney_站点编码').val();
+        站点名称 = $('#ContractMoney_站点名称').val();
+        queryParams = { 类别: 类别, 区域: 区域, 客户名称: 客户名称, 站点编码: 站点编码, 站点名称: 站点名称 };
+        $(dg).datagrid({   //定位到Table标签，Table标签的ID是grid  
+            url: url,   //指向后台的Action来获取当前菜单的信息的Json格式的数据  
+            title: title,
+            iconCls: 'icon-view',
+            nowrap: true,
+            autoRowHeight: false,
+            striped: true,
+            collapsible: true,
+            pagination: true,
+            singleSelect: true,
+            pageSize: 15,
+            pageList: [10, 15, 20, 30, 50],
+            rownumbers: true,
+            //sortName: 'ID',    //根据某个字段给easyUI排序  
+            //sortOrder: 'asc',
+            remoteSort: false,
+            idField: 'id',
+            queryParams: queryParams,  //异步查询的参数  
+            columns: [[
+                { field: 'ck', checkbox: true, rowspan: 2 },   //选择  
+                { title: '区域', field: '区域Text', width: 100, rowspan: 2 },
+                { title: '类别', field: '类别', width: 100, rowspan: 2 },
+                { title: '客户名称', field: '客户名称Text', width: 100, rowspan: 2 },
+                { title: '站点编码', field: '站点编码', width: 100, rowspan: 2 },
+                { title: '站点名称', field: '站点名称', width: 100, rowspan: 2 },
+                { title: '销售合同', field: '销售合同第一年回款日期', width: 100, rowspan: 2 },
+                { title: '合同签订时间', width: 300, colspan: 3 },
+                { title: '运营商收入信息', width: 1500, colspan: 15 },
+                { title: '预估运营商收入', field: '预估运营商收入', width: 100, rowspan: 2 },
+                { title: '运营商收入差额', field: '运营商收入差额', width: 100, rowspan: 2 },
+                { title: '伟通预估收入', field: '伟通预估收入', width: 100, rowspan: 2 },
+                { title: '伟通第一年应收销售款', field: '伟通第一年应收销售款', width: 100, rowspan: 2 },
+                { title: '差额对比', width: 200, colspan: 2 },
+                { title: '运营商开票及回款', width: 400, colspan: 4 },
+                { title: '伟通开票及回款', width: 500, colspan: 5 },
+                { title: '运营商合同收款账号', field: '运营商合同收款账号', width: 100, rowspan: 2 },
+                { title: '运营商合同收款账号账号开户行', field: '运营商合同收款账号账号开户行', width: 100, rowspan: 2 },
+                { title: '销售共管账号', field: '销售共管账号', width: 100, rowspan: 2 },
+                { title: '销售共管账号账号开户行', field: '销售共管账号账号开户行', width: 100, rowspan: 2 },
+                { title: '建设验收单签订时间', field: '建设验收单签订时间', width: 100, rowspan: 2 },
+                { title: '销售验收单签订时间', field: '销售验收单签订时间', width: 100, rowspan: 2 },
+                { title: '运营商验收交付单确认时间', field: '运营商验收交付单确认时间', width: 100, rowspan: 2 },
+                { title: '创建时间', field: 'CreateTime', width: 150, rowspan: 2 },
+                { title: '修改时间', field: 'UpdateTime', width: 150, rowspan: 2 },
+                { title: '备注', field: '备注', width: 300, rowspan: 2 }], [
+                { title: '建设合同', field: '合同签订时间建设合同', width: 100 },
+                { title: '买卖合同', field: '合同签订时间买卖合同', width: 100 },
+                { title: '维护合同', field: '合同签订时间维护合同', width: 100 },
+                { title: '年限', field: '运营商收入信息年限', width: 100 },
+                { title: '含税租金', field: '运营商收入信息含税租金', width: 100 },
+                { title: '合同金额', field: '运营商收入信息合同金额', width: 100 },
+                { title: '不含税租金', field: '运营商收入信息不含税租金', width: 100 },
+                { title: '不含税总额', field: '运营商收入信息不含税总额', width: 100 },
+                { title: '税率', field: '运营商收入信息税率', width: 100 },
+                { title: '税额', field: '运营商收入信息税额', width: 100 },
+                { title: '生效时间', field: '运营商收入信息生效时间', width: 100 },
+                { title: '到期时间', field: '运营商收入信息到期时间', width: 100 },
+                { title: '签订时间', field: '运营商收入信息签订时间', width: 100 },
+                { title: '签订方', field: '运营商收入信息签订方', width: 100 },
+                { title: '合同编码', field: '运营商收入信息合同编码', width: 100 },
+                { title: '项目/区域', field: '运营商收入信息项目区域', width: 100 },
+                { title: '合同内容', field: '运营商收入信息合同内容', width: 100 },
+                { title: '合同付款方式/条例', field: '运营商收入信息合同付款方式条例', width: 100 },
+                { title: '收入', field: '差额对比收入', width: 100 },
+                { title: '成本', field: '差额对比成本', width: 100 },
+                { title: '开票时间', field: '运营商开票及回款开票时间', width: 100 },
+                { title: '开票金额', field: '运营商开票及回款开票金额', width: 100 },
+                { title: '回款时间', field: '运营商开票及回款回款时间', width: 100 },
+                { title: '回款金额', field: '运营商开票及回款回款金额', width: 100 },
+                { title: '开票时间', field: '伟通开票及回款开票时间', width: 100 },
+                { title: '开票金额', field: '伟通开票及回款开票金额', width: 100 },
+                { title: '回款时间', field: '伟通开票及回款回款时间', width: 100 },
+                { title: '已回款金额', field: '伟通开票及回款已回款金额', width: 100 },
+                { title: '未回款金额', field: '伟通开票及回款未回款金额', width: 100 }
+                ]],
+            toolbar: [{
+                id: 'btnAdd_ContractMoney',
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    ShowAddDialog_ContractMoney();//实现添加记录的页面  
+                }
+            }, '-', {
+                id: 'btnEdit_ContractMoney',
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    ShowEditDialog_ContractMoney();//实现修改记录的方法  
+                }
+            }, '-', {
+                id: 'btnDelete_ContractMoney',
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    Delete_ContractMoney();//实现直接删除数据的方法  
+                }
+            }, '-', {
+                id: 'btnView_ContractMoney',
+                text: '查看',
+                iconCls: 'icon-search',
+                handler: function () {
+                    ShowViewDialog_ContractMoney();//实现查看记录详细信息的方法  
+                }
+            }, '-', {
+                id: 'btnReload_ContractMoney',
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    //实现刷新栏目中的数据  
+                    $(dg).datagrid("reload");
+                }
+            }],
+            onDblClickRow: function (rowIndex, rowData) {
+                $(dg).datagrid('uncheckAll');
+                $(dg).datagrid('checkRow', rowIndex);
+                ShowViewDialog_ContractMoney();
+            },
+            onLoadSuccess: function (data) {
+                if (hideColumns_ContractMoney != "") {
+                    hideColumnsarry = hideColumns_ContractMoney.split(",");//以逗号作为分隔字符串
+                    for (var i = 0; i < hideColumnsarry.length; i++) {
+                        $(dg).datagrid("hideColumn", hideColumnsarry[i]); // 设置隐藏列
+                    }
+                }
+            }
+        })
+    }
+    function ShowEditDialog_ContractMoney() {
+        var rows = $('#dg_ContractMoney').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_ContractMoney').dialog('open').dialog('setTitle', '修改');
+            $('#frm_ContractMoney').form('load', rows[0]);
+            $("#tr_time_ContractMoney").hide();
+            $("#btn_save_ContractMoney").show();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowViewDialog_ContractMoney() {
+        var rows = $('#dg_ContractMoney').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_ContractMoney').dialog('open').dialog('setTitle', '查看');
+            $('#frm_ContractMoney').form('load', rows[0]);
+            $("#tr_time_ContractMoney").show();
+            $("#btn_save_ContractMoney").hide();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowAddDialog_ContractMoney() {
+        $('#dlg_ContractMoney').dialog('open').dialog('setTitle', '添加');
+        $('#frm_ContractMoney').form('clear');
+        $("#tr_time_ContractMoney").hide();
+        $("#btn_save_ContractMoney").show();
+    }
+    function Save_ContractMoney() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var 类别 = $("#frm_ContractMoney_类别").combobox('getValue');
+        var 区域 = $("#frm_ContractMoney_区域").combobox('getValue');
+        var 客户名称 = $("#frm_ContractMoney_客户名称").combobox('getValue');
+        var 站点编码 = $("div#div_ContractMoney input[name='站点编码']").val();
+        var 站点名称 = $("div#div_ContractMoney input[name='站点名称']").val();
+
+        if (类别 == '') {
+            $.messager.alert("提示", '请选择类别');
+            return;
+        }
+        if (区域 == '') {
+            $.messager.alert("提示", '请选择区域');
+            return;
+        }
+        if (客户名称 == '') {
+            $.messager.alert("提示", '请选择客户名称');
+            return;
+        }
+        if (站点编码 == '') {
+            $.messager.alert("提示", '请填写站点编码');
+            return;
+        }
+        if (站点名称 == '') {
+            $.messager.alert("提示", '请填写站点名称');
+            return;
+        }
+        $('#frm_ContractMoney').form('submit', {
+            url: 'ContractMoney/Save',
+            onSubmit: function () {
+                var validate = $(this).form('validate');
+                if (validate) {
+                    SaveStatus = 0;
+                }
+                return validate;
+            },
+            success: function (data) {
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $('#dlg_ContractMoney').dialog('close');
+                    bindData_ContractMoney();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_ContractMoney() {
+        $('#dlg_ContractMoney').dialog('close');
+    }
+    function Delete_ContractMoney() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var rows = $('#dg_ContractMoney').datagrid('getSelections');
+        if (!rows || rows.length == 0) {
+            $.messager.alert("提示", "请选择要删除的数据.");
+            return;
+        }
+        $.messager.confirm('提示', '确认删除这' + rows.length + '条数据吗？', function (r) {
+            if (r) {
+                SaveStatus = 0;
+                var IDS = '';
+                for (var i = 0; i < rows.length; i++) {
+                    IDS += ',' + rows[i].id;
+                }
+                $.post('ContractMoney/Delete', { IDS: IDS }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_ContractMoney').dialog('close');
+                        bindData_ContractMoney();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+        });
+    }
+    function bindCombobox_ContractMoney() {
+        $.post('Area/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_ContractMoney_区域").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#ContractMoney_区域").combobox('loadData', resall);
+        });
+        $.post('Customer/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_ContractMoney_客户名称").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#ContractMoney_客户名称").combobox('loadData', resall);
+        });
+    }
+
+
+
+    function Show_excel_import_ContractMoney() {
+        $('#dlg_excel_import_ContractMoney').dialog('open').dialog('setTitle', '导入信息');
+    }
+    function Save_excel_import_ContractMoney() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        file = $('#fileupload_excel_import_ContractMoney').val();
+        if (file == "") {
+            $.messager.alert("提示", "请选择要导入的数据.");
+            return;
+        }
+        SaveStatus = 0;
+        showdiv_excel_import_ContractMoney();
+        $('#frm_excel_import_ContractMoney').form('submit', {
+            url: 'ContractMoney/ExcelImport',
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                closediv_excel_import_ContractMoney();
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $.messager.alert("提示", res.Message);
+                    $('#dlg_excel_import_ContractMoney').dialog('close');
+                    bindData_ContractMoney();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_excel_import_ContractMoney() {
+        $('#dlg_excel_import_ContractMoney').dialog('close');
+    }
+    function closediv_excel_import_ContractMoney() {
+        $("#Conditionback_excel_import_ContractMoney").hide(); $("#ConditionShow_excel_import_ContractMoney").hide();
+    }
+    function showdiv_excel_import_ContractMoney() {
+        $("#Conditionback_excel_import_ContractMoney").show(); $("#ConditionShow_excel_import_ContractMoney").show();
+    }
+    function Do_excel_export_ContractMoney() {
+        url = "ContractMoney/ExcelExport";
+        类别 = $('#ContractMoney_类别').combobox('getValue');
+        区域 = $('#ContractMoney_区域').combobox('getValue');
+        客户名称 = $('#ContractMoney_客户名称').combobox('getValue');
+        站点编码 = $('#ContractMoney_站点编码').val();
+        站点名称 = $('#ContractMoney_站点名称').val();
+        params = "";
+        if (类别 != "") {
+            params += "类别=" + 类别 + "&&";
+        }
+        if (区域 != "") {
+            params += "区域=" + 区域 + "&&";
+        }
+        if (客户名称 != "") {
+            params += "客户名称=" + 客户名称 + "&&";
+        }
+        if (站点编码 != "") {
+            params += "站点编码=" + 站点编码 + "&&";
+        }
+        if (站点名称 != "") {
+            params += "站点名称=" + 站点名称 + "&&";
+        }
+        window.open(url + "?" + params);
+
+    }
+
+    function Show_hideColumns_ContractMoney() {
+        hideType_ContractMoney = "list";
+        bind_frm_hideColumns_ContractMoney(hideColumns_ContractMoney);
+        $("form#frm_hideColumns_ContractMoney [class='export_hide']").show();
+        $('#dlg_hideColumns_ContractMoney').dialog('open').dialog('setTitle', '列表显示列');
+    }
+    function Save_hideColumns_ContractMoney() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        if (hideType_ContractMoney == "list") {
+            $.messager.confirm('提示', '是否要保存数据？', function (r) {
+                if (r) {
+                    SaveStatus == 0
+                    var arry = $("form#frm_hideColumns_ContractMoney input[name='hideColumns']");
+                    hideColumns_ContractMoney = "";
+                    for (var i = 0; i < arry.length; i++) {
+                        if (!arry[i].checked) {
+                            hideColumns_ContractMoney += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                        }
+                    }
+                    hideColumns_ContractMoney = hideColumns_ContractMoney.trim(',');
+                    if (hideColumns_ContractMoney != "") {
+                        hideColumns_ContractMoney = hideColumns_ContractMoney.substring(0, hideColumns_ContractMoney.length - 1);
+                    }
+                    $.post('UserColumns/Save', { type: "list", tableName: "ContractMoney", hideColumns: hideColumns_ContractMoney }, function (data) {
+                        SaveStatus = 1;
+                        if (data.Status == 1) {
+                            $('#dlg_hideColumns_ContractMoney').dialog('close');
+                            bindData_ContractMoney();
+                        }
+                        else {
+                            $.messager.alert("提示", data.ErroMessage);
+                        }
+                    });
+                }
+            });
+        }
+        else {//导出
+            var arry = $("form#frm_hideColumns_ContractMoney input[name='hideColumns']");
+            var hideColumns = "";
+            for (var i = 0; i < arry.length; i++) {
+                if (!arry[i].checked) {
+                    hideColumns += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                }
+            }
+            hideColumns = hideColumns.trim(',');
+            if (hideColumns != "") {
+                hideColumns = hideColumns.substring(0, hideColumns.length - 1);
+            }
+            if (hideColumns != exporthideColumns_ContractMoney) {
+                SaveStatus == 0
+                exporthideColumns_ContractMoney = hideColumns;
+                $.post('UserColumns/Save', { type: "export", tableName: "ContractMoney", hideColumns: hideColumns }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_hideColumns_ContractMoney').dialog('close');
+                        Do_excel_export_ContractMoney();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+            else {
+                Do_excel_export_ContractMoney();
+            }
+        }
+    }
+    function Close_hideColumns_ContractMoney() {
+        $('#dlg_hideColumns_ContractMoney').dialog('close');
+    }
+    function all_hideColumns_ContractMoney() {
+        $("form#frm_hideColumns_ContractMoney input[name='hideColumns']").prop("checked", true);
+    }
+    function unall_hideColumns_ContractMoney() {
+        $("form#frm_hideColumns_ContractMoney input[name='hideColumns']").prop("checked", false);
+    }
+    function fx_hideColumns_ContractMoney() {
+        $("form#frm_hideColumns_ContractMoney input[name='hideColumns']").each(function () {
+            if ($(this).prop("checked")) {
+                $(this).prop("checked", false);
+            }
+            else {
+                $(this).prop("checked", true);
+            }
+        })
+    }
+    function Show_exportColumns_ContractMoney() {
+        hideType_ContractMoney = "export";
+        bind_frm_hideColumns_ContractMoney(exporthideColumns_ContractMoney);
+        $("form#frm_hideColumns_ContractMoney [class='export_hide']").hide();
+        $('#dlg_hideColumns_ContractMoney').dialog('open').dialog('setTitle', '导出指定列数据');
+    }
+</script>

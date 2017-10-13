@@ -1,0 +1,35 @@
+body{margin: 0;,padding:0;background:#FFF;color:#666; font-size:14px;font-family:'Microsoft YaHei' } 
+div,form,ul,ol,li,span,p,dl,dt,dd,img,h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;} 
+ul,ol,li{list-style:none} 
+table,td,input,textarea{font-size:14px}
+a{text-decoration:none;font-size: 16px;font-weight: bold;}
+.header_nav a{color:#fff;} 
+.header_nav a:hover{text-decoration:none;color:#fff;}
+.header_nav span{font-size: 14px;font-weight: bold;color:#fff;}
+.header{width: 100%;height: 80px;line-height: 80px;background-image:url(../img/top_bg.jpg);}
+.header_mask{position: absolute;width: 100%;height: 80px;background: rgba(0,0,0,0.3);}
+.header_logo{width: auto;height: 80px;color: #fff;margin-left: 100px;line-height: 80px;font-size: 30px;font-weight: bold;display: inline-block;}
+.header_nav{width: 500px;height: 80px;line-height: 80px;float: right;display: inline-flex; justify-content: space-around;}
+.pop_up_box{position: absolute;right: 0;top: 0;width: 110px;height: 25px;line-height: 25px;display:block;color: #000;font-weight: bold;cursor: pointer;}
+#mask{width: 100%;top: 0;left: 0;z-index: 999;position: fixed;display: none;background: rgba(0,0,0,.5);}
+#box{width: 500px;height: 400px;position: fixed;z-index: 1000;top: 40%;left: 50%;display: none;margin: -125px 0 0 -260px;background-color: #fff;border: 1px solid black;}
+#box h2{padding-left: 10px;margin-top: 15px;}
+#box h4{margin-top: 30px;padding-left: 10px;}
+#box_btn{position: absolute;top: 5px;right: 30px;width: 20px;height: 20px;font-size: 40px;cursor: pointer;}
+.leftsidebar_menu{display: block;width: 100%;height: 30px;line-height: 30px;text-align:center;color: #000;font-size: 14px;}
+.tabs{border: none;padding-left: 0;}
+.tabs-header{background: #03ACED;border-width:0;}
+.tabs li a.tabs-inner{width: 166px!important;height: 35px!important;background: none!important;color: #fff!important;}
+.tabs li a.tabs-inner:hover{background: #e2e2e2!important;}
+.tabs li a.tabs-inner span{font-size: 14px;}
+.panel-body{background-color: #fff;}
+.easyui-accordion{background: #fff!important;}
+.panel-header{background:#03ACED;}
+.panel-title{font-size: 16px;color: #fff;}
+.window .panel-title{font-size: 16px;color: #000;}
+.accordion-header{background: #03ACED!important;}
+.div_btn_manager {text-align: center;padding: 20px;}
+.easyui-panel{width: 100%; padding: 10px;}
+.div_search {padding-right:30px;}
+.table_info {width:100%;}
+

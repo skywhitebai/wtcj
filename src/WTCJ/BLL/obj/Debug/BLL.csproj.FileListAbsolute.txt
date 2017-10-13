@@ -1,0 +1,55 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\BLL.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\BLL.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\DAL.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\DBUtility.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\DAL.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\Model.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\bin\Debug\DBUtility.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\obj\Debug\BLL.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\BLL\obj\Debug\BLL.pdb
+F:\life\项目\src\WTCJ\BLL\bin\Debug\BLL.dll
+F:\life\项目\src\WTCJ\BLL\bin\Debug\BLL.pdb
+F:\life\项目\src\WTCJ\BLL\bin\Debug\DAL.dll
+F:\life\项目\src\WTCJ\BLL\bin\Debug\Model.dll
+F:\life\项目\src\WTCJ\BLL\bin\Debug\DBUtility.dll
+F:\life\项目\src\WTCJ\BLL\bin\Debug\DAL.pdb
+F:\life\项目\src\WTCJ\BLL\bin\Debug\Model.pdb
+F:\life\项目\src\WTCJ\BLL\bin\Debug\DBUtility.pdb
+F:\life\项目\src\WTCJ\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+F:\life\项目\src\WTCJ\BLL\obj\Debug\BLL.dll
+F:\life\项目\src\WTCJ\BLL\obj\Debug\BLL.pdb
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\BLL.dll
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\BLL.pdb
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\DAL.dll
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\Model.dll
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\DBUtility.dll
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\DAL.pdb
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\Model.pdb
+F:\life\项目\src\svn\trunk\WTCJ\BLL\bin\Debug\DBUtility.pdb
+F:\life\项目\src\svn\trunk\WTCJ\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+F:\life\项目\src\svn\trunk\WTCJ\BLL\obj\Debug\BLL.dll
+F:\life\项目\src\svn\trunk\WTCJ\BLL\obj\Debug\BLL.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\BLL.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\BLL.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\DAL.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\Model.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\DBUtility.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\DAL.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\Model.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\bin\Debug\DBUtility.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\obj\Debug\BLL.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\BLL\obj\Debug\BLL.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\BLL.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\BLL.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\DAL.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\Model.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\DBUtility.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\DAL.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\Model.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\bin\Debug\DBUtility.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\obj\Debug\BLL.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\BLL\obj\Debug\BLL.pdb

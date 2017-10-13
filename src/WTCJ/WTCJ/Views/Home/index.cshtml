@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" style="height: 89%;">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>广东伟通信息管理平台</title>
+    <link type="text/css" rel="stylesheet" href="~/style/lib/easyui/themes/icon.css">
+    <link type="text/css" rel="stylesheet" href="~/style/lib/easyui/themes/gray/easyui.css">
+    <script type="text/javascript" src="~/style/lib/easyui/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="~/style/lib/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="~/style/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="~/style/lib/easyui/jquery.easyui.extension.js"></script>
+    <script src="~/style/js/index.js?2" type="text/javascript" charset="utf-8"></script>
+    <script src="~/style/lib/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/style/css/index.css" />
+    <script>
+        var SaveStatus = 1;//防止重复提交的 1可以提交 0 不可以提交
+    </script>
+</head>
+<body style="height: 100%">
+    <div id="mask"></div>
+    <div id="box">
+        <span id="box_btn">×</span>
+        <h2>最新消息</h2>
+        <h4>2017-6-1：系统UI完成!</h4>
+        <h4>2017-6-9：系统需求文档完成!</h4>
+    </div>
+    <header class="header">
+        <div class="header_mask">
+            <div class="header_logo">
+                <img src="~/style/img/logo.png" style="vertical-align:middle ;height:65px;" alt="广东伟通通信信息管理平台" title="广东伟通通信信息管理平台" /> 
+            广东伟通通信信息管理平台</div>
+            <div style="color: white" class="pop_up_box" id="pop_up_box">
+                <img src="~/style/img/tubiao.png" style="vertical-align:middle;" />
+                最新消息...
+            </div>
+            <div class="header_nav">
+                <span>技术支持电话 : 13427544616</span>
+                <span id="userName">用户名</span>
+                <!--<a href="javascript:void(0)" id="change_password">修改密码</a>-->
+                <a href="javascript:void(0)" id="login_out">退出</a>
+            </div>
+        </div>
+    </header>
+    <div class="easyui-tabs" data-options="tabWidth:112" style="width: 100%; height: 100%;">
+        <div title="配置管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #03ACED;">
+                        <div data-options="title:'系统数据管理'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                               <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','数据字典','../../Html/CommonData/List.html');" data-options="plain:true">数据字典</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','部门管理','../../Html/Department/List.html');" data-options="plain:true">部门管理</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','区域管理','../../Html/Area/List.html');" data-options="plain:true">区域管理</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','客户管理','../../Html/Customer/List.html');" data-options="plain:true">客户管理</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','合作公司管理','../../Html/Company/List.html');" data-options="plain:true">合作公司管理</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin1" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="进度管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'进度管理'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('基站项目进度','../../Html/JdSite/List.html');" data-options="plain:true">基站项目进度</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('室分项目进度','../../Html/JdSf/List.html');" data-options="plain:true">室分项目进度</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('合同款项追踪','../../Html/ContractMoney/List.html');" data-options="plain:true">合同款项追踪</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('以租代建项目损益','../../Html/YzdjSy/List.html');" data-options="plain:true">以租代建项目损益</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('销售健康度','../../Html/HealthXs/List.html');" data-options="plain:true">销售健康度</a></li>
+                                 <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('自持健康度','../../Html/HealthZj/List.html');" data-options="plain:true">自持健康度</a></li>
+                            </ul>
+                        </div>
+                         <div data-options="title:'数据统计'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('基站项目进度表统计','../../Html/JdSite/Report.html');" data-options="plain:true">基站项目进度表统计</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin3" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

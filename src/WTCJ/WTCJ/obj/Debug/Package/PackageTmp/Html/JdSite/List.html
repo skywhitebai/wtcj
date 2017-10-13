@@ -1,0 +1,1004 @@
+﻿<div id="div_JdSite">
+    <!--查询条件-->
+    <div class="easyui-panel">
+        部门：
+    <select class="easyui-combobox" id="JdSite_部门" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        类别：
+    <select class="easyui-combobox" id="JdSite_类别" style="width: 180px;">
+        <option value="">全部</option>
+        <option value="销售">销售</option>
+        <option value="自持">自持</option>
+    </select>
+        区域：
+    <select class="easyui-combobox" id="JdSite_区域" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        客户：
+    <select class="easyui-combobox" id="JdSite_客户" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        站点编码：
+        <input id="JdSite_站点编码" class="easyui-textbox" style="width: 180px;"><br />
+        站点名称：
+        <input id="JdSite_站点名称" class="easyui-textbox" style="width: 180px;">
+        站点类型归属：
+    <select class="easyui-combobox" id="JdSite_站点类型归属" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        最新状态：
+    <select class="easyui-combobox" id="JdSite_最新状态" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        是否退点：
+    <select class="easyui-combobox" id="JdSite_是否退点" style="width: 180px;">
+        <option value="">全部</option>
+        <option value="是">是</option>
+        <option value="否">否</option>
+    </select>
+        <br />
+        <a href="javascript:void(0)" id="search_JdSite" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
+        <a href="javascript:void(0)" id="excel_import_JdSite" class="easyui-linkbutton" style="width: 80px" onclick="Show_excel_import_JdSite()">导 入</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_exportColumns_JdSite()">自定义导出</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_hideColumns_JdSite()">设置列表列</a>
+        <br />
+    </div>
+    <!--数据列表-->
+    <table id="dg_JdSite" style="width: 100%; height: auto">
+    </table>
+    <!--编辑页面-->
+    <div id="dlg_JdSite" class="easyui-dialog" style="width: 800px; height: 600px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div class="ftitle">
+            <b>基站项目进度</b>
+            <hr />
+        </div>
+        <form id="frm_JdSite" method="post" novalidate="novalidate">
+            <table>
+                <tr style="display: none">
+                    <td>ID：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>部门：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_JdSite_部门" name="部门" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                    <td>类别：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_JdSite_类别" name="类别" style="width: 180px;" data-options="required:true">
+                            <option value="销售">销售</option>
+                            <option value="自持">自持</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>区域：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_JdSite_区域" name="区域" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                    <td>客户：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_JdSite_客户" name="客户" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>站点编码：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="站点编码" data-options="required:true">
+                    </td>
+                    <td>站点名称：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="站点名称" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <td>地址：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="地址">
+                    </td>
+                    <td>建站类型：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="建站类型">
+                    </td>
+                </tr>
+                <tr>
+                    <td>站点类型归属：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_JdSite_站点类型归属" name="站点类型归属" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                    <td>预算表或损益表审批时间：</td>
+                    <td>
+                        <input type="text" name="预算表或损益表审批时间" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>与伟通签订单项合同日期：</td>
+                    <td>
+                        <input type="text" name="与伟通签订单项合同日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>最新状态：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_JdSite_最新状态" name="最新状态" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>经度：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="经度" data-options="min:0.00,precision:6">
+                    </td>
+                    <td>纬度：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="纬度" data-options="min:0.00,precision:6">
+                    </td>
+                </tr>
+                <tr>
+                    <td>租金：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="租金" data-options="precision:2">
+                    </td>
+                    <td>年限：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="年限" data-options="precision:2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>总收入：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="总收入" data-options="precision:2"></td>
+
+                    <td>伟通应收款：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="伟通应收款" data-options="precision:2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>摘牌时间：</td>
+                    <td>
+                        <input type="text" name="摘牌时间" onclick="WdatePicker()" />
+                    </td>
+                    <td>预计进场日期：</td>
+                    <td>
+                        <input type="text" name="预计进场日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>预计完工日期：</td>
+                    <td>
+                        <input type="text" name="预计完工日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>建站周期（天）：</td>
+                    <td>
+                        <!--预计完工日期-预计进场日期-->
+                        <input class="easyui-numberbox" name="建站周期">
+                    </td>
+                </tr>
+                <tr>
+                    <td>选址、定点：</td>
+                    <td>
+                        <input type="text" name="选址定点" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>签订租赁合同开始日期：</td>
+                    <td>
+                        <input type="text" name="签订租赁合同开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>签订租赁合同完成日期：</td>
+                    <td>
+                        <input type="text" name="签订租赁合同完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>地墈开始日期：</td>
+                    <td>
+                        <input type="text" name="地墈开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>地墈完成日期：</td>
+                    <td>
+                        <input type="text" name="地墈完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>设计出图开始日期：</td>
+                    <td>
+                        <input type="text" name="设计出图开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>设计出图完成日期：</td>
+                    <td>
+                        <input type="text" name="设计出图完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>土建施工开始日期：</td>
+                    <td>
+                        <input type="text" name="土建施工开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>土建施工完成日期：</td>
+                    <td>
+                        <input type="text" name="土建施工完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>产品采购开始日期：</td>
+                    <td>
+                        <input type="text" name="产品采购开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>产品采购完成日期：</td>
+                    <td>
+                        <input type="text" name="产品采购完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>产品安装开始日期：</td>
+                    <td>
+                        <input type="text" name="产品安装开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>产品安装完成日期：</td>
+                    <td>
+                        <input type="text" name="产品安装完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>电力报建开始日期：</td>
+                    <td>
+                        <input type="text" name="电力报建开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>电力报建完成日期：</td>
+                    <td>
+                        <input type="text" name="电力报建完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>销售验收日期：</td>
+                    <td>
+                        <input type="text" name="销售验收日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>运营商验收、交付开始日期：</td>
+                    <td>
+                        <input type="text" name="运营商验收交付开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>运营商验收、交付完成日期：</td>
+                    <td>
+                        <input type="text" name="运营商验收交付完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>运营商签订合同开始日期：</td>
+                    <td>
+                        <input type="text" name="运营商签订合同开始日期" onclick="WdatePicker()" />
+                    </td>
+                    <td>运营商签订合同完成日期：</td>
+                    <td>
+                        <input type="text" name="运营商签订合同完成日期" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>进场时间预警：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="进场时间预警">
+                    </td>
+                    <td>交付时间预警：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="交付时间预警">
+                    </td>
+                </tr>
+                <tr>
+                    <td>运营合同签约时间预警：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="运营合同签约时间预警">
+                    </td>
+                    <td>是否退点：</td>
+                    <td>
+                        <select class="easyui-combobox" name="是否退点" style="width: 180px;">
+                            <option value=""></option>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="tr_time_JdSite">
+                    <td>创建时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="CreateTime"></td>
+
+                    <td>更新时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="UpdateTime"></td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" type="text" name="备注" style="width: 90%">
+                    </td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="btn_save_JdSite" onclick="Save_JdSite()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_JdSite()">关闭</a>
+            </div>
+        </form>
+    </div>
+    <!--导入页面-->
+    <div id="dlg_excel_import_JdSite" class="easyui-dialog" style="width: 500px; height: 320px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div>
+            <fieldset>
+                <legend>excel模版格式 </legend>
+                <p style="color: red">
+                    导入的模板格式如下，若模板格式不正确，则相应的数据不能导入<br />
+                    (第一列~开通的数据是表头或者示例数据不会被导入)!
+                </p>
+                <br />
+                <a href="../../Excel/Template/基站项目进度表模板.xlsx" title="下载模版">下载模版</a>
+            </fieldset>
+        </div>
+        <div style="margin-top: 20px;">
+            <fieldset>
+                <legend>基站项目进度信息导入</legend>
+                <form id="frm_excel_import_JdSite" method="post" enctype="multipart/form-data">
+                    <p>
+                        选择文件：<input id="fileupload_excel_import_JdSite" type="file" name="fileImport" style="width: 250px; height: 24px; background: White"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </p>
+                    <p>
+                        <br />
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'" onclick="Save_excel_import_JdSite()">导入</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-cancel'" onclick="Close_excel_import_JdSite()">关闭</a>
+                    </p>
+                </form>
+            </fieldset>
+        </div>
+        <div id="Conditionback_excel_import_JdSite" style="display: none; position: fixed; opacity: 0.5; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #ccc; overflow: hidden;">
+        </div>
+        <div id="ConditionShow_excel_import_JdSite" style="display: none; position: absolute; top: 100px; left: 40%; width: 20%; height: 50px; z-index: 1002; text-align: center; overflow: hidden; background-color: White;">
+            <img src="../../style/img/loadingbar.gif" />
+            <br />
+            数据上传中......
+        </div>
+    </div>
+
+    <!--自定义列页面-->
+    <div id="dlg_hideColumns_JdSite" class="easyui-dialog" style="width: 800px; height: 550px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+
+        <form id="frm_hideColumns_JdSite" method="post" novalidate="novalidate">
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>部门<input type="checkbox" name="hideColumns" value="部门Text"></td>
+                    <td>类别<input type='checkbox' name='hideColumns' value='类别'></td>
+                    <td>区域<input type='checkbox' name='hideColumns' value='区域Text'></td>
+                    <td>客户<input type='checkbox' name='hideColumns' value='客户Text'></td>
+                </tr>
+                <tr>
+                    <td>站点编码<input type='checkbox' name='hideColumns' value='站点编码'></td>
+                    <td>站点名称<input type='checkbox' name='hideColumns' value='站点名称'></td>
+                    <td>地址<input type='checkbox' name='hideColumns' value='地址'></td>
+                    <td>建站类型<input type='checkbox' name='hideColumns' value='建站类型'></td>
+                </tr>
+                <tr>
+                    <td>站点类型归属<input type='checkbox' name='hideColumns' value='站点类型归属Text'></td>
+                    <td>预算表或损益表审批时间<input type='checkbox' name='hideColumns' value='预算表或损益表审批时间'></td>
+                    <td>与伟通签订单项合同日期<input type='checkbox' name='hideColumns' value='与伟通签订单项合同日期'></td>
+                    <td>最新状态<input type='checkbox' name='hideColumns' value='最新状态Text'></td>
+                </tr>
+                <tr>
+                    <td>经度<input type='checkbox' name='hideColumns' value='经度'></td>
+                    <td>纬度<input type='checkbox' name='hideColumns' value='纬度'></td>
+                    <td>租金<input type='checkbox' name='hideColumns' value='租金'></td>
+                    <td>年限<input type='checkbox' name='hideColumns' value='年限'></td>
+                </tr>
+                <tr>
+                    <td>总收入<input type='checkbox' name='hideColumns' value='总收入'></td>
+                    <td>伟通应收款<input type='checkbox' name='hideColumns' value='伟通应收款'></td>
+                    <td>摘牌时间<input type='checkbox' name='hideColumns' value='摘牌时间'></td>
+                    <td>预计进场日期<input type='checkbox' name='hideColumns' value='预计进场日期'></td>
+                </tr>
+                <tr>
+                    <td>预计完工日期<input type='checkbox' name='hideColumns' value='预计完工日期'></td>
+                    <td>建站周期<input type='checkbox' name='hideColumns' value='建站周期'></td>
+                    <td>选址定点<input type='checkbox' name='hideColumns' value='选址定点'></td>
+                    <td>签订租赁合同开始日期<input type='checkbox' name='hideColumns' value='签订租赁合同开始日期'></td>
+                </tr>
+                <tr>
+                    <td>签订租赁合同完成日期<input type='checkbox' name='hideColumns' value='签订租赁合同完成日期'></td>
+                    <td>地墈开始日期<input type='checkbox' name='hideColumns' value='地墈开始日期'></td>
+                    <td>地墈完成日期<input type='checkbox' name='hideColumns' value='地墈完成日期'></td>
+                    <td>设计出图开始日期<input type='checkbox' name='hideColumns' value='设计出图开始日期'></td>
+                </tr>
+                <tr>
+                    <td>设计出图完成日期<input type='checkbox' name='hideColumns' value='设计出图完成日期'></td>
+                    <td>土建施工开始日期<input type='checkbox' name='hideColumns' value='土建施工开始日期'></td>
+                    <td>土建施工完成日期<input type='checkbox' name='hideColumns' value='土建施工完成日期'></td>
+                    <td>产品采购开始日期<input type='checkbox' name='hideColumns' value='产品采购开始日期'></td>
+                </tr>
+                <tr>
+                    <td>产品采购完成日期<input type='checkbox' name='hideColumns' value='产品采购完成日期'></td>
+                    <td>产品安装开始日期<input type='checkbox' name='hideColumns' value='产品安装开始日期'></td>
+                    <td>产品安装完成日期<input type='checkbox' name='hideColumns' value='产品安装完成日期'></td>
+                    <td>电力报建开始日期<input type='checkbox' name='hideColumns' value='电力报建开始日期'></td>
+                </tr>
+                <tr>
+                    <td>电力报建完成日期<input type='checkbox' name='hideColumns' value='电力报建完成日期'></td>
+                    <td>销售验收日期<input type='checkbox' name='hideColumns' value='销售验收日期'></td>
+                    <td>运营商验收交付开始日期<input type='checkbox' name='hideColumns' value='运营商验收交付开始日期'></td>
+                    <td>运营商验收交付完成日期<input type='checkbox' name='hideColumns' value='运营商验收交付完成日期'></td>
+                </tr>
+                <tr>
+                    <td>运营商签订合同开始日期<input type='checkbox' name='hideColumns' value='运营商签订合同开始日期'></td>
+                    <td>运营商签订合同完成日期<input type='checkbox' name='hideColumns' value='运营商签订合同完成日期'></td>
+                    <td>进场时间预警<input type='checkbox' name='hideColumns' value='进场时间预警'></td>
+                    <td>交付时间预警<input type='checkbox' name='hideColumns' value='交付时间预警'></td>
+                </tr>
+                <tr>
+                    <td>运营合同签约时间预警<input type='checkbox' name='hideColumns' value='运营合同签约时间预警'></td>
+                    <td>是否退点<input type='checkbox' name='hideColumns' value='是否退点'></td>
+                    <td>备注<input type='checkbox' name='hideColumns' value='备注'></td>
+
+                </tr>
+                <tr>
+                    <td class="export_hide">创建时间<input type='checkbox' name='hideColumns' value='CreateTime'></td>
+                    <td class="export_hide">修改时间<input type='checkbox' name='hideColumns' value='UpdateTime'></td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="all_hideColumns_JdSite()">全选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="unall_hideColumns_JdSite()">全不选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="fx_hideColumns_JdSite()">反选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="A2" onclick="Save_hideColumns_JdSite()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_hideColumns_JdSite()">关闭</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#search_JdSite').click(function () { bindData_JdSite() });
+    var hideColumns_JdSite = "";
+    var exporthideColumns_JdSite = "";
+    var hideType_JdSite = "list";
+    $(function () {
+        bindCombobox_JdSite();
+        getHideColumns_JdSite();
+    });
+    function getHideColumns_JdSite() {
+        $.post('UserColumns/GetHideColumns', { type: "list", tableName: "JdSite" }, function (data) {
+            hideColumns_JdSite = data.Data;
+            bindData_JdSite();
+        });
+        $.post('UserColumns/GetHideColumns', { type: "export", tableName: "JdSite" }, function (data) {
+            exporthideColumns_JdSite = data.Data;
+        });
+    }
+    function bind_frm_hideColumns_JdSite(hideColumns) {
+        $("form#frm_hideColumns_JdSite input[name='hideColumns']").prop("checked", true);
+        if (hideColumns != "") {
+            hideColumnsarry = hideColumns.split(",");//以逗号作为分隔字符串
+            for (var i = 0; i < hideColumnsarry.length; i++) {
+                $("form#frm_hideColumns_JdSite input[name='hideColumns'][value='" + hideColumnsarry[i] + "']").prop("checked", false);
+            }
+        }
+    }
+    function bindData_JdSite() {
+        dg = '#dg_JdSite';
+        url = "JdSite/List";
+        title = "基站项目进度管理";
+        部门 = $('#JdSite_部门').combobox('getValue');//$('#JdSite_JdSiteName').val();
+        类别 = $('#JdSite_类别').combobox('getValue');
+        区域 = $('#JdSite_区域').combobox('getValue');
+        客户 = $('#JdSite_客户').combobox('getValue');
+        站点编码 = $('#JdSite_站点编码').val();
+        站点名称 = $('#JdSite_站点名称').val();
+        站点类型归属 = $('#JdSite_站点类型归属').combobox('getValue');
+        最新状态 = $('#JdSite_最新状态').combobox('getValue');
+        是否退点 = $('#JdSite_是否退点').combobox('getValue');
+        queryParams = { 部门: 部门, 类别: 类别, 区域: 区域, 客户: 客户, 站点编码: 站点编码, 站点名称: 站点名称, 站点类型归属: 站点类型归属, 最新状态: 最新状态, 是否退点: 是否退点 };
+        $(dg).datagrid({   //定位到Table标签，Table标签的ID是grid  
+            url: url,   //指向后台的Action来获取当前菜单的信息的Json格式的数据  
+            title: title,
+            iconCls: 'icon-view',
+            nowrap: true,
+            autoRowHeight: false,
+            striped: true,
+            collapsible: true,
+            pagination: true,
+            singleSelect: true,
+            pageSize: 15,
+            pageList: [10, 15, 20, 30, 50],
+            rownumbers: true,
+            //sortName: 'ID',    //根据某个字段给easyUI排序  
+            //sortOrder: 'asc',
+            remoteSort: false,
+            idField: 'id',
+            queryParams: queryParams,  //异步查询的参数  
+            columns: [[
+                { field: 'ck', checkbox: true, rowspan: 2 },   //选择  
+                { title: '部门', field: '部门Text', width: 100, rowspan: 2 },
+                { title: '类别', field: '类别', width: 100, rowspan: 2 },
+                { title: '区域', field: '区域Text', width: 100, rowspan: 2 },
+                { title: '客户', field: '客户Text', width: 100, rowspan: 2 },
+                { title: '站点编码', field: '站点编码', width: 100, rowspan: 2 },
+                { title: '站点名称', field: '站点名称', width: 100, rowspan: 2 },
+                { title: '地址', field: '地址', width: 100, rowspan: 2 },
+                { title: '建站类型', field: '建站类型', width: 100, rowspan: 2 },
+                { title: '站点类型归属', field: '站点类型归属Text', width: 100, rowspan: 2 },
+                { title: '预算表或损益表审批时间', field: '预算表或损益表审批时间', width: 100, rowspan: 2 },
+                { title: '与伟通签订单项合同日期', field: '与伟通签订单项合同日期', width: 100, rowspan: 2 },
+                { title: '最新状态', field: '最新状态Text', width: 100, rowspan: 2 },
+                { title: '经度', field: '经度', width: 100, rowspan: 2 },
+                { title: '纬度', field: '纬度', width: 100, rowspan: 2 },
+                { title: '租金', field: '租金', width: 100, rowspan: 2 },
+                { title: '年限', field: '年限', width: 100, rowspan: 2 },
+                { title: '总收入', field: '总收入', width: 100, rowspan: 2, rowspan: 2 },
+                { title: '伟通应收款', field: '伟通应收款', width: 100, rowspan: 2 },
+                { title: '摘牌时间', field: '摘牌时间', width: 100, rowspan: 2 },
+                { title: '预计进场日期', field: '预计进场日期', width: 100, rowspan: 2 },
+                { title: '预计完工日期', field: '预计完工日期', width: 100, rowspan: 2 },
+                { title: '建站周期', field: '建站周期', width: 100, rowspan: 2 },
+                { title: '选址定点', field: '选址定点', width: 100, rowspan: 2 },
+                { title: '选址定点', field: '选址定点', width: 100, rowspan: 2 },
+                { title: '签订租赁合同', width: 200, colspan: 2 },
+                { title: '地墈', width: 200, colspan: 2 },
+                { title: '设计出图', width: 200, colspan: 2 },
+                { title: '土建施工', width: 200, colspan: 2 },
+                { title: '产品采购', width: 200, colspan: 2 },
+                { title: '产品安装', width: 200, colspan: 2 },
+                { title: '电力报建', width: 200, colspan: 2 },
+                { title: '销售验收日期', field: '销售验收日期', width: 100, rowspan: 2 },
+                { title: '运营商验收、交付', width: 200, colspan: 2 },
+                 { title: '运营商签订合同', width: 200, colspan: 2 },
+                 { title: '预警时间（以预算表/损益表通过时间为基准时间）', width: 300, colspan: 3 },
+                 { title: '是否退点', field: '是否退点', width: 100, rowspan: 2 },
+                { title: '创建时间', field: 'CreateTime', width: 180, rowspan: 2 },
+                { title: '修改时间', field: 'UpdateTime', width: 180, rowspan: 2 },
+                { title: '备注', field: '备注', width: 300, rowspan: 2 }], [
+                { title: '开始日期', field: '签订租赁合同开始日期', width: 100 },
+                { title: '完成日期', field: '签订租赁合同完成日期', width: 100 },
+                { title: '开始日期', field: '地墈开始日期', width: 100 },
+                { title: '完成日期', field: '地墈完成日期', width: 100 },
+                { title: '开始日期', field: '设计出图开始日期', width: 100 },
+                { title: '完成日期', field: '设计出图完成日期', width: 100 },
+                { title: '开始日期', field: '土建施工开始日期', width: 100 },
+                { title: '完成日期', field: '土建施工完成日期', width: 100 },
+                { title: '开始日期', field: '产品采购开始日期', width: 100 },
+                { title: '完成日期', field: '产品采购完成日期', width: 100 },
+                { title: '开始日期', field: '产品安装开始日期', width: 100 },
+                { title: '完成日期', field: '产品安装完成日期', width: 100 },
+                { title: '开始日期', field: '电力报建开始日期', width: 100 },
+                { title: '完成日期', field: '电力报建完成日期', width: 100 },
+                { title: '开始日期', field: '运营商验收交付开始日期', width: 100 },
+                { title: '完成日期', field: '运营商验收交付完成日期', width: 100 },
+                { title: '开始日期', field: '运营商签订合同开始日期', width: 100 },
+                { title: '完成日期', field: '运营商签订合同完成日期', width: 100 },
+                { title: '进场时间预警', field: '进场时间预警', width: 100 },
+                { title: '交付时间预警', field: '交付时间预警', width: 100 },
+                { title: '运营合同签约时间预警', field: '运营合同签约时间预警', width: 100 }
+                ]],
+            toolbar: [{
+                id: 'btnAdd_JdSite',
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    ShowAddDialog_JdSite();//实现添加记录的页面  
+                }
+            }, '-', {
+                id: 'btnEdit_JdSite',
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    ShowEditDialog_JdSite();//实现修改记录的方法  
+                }
+            }, '-', {
+                id: 'btnDelete_JdSite',
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    Delete_JdSite();//实现直接删除数据的方法  
+                }
+            }, '-', {
+                id: 'btnView_JdSite',
+                text: '查看',
+                iconCls: 'icon-search',
+                handler: function () {
+                    ShowViewDialog_JdSite();//实现查看记录详细信息的方法  
+                }
+            }, '-', {
+                id: 'btnReload_JdSite',
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    //实现刷新栏目中的数据  
+                    $(dg).datagrid("reload");
+                }
+            }],
+            onDblClickRow: function (rowIndex, rowData) {
+                $(dg).datagrid('uncheckAll');
+                $(dg).datagrid('checkRow', rowIndex);
+                ShowViewDialog_JdSite();
+            },
+            onLoadSuccess: function (data) {
+                if (hideColumns_JdSite != "") {
+                    hideColumnsarry = hideColumns_JdSite.split(",");//以逗号作为分隔字符串
+                    for (var i = 0; i < hideColumnsarry.length; i++) {
+                        $(dg).datagrid("hideColumn", hideColumnsarry[i]); // 设置隐藏列
+                    }
+                }
+            }
+        })
+    }
+    function ShowEditDialog_JdSite() {
+        var rows = $('#dg_JdSite').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_JdSite').dialog('open').dialog('setTitle', '修改');
+            $('#frm_JdSite').form('load', rows[0]);
+            $("#tr_time_JdSite").hide();
+            $("#btn_save_JdSite").show();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowViewDialog_JdSite() {
+        var rows = $('#dg_JdSite').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_JdSite').dialog('open').dialog('setTitle', '查看');
+            $('#frm_JdSite').form('load', rows[0]);
+            $("#tr_time_JdSite").show();
+            $("#btn_save_JdSite").hide();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowAddDialog_JdSite() {
+        $('#dlg_JdSite').dialog('open').dialog('setTitle', '添加');
+        $('#frm_JdSite').form('clear');
+        $("#tr_time_JdSite").hide();
+        $("#btn_save_JdSite").show();
+    }
+    function Save_JdSite() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var 部门 = $("#frm_JdSite_部门").combobox('getValue');
+        var 类别 = $("#frm_JdSite_类别").combobox('getValue');
+        var 区域 = $("#frm_JdSite_区域").combobox('getValue');
+        var 客户 = $("#frm_JdSite_客户").combobox('getValue');
+        var 站点编码 = $("div#div_JdSite input[name='站点编码']").val();
+        var 站点名称 = $("div#div_JdSite input[name='站点名称']").val();
+        var 站点类型归属 = $("#frm_JdSite_站点类型归属").combobox('getValue');
+        var 最新状态 = $("#frm_JdSite_最新状态").combobox('getValue');
+
+        if (部门 == '') {
+            $.messager.alert("提示", '请选择部门');
+            return;
+        }
+        if (类别 == '') {
+            $.messager.alert("提示", '请选择类别');
+            return;
+        }
+        if (区域 == '') {
+            $.messager.alert("提示", '请选择区域');
+            return;
+        }
+        if (客户 == '') {
+            $.messager.alert("提示", '请选择客户');
+            return;
+        }
+        if (站点编码 == '') {
+            $.messager.alert("提示", '请填写站点编码');
+            return;
+        }
+        if (站点名称 == '') {
+            $.messager.alert("提示", '请填写站点名称');
+            return;
+        }
+        if (站点类型归属 == '') {
+            $.messager.alert("提示", '请选择站点类型归属');
+            return;
+        }
+        if (最新状态 == '') {
+            $.messager.alert("提示", '请选择最新状态');
+            return;
+        }
+        $('#frm_JdSite').form('submit', {
+            url: 'JdSite/Save',
+            onSubmit: function () {
+                var validate = $(this).form('validate');
+                if (validate) {
+                    SaveStatus = 0;
+                }
+                return validate;
+            },
+            success: function (data) {
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $('#dlg_JdSite').dialog('close');
+                    bindData_JdSite();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_JdSite() {
+        $('#dlg_JdSite').dialog('close');
+    }
+    function Delete_JdSite() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var rows = $('#dg_JdSite').datagrid('getSelections');
+        if (!rows || rows.length == 0) {
+            $.messager.alert("提示", "请选择要删除的数据.");
+            return;
+        }
+        $.messager.confirm('提示', '确认删除这' + rows.length + '条数据吗？', function (r) {
+            if (r) {
+                SaveStatus = 0;
+                var IDS = '';
+                for (var i = 0; i < rows.length; i++) {
+                    IDS += ',' + rows[i].id;
+                }
+                $.post('JdSite/Delete', { IDS: IDS }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_JdSite').dialog('close');
+                        bindData_JdSite();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+        });
+    }
+    function bindCombobox_JdSite() {
+        $.post('Department/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_JdSite_部门").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部  
+            $("#JdSite_部门").combobox('loadData', resall);
+        });
+        $.post('Area/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_JdSite_区域").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部  
+            $("#JdSite_区域").combobox('loadData', resall);
+        });
+        $.post('Customer/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_JdSite_客户").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部  
+            $("#JdSite_客户").combobox('loadData', resall);
+        });
+        $.post('CommonData/getComboboxJson', { DataType: '站点类型归属' }, function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_JdSite_站点类型归属").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部  
+            $("#JdSite_站点类型归属").combobox('loadData', resall);
+        });
+        $.post('CommonData/getComboboxJson', { DataType: '最新状态' }, function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_JdSite_最新状态").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#JdSite_最新状态").combobox('loadData', resall);
+        });
+    }
+    function Show_excel_import_JdSite() {
+        $('#dlg_excel_import_JdSite').dialog('open').dialog('setTitle', '导入基站项目进度');
+    }
+    function Save_excel_import_JdSite() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        file = $('#fileupload_excel_import_JdSite').val();
+        if (file == "") {
+            $.messager.alert("提示", "请选择要导入的数据.");
+            return;
+        }
+        SaveStatus = 0;
+        showdiv_excel_import_JdSite();
+        $('#frm_excel_import_JdSite').form('submit', {
+            url: 'JdSite/ExcelImport',
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                closediv_excel_import_JdSite();
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $.messager.alert("提示", res.Message);
+                    $('#dlg_excel_import_JdSite').dialog('close');
+                    bindData_JdSite();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_excel_import_JdSite() {
+        $('#dlg_excel_import_JdSite').dialog('close');
+    }
+    function closediv_excel_import_JdSite() {
+        $("#Conditionback_excel_import_JdSite").hide(); $("#ConditionShow_excel_import_JdSite").hide();
+    }
+    function showdiv_excel_import_JdSite() {
+        $("#Conditionback_excel_import_JdSite").show(); $("#ConditionShow_excel_import_JdSite").show();
+    }
+    function Do_excel_export_JdSite() {
+        url = "JdSite/ExcelExport";
+        title = "基站项目进度管理";
+        部门 = $('#JdSite_部门').combobox('getValue');//$('#JdSite_JdSiteName').val();
+        类别 = $('#JdSite_类别').combobox('getValue');
+        区域 = $('#JdSite_区域').combobox('getValue');
+        客户 = $('#JdSite_客户').combobox('getValue');
+        站点编码 = $('#JdSite_站点编码').val();
+        站点名称 = $('#JdSite_站点名称').val();
+        站点类型归属 = $('#JdSite_站点类型归属').combobox('getValue');
+        最新状态 = $('#JdSite_最新状态').combobox('getValue');
+        是否退点 = $('#JdSite_是否退点').combobox('getValue');
+        params = "";
+        if (部门 != "") {
+            params += "部门=" + 部门 + "&&";
+        }
+        if (类别 != "") {
+            params += "类别=" + 类别 + "&&";
+        }
+        if (区域 != "") {
+            params += "区域=" + 区域 + "&&";
+        }
+        if (客户 != "") {
+            params += "客户=" + 客户 + "&&";
+        }
+        if (站点编码 != "") {
+            params += "站点编码=" + 站点编码 + "&&";
+        }
+        if (站点名称 != "") {
+            params += "站点名称=" + 站点名称 + "&&";
+        }
+        if (站点类型归属 != "") {
+            params += "站点类型归属=" + 站点类型归属 + "&&";
+        }
+        if (最新状态 != "") {
+            params += "最新状态=" + 最新状态 + "&&";
+        }
+        if (是否退点 != "") {
+            params += "是否退点=" + 是否退点 + "&&";
+        }
+        window.open(url + "?" + params);
+
+    }
+
+
+    function Show_hideColumns_JdSite() {
+        hideType_JdSite = "list";
+        bind_frm_hideColumns_JdSite(hideColumns_JdSite);
+        $("form#frm_hideColumns_JdSite [class='export_hide']").show();
+        $('#dlg_hideColumns_JdSite').dialog('open').dialog('setTitle', '列表显示列');
+    }
+    function Save_hideColumns_JdSite() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        if (hideType_JdSite == "list") {
+            $.messager.confirm('提示', '是否要保存数据？', function (r) {
+                if (r) {
+                    SaveStatus == 0
+                    var arry = $("form#frm_hideColumns_JdSite input[name='hideColumns']");
+                    hideColumns_JdSite = "";
+                    for (var i = 0; i < arry.length; i++) {
+                        if (!arry[i].checked) {
+                            hideColumns_JdSite += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                        }
+                    }
+                    hideColumns_JdSite = hideColumns_JdSite.trim(',');
+                    if (hideColumns_JdSite != "") {
+                        hideColumns_JdSite = hideColumns_JdSite.substring(0, hideColumns_JdSite.length - 1);
+                    }
+                    $.post('UserColumns/Save', { type: "list", tableName: "JdSite", hideColumns: hideColumns_JdSite }, function (data) {
+                        SaveStatus = 1;
+                        if (data.Status == 1) {
+                            $('#dlg_hideColumns_JdSite').dialog('close');
+                            bindData_JdSite();
+                        }
+                        else {
+                            $.messager.alert("提示", data.ErroMessage);
+                        }
+                    });
+                }
+            });
+        }
+        else {//导出
+            debugger;
+            var arry = $("form#frm_hideColumns_JdSite input[name='hideColumns']");
+            var hideColumns = "";
+            for (var i = 0; i < arry.length; i++) {
+                if (!arry[i].checked) {
+                    hideColumns += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                }
+            }
+            hideColumns = hideColumns.trim(',');
+            if (hideColumns != "") {
+                hideColumns = hideColumns.substring(0, hideColumns.length - 1);
+            }
+            if (hideColumns != exporthideColumns_JdSite) {
+                SaveStatus == 0
+                exporthideColumns_JdSite = hideColumns;
+                $.post('UserColumns/Save', { type: "export", tableName: "JdSite", hideColumns: hideColumns }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_hideColumns_JdSite').dialog('close');
+                        Do_excel_export_JdSite();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+            else {
+                Do_excel_export_JdSite();
+            }
+        }
+    }
+    function Close_hideColumns_JdSite() {
+        $('#dlg_hideColumns_JdSite').dialog('close');
+    }
+    function all_hideColumns_JdSite() {
+        $("form#frm_hideColumns_JdSite input[name='hideColumns']").prop("checked", true);
+    }
+    function unall_hideColumns_JdSite() {
+        $("form#frm_hideColumns_JdSite input[name='hideColumns']").prop("checked", false);
+    }
+    function fx_hideColumns_JdSite() {
+        $("form#frm_hideColumns_JdSite input[name='hideColumns']").each(function () {
+            if ($(this).prop("checked")) {
+                $(this).prop("checked", false);
+            }
+            else {
+                $(this).prop("checked", true);
+            }
+        })
+    }
+    function Show_exportColumns_JdSite() {
+        hideType_JdSite = "export";
+        bind_frm_hideColumns_JdSite(exporthideColumns_JdSite);
+        $("form#frm_hideColumns_JdSite [class='export_hide']").hide();
+        $('#dlg_hideColumns_JdSite').dialog('open').dialog('setTitle', '导出指定列数据');
+    }
+</script>

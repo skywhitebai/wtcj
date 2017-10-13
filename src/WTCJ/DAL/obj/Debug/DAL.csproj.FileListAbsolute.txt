@@ -1,0 +1,45 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\bin\Debug\DAL.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\bin\Debug\DAL.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\bin\Debug\DBUtility.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\bin\Debug\Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\bin\Debug\DBUtility.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\bin\Debug\Model.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\obj\Debug\DAL.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DAL\obj\Debug\DAL.pdb
+F:\life\项目\src\WTCJ\DAL\bin\Debug\DAL.dll
+F:\life\项目\src\WTCJ\DAL\bin\Debug\DAL.pdb
+F:\life\项目\src\WTCJ\DAL\bin\Debug\DBUtility.dll
+F:\life\项目\src\WTCJ\DAL\bin\Debug\Model.dll
+F:\life\项目\src\WTCJ\DAL\bin\Debug\DBUtility.pdb
+F:\life\项目\src\WTCJ\DAL\bin\Debug\Model.pdb
+F:\life\项目\src\WTCJ\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\life\项目\src\WTCJ\DAL\obj\Debug\DAL.dll
+F:\life\项目\src\WTCJ\DAL\obj\Debug\DAL.pdb
+F:\life\项目\src\svn\trunk\WTCJ\DAL\bin\Debug\DAL.dll
+F:\life\项目\src\svn\trunk\WTCJ\DAL\bin\Debug\DAL.pdb
+F:\life\项目\src\svn\trunk\WTCJ\DAL\bin\Debug\DBUtility.dll
+F:\life\项目\src\svn\trunk\WTCJ\DAL\bin\Debug\Model.dll
+F:\life\项目\src\svn\trunk\WTCJ\DAL\bin\Debug\DBUtility.pdb
+F:\life\项目\src\svn\trunk\WTCJ\DAL\bin\Debug\Model.pdb
+F:\life\项目\src\svn\trunk\WTCJ\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\life\项目\src\svn\trunk\WTCJ\DAL\obj\Debug\DAL.dll
+F:\life\项目\src\svn\trunk\WTCJ\DAL\obj\Debug\DAL.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\bin\Debug\DAL.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\bin\Debug\DAL.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\bin\Debug\DBUtility.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\bin\Debug\Model.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\bin\Debug\DBUtility.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\bin\Debug\Model.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\obj\Debug\DAL.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DAL\obj\Debug\DAL.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\bin\Debug\DAL.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\bin\Debug\DAL.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\bin\Debug\DBUtility.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\bin\Debug\Model.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\bin\Debug\DBUtility.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\bin\Debug\Model.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\obj\Debug\DAL.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DAL\obj\Debug\DAL.pdb

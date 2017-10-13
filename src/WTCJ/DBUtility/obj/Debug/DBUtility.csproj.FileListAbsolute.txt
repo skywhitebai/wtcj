@@ -1,0 +1,23 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DBUtility\bin\Debug\DBUtility.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DBUtility\bin\Debug\DBUtility.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DBUtility\obj\Debug\DBUtility.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WTCJ\DBUtility\obj\Debug\DBUtility.pdb
+F:\life\项目\src\WTCJ\DBUtility\bin\Debug\DBUtility.dll
+F:\life\项目\src\WTCJ\DBUtility\bin\Debug\DBUtility.pdb
+F:\life\项目\src\WTCJ\DBUtility\obj\Debug\DBUtility.dll
+F:\life\项目\src\WTCJ\DBUtility\obj\Debug\DBUtility.pdb
+F:\life\项目\src\svn\trunk\WTCJ\DBUtility\bin\Debug\DBUtility.dll
+F:\life\项目\src\svn\trunk\WTCJ\DBUtility\bin\Debug\DBUtility.pdb
+F:\life\项目\src\svn\trunk\WTCJ\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
+F:\life\项目\src\svn\trunk\WTCJ\DBUtility\obj\Debug\DBUtility.dll
+F:\life\项目\src\svn\trunk\WTCJ\DBUtility\obj\Debug\DBUtility.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DBUtility\bin\Debug\DBUtility.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DBUtility\bin\Debug\DBUtility.pdb
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DBUtility\obj\Debug\DBUtility.dll
+F:\项目\WTGC\ zhousijie.WTGC\trunk\WTCJ\DBUtility\obj\Debug\DBUtility.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DBUtility\bin\Debug\DBUtility.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DBUtility\bin\Debug\DBUtility.pdb
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DBUtility\obj\Debug\DBUtility.dll
+d:\桌面文件\我的文档\GitHub\wtcj\src\WTCJ\DBUtility\obj\Debug\DBUtility.pdb

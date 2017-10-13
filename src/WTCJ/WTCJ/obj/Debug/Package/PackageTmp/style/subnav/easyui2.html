@@ -1,0 +1,23 @@
+<p>那年我们在一起</p>
+    <div style="margin:20px 0"></div>
+    <div class="easyui-panel" style="width:100%;max-width:400px;padding:30px 60px;">
+        <div style="margin-bottom:20px">
+            <select class="easyui-combogrid" style="width:100%" data-options="
+                    panelWidth: 339,
+                    idField: 'id',
+                    textField: 'name',                 
+                    url: 'json/DataGird.txt',
+                    method: 'get',
+                    columns: [[
+                        {field:'id',title:'序号',width:80},
+                        {field:'name',title:'名字',width:80},
+                        {field:'age',title:'年龄',width:80},
+                        {field:'sex',title:'性别',width:80},
+                    ]],
+                    fitColumns: true,
+                    label: '我们班最帅的同学是:',
+                    labelPosition: 'top'
+                ">
+            </select>
+        </div>
+    </div>	

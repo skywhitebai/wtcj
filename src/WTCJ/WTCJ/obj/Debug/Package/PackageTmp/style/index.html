@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" style="height: 89%;">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>广东伟通信息管理平台</title>
+    <link type="text/css" rel=stylesheet href="lib/easyui/themes/icon.css">
+    <link type="text/css" rel=stylesheet href="lib/easyui/themes/gray/easyui.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+<body style="height:100%">
+    <div id="mask"></div>
+    <div id="box">
+        <span id="box_btn">×</span>
+        <h2>最新消息</h2>
+        <h4>2017-6-1：系统UI完成!</h4>
+        <h4>2017-6-9：系统需求文档完成!</h4>
+    </div>
+    <header class="header">
+        <div class="header_mask">
+            <div class="header_logo">广东伟通通信信息管理平台</div>
+            <div style="color:white" class="pop_up_box" id="pop_up_box"><img src="img/tubiao.png" style="vertical-align:middle;" /> 最新消息...</div>
+            <div class="header_nav">
+                <span>技术支持电话 : 13427544616</span>
+                <span>系统管理员</span>
+                <a href="javascript:void(0)">修改密码</a>
+                <a href="javascript:void(0)">退出</a>
+            </div>
+        </div>
+    </header>
+    <div class="easyui-tabs" data-options="tabWidth:112" style="width:100%;height:100%;">
+        <div title="工作台" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #03ACED;">
+                        <div data-options="title:'我的工作台'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','我的待办', 'subnav/easyui1.html');" data-options="plain:true">我的待办</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin1','我的已办','subnav/easyui2.html');" data-options="plain:true">我的已办</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin1" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="规划管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'规划管理'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false,">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin2', 'LTE规划库', 'subnav/easyui1.html');" data-options="plain:true">LTE规划库</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs('tabs_Admin2', 'GSM规划库', 'subnav/easyui2.html');" data-options="plain:true">GSM规划库</a></li>
+                            </ul>
+                        </div>
+                        <div data-options="title:'一致性检查'"></div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin2" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="进度管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'微网格管理模块'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('微网格汇总','subnav/easyui1.html');" data-options="plain:true">微网格汇总</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs3('汇聚机房汇总','subnav/easyui2.html');" data-options="plain:true">汇聚机房汇总</a></li>
+                            </ul>
+                        </div>
+                        <div data-options="title:'特殊网格管理池'"></div>
+                        <div data-options="title:'综合查询池'"></div>
+                        <div data-options="title:'LTE进度管理池'"></div>
+                        <div data-options="title:'TD进度管理池'"></div>
+                        <div data-options="title:'GSM进度管理池'"></div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin3" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="统计汇总" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'建设进度统计'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs4('选址日报统计','subnav/easyui1.html');" data-options="plain:true">选址日报统计</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs4('站点建设周期管控统计','subnav/easyui2.html');" data-options="plain:true">站点建设周期管控统计</a></li>
+                            </ul>
+                        </div>
+                        <div data-options="title:'投资统计'"></div>
+                        <div data-options="title:'合同统计'"></div>
+                        <div data-options="title:'统计汇总'"></div>
+                        <div data-options="title:'制度流程汇总'"></div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin4" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="委托管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'委托管理'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs5('预委托信息管理','subnav/easyui1.html');" data-options="plain:true">预委托信息管理</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs5('自动委托配置','subnav/easyui2.html');" data-options="plain:true">自动委托配置</a></li>
+                            </ul>
+                        </div>
+                        <div data-options="title:'委托编号申请管理'"></div>
+                        <div data-options="title:'委托全量表查询'"></div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin5" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="以租代建管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'建设进度时间评审'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs6('我的代办','subnav/easyui1.html');" data-options="plain:true">我的代办</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs6('评审进度统计','subnav/easyui2.html');" data-options="plain:true">评审进度统计</a></li>
+                            </ul>
+                        </div>
+                        <div data-options="title:'合同请款材料审批'"></div>
+                        <div data-options="title:'以租代建考核评审'"></div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin6" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+        <div title="验收管理" style="padding: 5px 0;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div region="west" data-options="title:'导航栏',width:195,split:true">
+                    <div class="easyui-accordion" data-options="fit:true,border:true" style="background: #747474;">
+                        <div data-options="title:'历史功能'">
+                            <ul class="easyui-datalist" data-options="fit: true,lines: true,border: false">
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs7('站点验收统计','subnav/easyui1.html');" data-options="plain:true">站点验收统计</a></li>
+                                <li><a href="#" class="leftsidebar_menu" onclick="Admin.addTabs7('重要站点统计','subnav/easyui2.html');" data-options="plain:true">重要站点统计</a></li>
+                            </ul>
+                        </div>
+                        <div data-options="title:'无线验收'"></div>
+                        <div data-options="title:'室分验收'"></div>
+                    </div>
+                </div>
+                <div region="center">
+                    <div id="tabs_Admin7" class="easyui-tabs" fit="true" tools="#tab-tools" border="false"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="lib/easyui/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="lib/easyui/jquery.easyui.extension.js"></script>
+    <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,1950 @@
+﻿<div id="div_YzdjSy">
+    <!--查询条件-->
+    <div class="easyui-panel">
+        部门：
+    <select class="easyui-combobox" id="YzdjSy_部门" style="width: 180px;" data-options="valueField:'id',textField:'text'">
+    </select>
+        区域：
+    <select class="easyui-combobox" id="YzdjSy_区域" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select>
+        客户名称：
+    <select class="easyui-combobox" id="YzdjSy_客户名称" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select><br />
+        站点编码：
+        <input id="YzdjSy_站点编码" class="easyui-textbox" style="width: 180px;">
+        站点名称：
+        <input id="YzdjSy_站点名称" class="easyui-textbox" style="width: 180px;">
+        <br />
+        <a href="javascript:void(0)" id="search_YzdjSy" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_excel_import_YzdjSy()">导 入</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_exportColumns_YzdjSy()">自定义导出</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_hideColumns_YzdjSy()">设置列表列</a>
+        <br />
+    </div>
+    <!--数据列表-->
+    <table id="dg_YzdjSy" style="width: 100%; height: auto">
+    </table>
+    <!--编辑页面-->
+    <div id="dlg_YzdjSy" class="easyui-dialog" style="width: 800px; height: 600px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div class="ftitle">
+            <b>以租代建项目损益</b>
+            <hr />
+        </div>
+        <form id="frm_YzdjSy" method="post" novalidate="novalidate">
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr style="display: none">
+                    <td>ID：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>部门：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_YzdjSy_部门" name="部门" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true">
+                        </select>
+                    </td>
+                    <td>区域：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_YzdjSy_区域" name="区域" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>客户名称：</td>
+                    <td>
+                        <select class="easyui-combobox" id="frm_YzdjSy_客户名称" name="客户名称" style="width: 180px;" data-options="valueField:'id',textField:'text',required:true"></select>
+                    </td>
+
+                    <td>站点编码：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="站点编码" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <td>站点名称：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="站点名称" data-options="required:true">
+                    </td>
+                    <td>建站类型：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="建站类型">
+                    </td>
+                </tr>
+                <tr>
+                    <td>经度：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="经度" data-options="min:0.00,precision:6">
+                    </td>
+                    <td>纬度：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="纬度" data-options="min:0.00,precision:6">
+                    </td>
+                </tr>
+                <tr>
+                    <td>摘牌时间：</td>
+                    <td>
+                        <input type="text" name="摘牌时间" onclick="WdatePicker()" />
+                    </td>
+                    <td>进场施工时间：</td>
+                    <td>
+                        <input type="text" name="进场施工时间" onclick="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>预计完工时间：</td>
+                    <td>
+                        <input type="text" name="预计完工时间" onclick="WdatePicker()" />
+                    </td>
+                    <td>建站周期（天）：</td>
+                    <td>
+                        <!--预计完工日期-预计进场日期-->
+                        <input class="easyui-numberbox" name="建站周期">
+                    </td>
+                </tr>
+                <tr>
+                    <td>伟通收入：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="伟通收入" data-options="precision:2">
+                    </td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>预估运营商收入</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>年租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="预估运营商收入年租金" data-options="precision:2">
+                        </td>
+                        <td>年限：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="预估运营商收入年限" data-options="precision:2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>总租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="预估运营商收入总租金" data-options="precision:2"></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>成本</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本设备单位1" name="成本设备单位1" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>设备成本1：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本设备成本1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设备单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本设备单位2" name="成本设备单位2" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>设备成本2：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本设备成本2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>场地业主：</td>
+                        <td>
+                            <input class="easyui-textbox" name="成本场地业主"></td>
+                        <td>租赁成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本租赁成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设计单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本设计单位" name="成本设计单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>设计成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本设计成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>地勘单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本地勘单位" name="成本地勘单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>地勘成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本地勘成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>监理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本监理单位" name="成本监理单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>监理成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本监理成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本项目管理单位" name="成本项目管理单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>项目管理成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本项目管理成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本土建施工单位1" name="成本土建施工单位1" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>土建施工成本1：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本土建施工成本1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本土建施工单位2" name="成本土建施工单位2" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>土建施工成本2：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本土建施工成本2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>铁塔加工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本铁塔加工单位" name="成本铁塔加工单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>铁塔加工成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本铁塔加工成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本安装施工单位" name="成本安装施工单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>安装施工成本：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本安装施工成本" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>外电单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本外电单位" name="成本外电单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>外电费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本外电费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本杆体搬运单位" name="成本杆体搬运单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>杆体搬运费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本杆体搬运费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>选址费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本选址费用单位" name="成本选址费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>选址费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本选址费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_成本其他费用单位" name="成本其他费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text'"></select></td>
+                        <td>其他费用：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="成本其他费用" data-options="precision:2"></td>
+                    </tr>
+
+                    <tr>
+                        <td>总成本(自动计算)：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="总成本" data-options="precision:2"></td>
+                         <td>毛利率：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="毛利率" data-options="precision:2"></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>已付款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款设备单位1" name="已付款设备单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款设备费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设备单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款设备单位2" name="已付款设备单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款设备费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>业主：</td>
+                        <td>
+                            <input class="easyui-textbox" name="已付款业主" readonly="readonly"></td>
+                        <td>业主租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款业主租金" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设计单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款设计单位" name="已付款设计单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设计费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款设计费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款墈察单位" name="已付款墈察单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>墈察费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款墈察费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>监理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款监理单位" name="已付款监理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>监理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款监理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款项目管理单位" name="已付款项目管理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>项目管理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款项目管理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款土建施工单位1" name="已付款土建施工单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款土建施工费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款土建施工单位2" name="已付款土建施工单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款土建施工费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>铁塔加工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款铁塔加工单位" name="已付款铁塔加工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>铁塔加工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款铁塔加工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款安装施工单位" name="已付款安装施工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>安装施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款安装施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>外电单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款外电单位" name="已付款外电单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>外电施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款外电施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款杆体搬运单位" name="已付款杆体搬运单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>杆体搬运费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款杆体搬运费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>选址费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款选址费用单位" name="已付款选址费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>选址费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款选址费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款其他费用单位" name="已付款其他费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>其他费用：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="已付款其他费用" data-options="precision:2"></td>
+                    </tr>
+
+                    <tr>
+                        <td>总计付款(自动计算)：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="总计付款" readonly="readonly" data-options="precision:2"></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>已付款已回发票</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况设备单位1" name="发票情况设备单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况设备费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设备单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况设备单位2" name="发票情况设备单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况设备费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>业主：</td>
+                        <td>
+                            <input class="easyui-textbox" readonly="readonly" name="发票情况业主"></td>
+                        <td>业主租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况业主租金" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设计单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况设计单位" name="发票情况设计单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设计费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况设计费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况墈察单位" name="发票情况墈察单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>墈察费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况墈察费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>监理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况监理单位" name="发票情况监理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>监理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况监理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况项目管理单位" name="发票情况项目管理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>项目管理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况项目管理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况土建施工单位1" name="发票情况土建施工单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况土建施工费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况土建施工单位2" name="发票情况土建施工单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况土建施工费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>铁塔加工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况铁塔加工单位" name="发票情况铁塔加工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>铁塔加工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况铁塔加工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况安装施工单位" name="发票情况安装施工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>安装施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况安装施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>外电单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况外电单位" name="发票情况外电单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>外电施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况外电施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况杆体搬运单位" name="发票情况杆体搬运单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>杆体搬运费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况杆体搬运费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>选址费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况选址费用单位" name="发票情况选址费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>选址费：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况选址费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_发票情况其他费用单位" name="发票情况其他费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>其他费用：</td>
+                        <td>
+                            <input class="easyui-numberbox" name="发票情况其他费用" data-options="precision:2"></td>
+                    </tr>
+
+                    <tr>
+                        <td>总计金额(自动计算)：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="发票情况总计金额" data-options="precision:2"></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>已付款未回发票</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票设备单位1" name="已付款未回发票设备单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票设备费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设备单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票设备单位2" name="已付款未回发票设备单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票设备费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>业主：</td>
+                        <td>
+                            <input class="easyui-textbox" readonly="readonly" name="已付款未回发票业主"></td>
+                        <td>业主租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票业主租金" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设计单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票设计单位" name="已付款未回发票设计单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设计费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票设计费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票墈察单位" name="已付款未回发票墈察单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>墈察费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票墈察费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>监理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票监理单位" name="已付款未回发票监理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>监理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票监理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票项目管理单位" name="已付款未回发票项目管理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>项目管理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票项目管理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票土建施工单位1" name="已付款未回发票土建施工单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票土建施工费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票土建施工单位2" name="已付款未回发票土建施工单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票土建施工费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>铁塔加工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票铁塔加工单位" name="已付款未回发票铁塔加工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>铁塔加工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票铁塔加工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票安装施工单位" name="已付款未回发票安装施工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>安装施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票安装施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>外电单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票外电单位" name="已付款未回发票外电单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>外电施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票外电施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票杆体搬运单位" name="已付款未回发票杆体搬运单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>杆体搬运费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票杆体搬运费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>选址费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票选址费用单位" name="已付款未回发票选址费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>选址费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票选址费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_已付款未回发票其他费用单位" name="已付款未回发票其他费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>其他费用：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票其他费用" data-options="precision:2"></td>
+                    </tr>
+
+                    <tr>
+                        <td>总计金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="已付款未回发票总计金额" data-options="precision:2"></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>未付款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款设备单位1" name="未付款设备单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款设备费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设备单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款设备单位2" name="未付款设备单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设备费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款设备费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>业主：</td>
+                        <td>
+                            <input class="easyui-textbox" name="未付款业主"></td>
+                        <td>业主租金：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款业主租金" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>设计单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款设计单位" name="未付款设计单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>设计费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款设计费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款墈察单位" name="未付款墈察单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>墈察费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款墈察费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>监理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款监理单位" name="未付款监理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>监理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款监理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款项目管理单位" name="未付款项目管理单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>项目管理费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款项目管理费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位1：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款土建施工单位1" name="未付款土建施工单位1" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费1：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款土建施工费1" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款土建施工单位2" name="未付款土建施工单位2" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>土建施工费2：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款土建施工费2" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>铁塔加工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款铁塔加工单位" name="未付款铁塔加工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>铁塔加工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款铁塔加工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款安装施工单位" name="未付款安装施工单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>安装施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款安装施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>外电单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款外电单位" name="未付款外电单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>外电施工费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款外电施工费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款杆体搬运单位" name="未付款杆体搬运单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>杆体搬运费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款杆体搬运费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>选址费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款选址费用单位" name="未付款选址费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>选址费：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款选址费" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位：</td>
+                        <td>
+                            <select class="easyui-combobox" id="frm_YzdjSy_未付款其他费用单位" name="未付款其他费用单位" style="width: 180px;" data-options="valueField:'id',textField:'text',disabled: true"></select></td>
+                        <td>其他费用：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款其他费用" data-options="precision:2"></td>
+                    </tr>
+                    <tr>
+                        <td>回款金额：</td>
+                        <td>
+                            <input class="easyui-numberbox" readonly="readonly" name="未付款总计金额" readonly="readonly" data-options="precision:2">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr id="tr_time_YzdjSy">
+                    <td>创建时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="CreateTime"></td>
+
+                    <td>更新时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="UpdateTime"></td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" type="text" name="备注" style="width: 90%">
+                    </td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="btn_save_YzdjSy" onclick="Save_YzdjSy()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_YzdjSy()">关闭</a>
+            </div>
+        </form>
+    </div>
+    <div id="dlg_excel_import_YzdjSy" class="easyui-dialog" style="width: 500px; height: 320px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div>
+            <fieldset>
+                <legend>excel模版格式 </legend>
+                <p style="color: red">
+                    导入的模板格式如下，若模板格式不正确，则相应的数据不能导入<br />
+                    (第一列~开通的数据是表头或者示例数据不会被导入)!
+                </p>
+                <br />
+                <a href="../../Excel/Template/以租代建项目损益表模板.xlsx" title="下载模版">下载模版</a>
+            </fieldset>
+        </div>
+        <div style="margin-top: 20px;">
+            <fieldset>
+                <legend>信息导入</legend>
+                <form id="frm_excel_import_YzdjSy" method="post" enctype="multipart/form-data">
+                    <p>
+                        选择文件：<input id="fileupload_excel_import_YzdjSy" type="file" name="fileImport" style="width: 250px; height: 24px; background: White"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </p>
+                    <p>
+                        <br />
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'" onclick="Save_excel_import_YzdjSy()">导入</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-cancel'" onclick="Close_excel_import_YzdjSy()">关闭</a>
+                    </p>
+                </form>
+            </fieldset>
+        </div>
+        <div id="Conditionback_excel_import_YzdjSy" style="display: none; position: fixed; opacity: 0.5; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #ccc; overflow: hidden;">
+        </div>
+        <div id="ConditionShow_excel_import_YzdjSy" style="display: none; position: absolute; top: 100px; left: 40%; width: 20%; height: 50px; z-index: 1002; text-align: center; overflow: hidden; background-color: White;">
+            <img src="../../style/img/loadingbar.gif" />
+            <br />
+            数据上传中......
+        </div>
+    </div>
+
+    <!--自定义列页面-->
+    <div id="dlg_hideColumns_YzdjSy" class="easyui-dialog" style="width: 800px; height: 600px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+
+        <form id="frm_hideColumns_YzdjSy" method="post" novalidate="novalidate">
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>部门<input type='checkbox' name='hideColumns' value='部门Text'></td>
+                    <td>区域<input type='checkbox' name='hideColumns' value='区域Text'></td>
+                    <td>客户名称<input type='checkbox' name='hideColumns' value='客户名称Text'></td>
+                    <td>站点编码<input type='checkbox' name='hideColumns' value='站点编码'></td>
+                </tr>
+                <tr>
+                    <td>站点名称<input type='checkbox' name='hideColumns' value='站点名称'></td>
+                    <td>建站类型<input type='checkbox' name='hideColumns' value='建站类型'></td>
+                    <td>经度<input type='checkbox' name='hideColumns' value='经度'></td>
+                    <td>纬度<input type='checkbox' name='hideColumns' value='纬度'></td>
+                </tr>
+                <tr>
+                    <td>摘牌时间<input type='checkbox' name='hideColumns' value='摘牌时间'></td>
+                    <td>进场施工时间<input type='checkbox' name='hideColumns' value='进场施工时间'></td>
+                    <td>预计完工时间<input type='checkbox' name='hideColumns' value='预计完工时间'></td>
+                    <td>建站周期<input type='checkbox' name='hideColumns' value='建站周期'></td>
+                </tr>
+                <tr>
+                    <td>预估运营商收入年租金<input type='checkbox' name='hideColumns' value='预估运营商收入年租金'></td>
+                    <td>预估运营商收入年限<input type='checkbox' name='hideColumns' value='预估运营商收入年限'></td>
+                    <td>预估运营商收入总租金<input type='checkbox' name='hideColumns' value='预估运营商收入总租金'></td>
+                    <td>伟通收入<input type='checkbox' name='hideColumns' value='伟通收入'></td>
+                </tr>
+            </table>
+            <fieldset>
+                <legend>成本</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+
+                        <td>设备单位1<input type='checkbox' name='hideColumns' value='成本设备单位1Text'></td>
+                        <td>设备成本1<input type='checkbox' name='hideColumns' value='成本设备成本1'></td>
+                        <td>设备单位2<input type='checkbox' name='hideColumns' value='成本设备单位2Text'></td>
+                        <td>设备成本2<input type='checkbox' name='hideColumns' value='成本设备成本2'></td>
+                    </tr>
+                    <tr>
+                        <td>场地业主<input type='checkbox' name='hideColumns' value='成本场地业主'></td>
+                        <td>租赁成本<input type='checkbox' name='hideColumns' value='成本租赁成本'></td>
+                        <td>设计单位<input type='checkbox' name='hideColumns' value='成本设计单位Text'></td>
+                        <td>设计成本<input type='checkbox' name='hideColumns' value='成本设计成本'></td>
+                    </tr>
+                    <tr>
+                        <td>地勘单位<input type='checkbox' name='hideColumns' value='成本地勘单位Text'></td>
+                        <td>地勘成本<input type='checkbox' name='hideColumns' value='成本地勘成本'></td>
+                        <td>监理单位<input type='checkbox' name='hideColumns' value='成本监理单位Text'></td>
+                        <td>监理成本<input type='checkbox' name='hideColumns' value='成本监理成本'></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位<input type='checkbox' name='hideColumns' value='成本项目管理单位Text'></td>
+                        <td>项目管理成本<input type='checkbox' name='hideColumns' value='成本项目管理成本'></td>
+                        <td>土建施工单位1<input type='checkbox' name='hideColumns' value='成本土建施工单位1Text'></td>
+                        <td>土建施工成本1<input type='checkbox' name='hideColumns' value='成本土建施工成本1'></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2<input type='checkbox' name='hideColumns' value='成本土建施工单位2Text'></td>
+                        <td>土建施工成本2<input type='checkbox' name='hideColumns' value='成本土建施工成本2'></td>
+                        <td>铁塔加工单位<input type='checkbox' name='hideColumns' value='成本铁塔加工单位Text'></td>
+                        <td>铁塔加工成本<input type='checkbox' name='hideColumns' value='成本铁塔加工成本'></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位<input type='checkbox' name='hideColumns' value='成本安装施工单位Text'></td>
+                        <td>安装施工成本<input type='checkbox' name='hideColumns' value='成本安装施工成本'></td>
+                        <td>外电单位<input type='checkbox' name='hideColumns' value='成本外电单位Text'></td>
+                        <td>外电费<input type='checkbox' name='hideColumns' value='成本外电费'></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位<input type='checkbox' name='hideColumns' value='成本杆体搬运单位Text'></td>
+                        <td>杆体搬运费<input type='checkbox' name='hideColumns' value='成本杆体搬运费'></td>
+                        <td>选址费用单位<input type='checkbox' name='hideColumns' value='成本选址费用单位Text'></td>
+                        <td>选址费<input type='checkbox' name='hideColumns' value='成本选址费'></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位<input type='checkbox' name='hideColumns' value='成本其他费用单位Text'></td>
+                        <td>其他费用<input type='checkbox' name='hideColumns' value='成本其他费用'></td>
+                        <td>总成本<input type='checkbox' name='hideColumns' value='总成本'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>已付款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1<input type='checkbox' name='hideColumns' value='已付款设备单位1Text'></td>
+                        <td>设备费1<input type='checkbox' name='hideColumns' value='已付款设备费1'></td>
+                        <td>设备单位2<input type='checkbox' name='hideColumns' value='已付款设备单位2Text'></td>
+                        <td>设备费2<input type='checkbox' name='hideColumns' value='已付款设备费2'></td>
+                    </tr>
+                    <tr>
+                        <td>业主<input type='checkbox' name='hideColumns' value='已付款业主'></td>
+                        <td>业主租金<input type='checkbox' name='hideColumns' value='已付款业主租金'></td>
+                        <td>设计单位<input type='checkbox' name='hideColumns' value='已付款设计单位Text'></td>
+                        <td>设计费<input type='checkbox' name='hideColumns' value='已付款设计费'></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位<input type='checkbox' name='hideColumns' value='已付款墈察单位Text'></td>
+                        <td>墈察费<input type='checkbox' name='hideColumns' value='已付款墈察费'></td>
+                        <td>监理单位<input type='checkbox' name='hideColumns' value='已付款监理单位Text'></td>
+                        <td>监理费<input type='checkbox' name='hideColumns' value='已付款监理费'></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位<input type='checkbox' name='hideColumns' value='已付款项目管理单位Text'></td>
+                        <td>项目管理费<input type='checkbox' name='hideColumns' value='已付款项目管理费'></td>
+                        <td>土建施工单位1<input type='checkbox' name='hideColumns' value='已付款土建施工单位1Text'></td>
+                        <td>土建施工费1<input type='checkbox' name='hideColumns' value='已付款土建施工费1'></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2<input type='checkbox' name='hideColumns' value='已付款土建施工单位2Text'></td>
+                        <td>土建施工费2<input type='checkbox' name='hideColumns' value='已付款土建施工费2'></td>
+                        <td>铁塔加工单位<input type='checkbox' name='hideColumns' value='已付款铁塔加工单位Text'></td>
+                        <td>铁塔加工费<input type='checkbox' name='hideColumns' value='已付款铁塔加工费'></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位<input type='checkbox' name='hideColumns' value='已付款安装施工单位Text'></td>
+                        <td>安装施工费<input type='checkbox' name='hideColumns' value='已付款安装施工费'></td>
+                        <td>外电单位<input type='checkbox' name='hideColumns' value='已付款外电单位Text'></td>
+                        <td>外电施工费<input type='checkbox' name='hideColumns' value='已付款外电施工费'></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位<input type='checkbox' name='hideColumns' value='已付款杆体搬运单位Text'></td>
+                        <td>杆体搬运费<input type='checkbox' name='hideColumns' value='已付款杆体搬运费'></td>
+                        <td>选址费用单位<input type='checkbox' name='hideColumns' value='已付款选址费用单位Text'></td>
+                        <td>选址费<input type='checkbox' name='hideColumns' value='已付款选址费'></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位<input type='checkbox' name='hideColumns' value='已付款其他费用单位Text'></td>
+                        <td>其他费用<input type='checkbox' name='hideColumns' value='已付款其他费用'></td>
+                        <td>总计付款<input type='checkbox' name='hideColumns' value='总计付款'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>发票情况</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+
+                        <td>设备单位1<input type='checkbox' name='hideColumns' value='发票情况设备单位1Text'></td>
+                        <td>设备费1<input type='checkbox' name='hideColumns' value='发票情况设备费1'></td>
+                        <td>设备单位2<input type='checkbox' name='hideColumns' value='发票情况设备单位2Text'></td>
+                        <td>设备费2<input type='checkbox' name='hideColumns' value='发票情况设备费2'></td>
+                    </tr>
+                    <tr>
+                        <td>业主<input type='checkbox' name='hideColumns' value='发票情况业主'></td>
+                        <td>业主租金<input type='checkbox' name='hideColumns' value='发票情况业主租金'></td>
+                        <td>设计单位<input type='checkbox' name='hideColumns' value='发票情况设计单位Text'></td>
+                        <td>设计费<input type='checkbox' name='hideColumns' value='发票情况设计费'></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位<input type='checkbox' name='hideColumns' value='发票情况墈察单位Text'></td>
+                        <td>墈察费<input type='checkbox' name='hideColumns' value='发票情况墈察费'></td>
+                        <td>监理单位<input type='checkbox' name='hideColumns' value='发票情况监理单位Text'></td>
+                        <td>监理费<input type='checkbox' name='hideColumns' value='发票情况监理费'></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位<input type='checkbox' name='hideColumns' value='发票情况项目管理单位Text'></td>
+                        <td>项目管理费<input type='checkbox' name='hideColumns' value='发票情况项目管理费'></td>
+                        <td>土建施工单位1<input type='checkbox' name='hideColumns' value='发票情况土建施工单位1Text'></td>
+                        <td>土建施工费1<input type='checkbox' name='hideColumns' value='发票情况土建施工费1'></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2<input type='checkbox' name='hideColumns' value='发票情况土建施工单位2Text'></td>
+                        <td>土建施工费2<input type='checkbox' name='hideColumns' value='发票情况土建施工费2'></td>
+                        <td>铁塔加工单位<input type='checkbox' name='hideColumns' value='发票情况铁塔加工单位Text'></td>
+                        <td>铁塔加工费<input type='checkbox' name='hideColumns' value='发票情况铁塔加工费'></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位<input type='checkbox' name='hideColumns' value='发票情况安装施工单位Text'></td>
+                        <td>安装施工费<input type='checkbox' name='hideColumns' value='发票情况安装施工费'></td>
+                        <td>外电单位<input type='checkbox' name='hideColumns' value='发票情况外电单位Text'></td>
+                        <td>外电施工费<input type='checkbox' name='hideColumns' value='发票情况外电施工费'></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位<input type='checkbox' name='hideColumns' value='发票情况杆体搬运单位Text'></td>
+                        <td>杆体搬运费<input type='checkbox' name='hideColumns' value='发票情况杆体搬运费'></td>
+                        <td>选址费用单位<input type='checkbox' name='hideColumns' value='发票情况选址费用单位Text'></td>
+                        <td>选址费<input type='checkbox' name='hideColumns' value='发票情况选址费'></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位<input type='checkbox' name='hideColumns' value='发票情况其他费用单位Text'></td>
+                        <td>其他费用<input type='checkbox' name='hideColumns' value='发票情况其他费用'></td>
+                        <td>总计金额<input type='checkbox' name='hideColumns' value='发票情况总计金额'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>已付款未回发票</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+
+
+                        <td>设备单位1<input type='checkbox' name='hideColumns' value='已付款未回发票设备单位1Text'></td>
+                        <td>设备费1<input type='checkbox' name='hideColumns' value='已付款未回发票设备费1'></td>
+                        <td>设备单位2<input type='checkbox' name='hideColumns' value='已付款未回发票设备单位2Text'></td>
+                        <td>设备费2<input type='checkbox' name='hideColumns' value='已付款未回发票设备费2'></td>
+                    </tr>
+                    <tr>
+                        <td>业主<input type='checkbox' name='hideColumns' value='已付款未回发票业主'></td>
+                        <td>业主租金<input type='checkbox' name='hideColumns' value='已付款未回发票业主租金'></td>
+                        <td>设计单位<input type='checkbox' name='hideColumns' value='已付款未回发票设计单位Text'></td>
+                        <td>设计费<input type='checkbox' name='hideColumns' value='已付款未回发票设计费'></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位<input type='checkbox' name='hideColumns' value='已付款未回发票墈察单位Text'></td>
+                        <td>墈察费<input type='checkbox' name='hideColumns' value='已付款未回发票墈察费'></td>
+                        <td>监理单位<input type='checkbox' name='hideColumns' value='已付款未回发票监理单位Text'></td>
+                        <td>监理费<input type='checkbox' name='hideColumns' value='已付款未回发票监理费'></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位<input type='checkbox' name='hideColumns' value='已付款未回发票项目管理单位Text'></td>
+                        <td>项目管理费<input type='checkbox' name='hideColumns' value='已付款未回发票项目管理费'></td>
+                        <td>土建施工单位1<input type='checkbox' name='hideColumns' value='已付款未回发票土建施工单位1Text'></td>
+                        <td>土建施工费1<input type='checkbox' name='hideColumns' value='已付款未回发票土建施工费1'></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2<input type='checkbox' name='hideColumns' value='已付款未回发票土建施工单位2Text'></td>
+                        <td>土建施工费2<input type='checkbox' name='hideColumns' value='已付款未回发票土建施工费2'></td>
+                        <td>铁塔加工单位<input type='checkbox' name='hideColumns' value='已付款未回发票铁塔加工单位Text'></td>
+                        <td>铁塔加工费<input type='checkbox' name='hideColumns' value='已付款未回发票铁塔加工费'></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位<input type='checkbox' name='hideColumns' value='已付款未回发票安装施工单位Text'></td>
+                        <td>安装施工费<input type='checkbox' name='hideColumns' value='已付款未回发票安装施工费'></td>
+                        <td>外电单位<input type='checkbox' name='hideColumns' value='已付款未回发票外电单位Text'></td>
+                        <td>外电施工费<input type='checkbox' name='hideColumns' value='已付款未回发票外电施工费'></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位<input type='checkbox' name='hideColumns' value='已付款未回发票杆体搬运单位Text'></td>
+                        <td>杆体搬运费<input type='checkbox' name='hideColumns' value='已付款未回发票杆体搬运费'></td>
+                        <td>选址费用单位<input type='checkbox' name='hideColumns' value='已付款未回发票选址费用单位Text'></td>
+                        <td>选址费<input type='checkbox' name='hideColumns' value='已付款未回发票选址费'></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位<input type='checkbox' name='hideColumns' value='已付款未回发票其他费用单位Text'></td>
+                        <td>其他费用<input type='checkbox' name='hideColumns' value='已付款未回发票其他费用'></td>
+                        <td>总计金额<input type='checkbox' name='hideColumns' value='已付款未回发票总计金额'></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>未付款</legend>
+                <table class="table_info">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>设备单位1<input type='checkbox' name='hideColumns' value='未付款设备单位1Text'></td>
+                        <td>设备费1<input type='checkbox' name='hideColumns' value='未付款设备费1'></td>
+                        <td>设备单位2<input type='checkbox' name='hideColumns' value='未付款设备单位2Text'></td>
+                        <td>设备费2<input type='checkbox' name='hideColumns' value='未付款设备费2'></td>
+                    </tr>
+                    <tr>
+                        <td>业主<input type='checkbox' name='hideColumns' value='未付款业主'></td>
+                        <td>业主租金<input type='checkbox' name='hideColumns' value='未付款业主租金'></td>
+                        <td>设计单位<input type='checkbox' name='hideColumns' value='未付款设计单位Text'></td>
+                        <td>设计费<input type='checkbox' name='hideColumns' value='未付款设计费'></td>
+                    </tr>
+                    <tr>
+                        <td>墈察单位<input type='checkbox' name='hideColumns' value='未付款墈察单位Text'></td>
+                        <td>墈察费<input type='checkbox' name='hideColumns' value='未付款墈察费'></td>
+                        <td>监理单位<input type='checkbox' name='hideColumns' value='未付款监理单位Text'></td>
+                        <td>监理费<input type='checkbox' name='hideColumns' value='未付款监理费'></td>
+                    </tr>
+                    <tr>
+                        <td>项目管理单位<input type='checkbox' name='hideColumns' value='未付款项目管理单位Text'></td>
+                        <td>项目管理费<input type='checkbox' name='hideColumns' value='未付款项目管理费'></td>
+                        <td>土建施工单位1<input type='checkbox' name='hideColumns' value='未付款土建施工单位1Text'></td>
+                        <td>土建施工费1<input type='checkbox' name='hideColumns' value='未付款土建施工费1'></td>
+                    </tr>
+                    <tr>
+                        <td>土建施工单位2<input type='checkbox' name='hideColumns' value='未付款土建施工单位2Text'></td>
+                        <td>土建施工费2<input type='checkbox' name='hideColumns' value='未付款土建施工费2'></td>
+                        <td>铁塔加工单位<input type='checkbox' name='hideColumns' value='未付款铁塔加工单位Text'></td>
+                        <td>铁塔加工费<input type='checkbox' name='hideColumns' value='未付款铁塔加工费'></td>
+                    </tr>
+                    <tr>
+                        <td>安装施工单位<input type='checkbox' name='hideColumns' value='未付款安装施工单位Text'></td>
+                        <td>安装施工费<input type='checkbox' name='hideColumns' value='未付款安装施工费'></td>
+                        <td>外电单位<input type='checkbox' name='hideColumns' value='未付款外电单位Text'></td>
+                        <td>外电施工费<input type='checkbox' name='hideColumns' value='未付款外电施工费'></td>
+                    </tr>
+                    <tr>
+                        <td>杆体搬运单位<input type='checkbox' name='hideColumns' value='未付款杆体搬运单位Text'></td>
+                        <td>杆体搬运费<input type='checkbox' name='hideColumns' value='未付款杆体搬运费'></td>
+                        <td>选址费用单位<input type='checkbox' name='hideColumns' value='未付款选址费用单位Text'></td>
+                        <td>选址费<input type='checkbox' name='hideColumns' value='未付款选址费'></td>
+                    </tr>
+                    <tr>
+                        <td>其他费用单位<input type='checkbox' name='hideColumns' value='未付款其他费用单位Text'></td>
+                        <td>其他费用<input type='checkbox' name='hideColumns' value='未付款其他费用'></td>
+                        <td>总计金额<input type='checkbox' name='hideColumns' value='未付款总计金额'></td>
+                    </tr>
+
+                </table>
+            </fieldset>
+            <table class="table_info">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td class="export_hide">备注<input type='checkbox' name='hideColumns' value='备注'></td>
+                    <td class="export_hide">创建时间<input type='checkbox' name='hideColumns' value='CreateTime'></td>
+                    <td class="export_hide">修改时间<input type='checkbox' name='hideColumns' value='UpdateTime'></td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="all_hideColumns_YzdjSy()">全选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="unall_hideColumns_YzdjSy()">全不选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="" onclick="fx_hideColumns_YzdjSy()">反选</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="" onclick="Save_hideColumns_YzdjSy()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_hideColumns_YzdjSy()">关闭</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#search_YzdjSy').click(function () { bindData_YzdjSy() });
+    var hideColumns_YzdjSy = "";
+    var exporthideColumns_YzdjSy = "";
+    var hideType_YzdjSy = "list";
+    $(function () {
+        bindCombobox_YzdjSy();
+        getHideColumns_YzdjSy();
+    });
+    function getHideColumns_YzdjSy() {
+        $.post('UserColumns/GetHideColumns', { type: "list", tableName: "YzdjSy" }, function (data) {
+            hideColumns_YzdjSy = data.Data;
+            bindData_YzdjSy();
+        });
+        $.post('UserColumns/GetHideColumns', { type: "export", tableName: "YzdjSy" }, function (data) {
+            exporthideColumns_YzdjSy = data.Data;
+        });
+    }
+    function bind_frm_hideColumns_YzdjSy(hideColumns) {
+        $("form#frm_hideColumns_YzdjSy input[name='hideColumns']").prop("checked", true);
+        if (hideColumns != "") {
+            hideColumnsarry = hideColumns.split(",");//以逗号作为分隔字符串
+            for (var i = 0; i < hideColumnsarry.length; i++) {
+                $("form#frm_hideColumns_YzdjSy input[name='hideColumns'][value='" + hideColumnsarry[i] + "']").prop("checked", false);
+            }
+        }
+    }
+    function bindData_YzdjSy() {
+        dg = '#dg_YzdjSy';
+        url = "YzdjSy/List";
+        title = "以租代建项目损益管理";
+        部门 = $('#YzdjSy_部门').combobox('getValue');
+        区域 = $('#YzdjSy_区域').combobox('getValue');
+        客户名称 = $('#YzdjSy_客户名称').combobox('getValue');
+        站点编码 = $('#YzdjSy_站点编码').val();
+        站点名称 = $('#YzdjSy_站点名称').val();
+        queryParams = { 部门: 部门, 区域: 区域, 客户名称: 客户名称, 站点编码: 站点编码, 站点名称: 站点名称 };
+        $(dg).datagrid({   //定位到Table标签，Table标签的ID是grid  
+            url: url,   //指向后台的Action来获取当前菜单的信息的Json格式的数据  
+            title: title,
+            iconCls: 'icon-view',
+            nowrap: true,
+            autoRowHeight: false,
+            striped: true,
+            collapsible: true,
+            pagination: true,
+            singleSelect: true,
+            pageSize: 15,
+            pageList: [10, 15, 20, 30, 50],
+            rownumbers: true,
+            //sortName: 'ID',    //根据某个字段给easyUI排序  
+            //sortOrder: 'asc',
+            remoteSort: false,
+            idField: 'id',
+            queryParams: queryParams,  //异步查询的参数  
+            columns: [[
+                { field: 'ck', checkbox: true, rowspan: 2 },   //选择 
+                { title: '部门', field: '部门Text', width: 100, rowspan: 2 },
+                { title: '区域', field: '区域Text', width: 100, rowspan: 2 },
+                { title: '客户名称', field: '客户名称Text', width: 100, rowspan: 2 },
+                { title: '站点编码', field: '站点编码', width: 100, rowspan: 2 },
+                { title: '站点名称', field: '站点名称', width: 100, rowspan: 2 },
+                { title: '建站类型', field: '建站类型', width: 100, rowspan: 2 },
+                { title: '经度', field: '经度', width: 100, rowspan: 2 },
+                { title: '纬度', field: '纬度', width: 100, rowspan: 2 },
+                { title: '摘牌时间', field: '摘牌时间', width: 100, rowspan: 2 },
+                { title: '进场施工时间', field: '进场施工时间', width: 100, rowspan: 2 },
+                { title: '预计完工时间', field: '预计完工时间', width: 100, rowspan: 2 },
+                { title: '建站周期（天）', field: '建站周期', width: 100, rowspan: 2 },
+                { title: '预估运营商收入', width: 300, colspan: 3 },
+                { title: '伟通', width: 100, colspan: 1 },
+                { title: '成本', width: 3000, colspan: 30 },
+                { title: '总成本', field: '总成本', width: 100, rowspan: 2 },
+                { title: '已付款', width: 3000, colspan: 30 },
+                { title: '总计付款', field: '总计付款', width: 100, rowspan: 2 },
+                { title: '发票情况', width: 3000, colspan: 30 },
+                { title: '总计金额', field: '发票情况总计金额', width: 100, rowspan: 2 },
+                { title: '已付款未回发票', width: 3000, colspan: 30 },
+                { title: '总计金额', field: '已付款未回发票总计金额', width: 100, rowspan: 2 },
+                { title: '未付款', width: 3000, colspan: 30 },
+                { title: '总计金额', field: '未付款总计金额', width: 100, rowspan: 2 },
+                { title: '创建时间', field: 'CreateTime', width: 150, rowspan: 2 },
+                { title: '修改时间', field: 'UpdateTime', width: 150, rowspan: 2 },
+                { title: '备注', field: '备注', width: 300, rowspan: 2 }], [
+                { title: '年租金', field: '预估运营商收入年租金', width: 100 },
+                { title: '年限', field: '预估运营商收入年限', width: 100 },
+                { title: '总租金', field: '预估运营商收入总租金', width: 100 },
+                { title: '收入', field: '伟通收入', width: 100 },
+
+                { title: '设备单位1', field: '成本设备单位1Text', width: 100 },
+                { title: '设备成本1', field: '成本设备成本1', width: 100 },
+                { title: '设备单位2', field: '成本设备单位2Text', width: 100 },
+                { title: '设备成本2', field: '成本设备成本2', width: 100 },
+                { title: '场地业主', field: '成本场地业主', width: 100 },
+                { title: '租赁成本', field: '成本租赁成本', width: 100 },
+                { title: '设计单位', field: '成本设计单位Text', width: 100 },
+                { title: '设计成本', field: '成本设计成本', width: 100 },
+                { title: '地勘单位', field: '成本地勘单位Text', width: 100 },
+                { title: '地勘成本', field: '成本地勘成本', width: 100 },
+                { title: '监理单位', field: '成本监理单位Text', width: 100 },
+                { title: '监理成本', field: '成本监理成本', width: 100 },
+                { title: '项目管理单位', field: '成本项目管理单位Text', width: 100 },
+                { title: '项目管理成本', field: '成本项目管理成本', width: 100 },
+                { title: '土建施工单位1', field: '成本土建施工单位1Text', width: 100 },
+                { title: '土建施工成本1', field: '成本土建施工成本1', width: 100 },
+                { title: '土建施工单位2', field: '成本土建施工单位2Text', width: 100 },
+                { title: '土建施工成本2', field: '成本土建施工成本2', width: 100 },
+                { title: '铁塔加工单位', field: '成本铁塔加工单位Text', width: 100 },
+                { title: '铁塔加工成本', field: '成本铁塔加工成本', width: 100 },
+                { title: '安装施工单位', field: '成本安装施工单位Text', width: 100 },
+                { title: '安装施工成本', field: '成本安装施工成本', width: 100 },
+                { title: '外电单位', field: '成本外电单位Text', width: 100 },
+                { title: '外电费', field: '成本外电费', width: 100 },
+                { title: '杆体搬运单位', field: '成本杆体搬运单位Text', width: 100 },
+                { title: '杆体搬运费', field: '成本杆体搬运费', width: 100 },
+                { title: '选址费用单位', field: '成本选址费用单位Text', width: 100 },
+                { title: '选址费', field: '成本选址费', width: 100 },
+                { title: '其他费用单位', field: '成本其他费用单位Text', width: 100 },
+                { title: '其他费用', field: '成本其他费用', width: 100 },
+
+                { title: '设备单位1', field: '已付款设备单位1Text', width: 100 },
+                { title: '设备费1', field: '已付款设备费1', width: 100 },
+                { title: '设备单位2', field: '已付款设备单位2Text', width: 100 },
+                { title: '设备费2', field: '已付款设备费2', width: 100 },
+                { title: '业主', field: '已付款业主', width: 100 },
+                { title: '业主租金', field: '已付款业主租金', width: 100 },
+                { title: '设计单位', field: '已付款设计单位Text', width: 100 },
+                { title: '设计费', field: '已付款设计费', width: 100 },
+                { title: '墈察单位', field: '已付款墈察单位Text', width: 100 },
+                { title: '墈察费', field: '已付款墈察费', width: 100 },
+                { title: '监理单位', field: '已付款监理单位Text', width: 100 },
+                { title: '监理费', field: '已付款监理费', width: 100 },
+                { title: '项目管理单位', field: '已付款项目管理单位Text', width: 100 },
+                { title: '项目管理费', field: '已付款项目管理费', width: 100 },
+                { title: '土建施工单位1', field: '已付款土建施工单位1Text', width: 100 },
+                { title: '土建施工费1', field: '已付款土建施工费1', width: 100 },
+                { title: '土建施工单位2', field: '已付款土建施工单位2Text', width: 100 },
+                { title: '土建施工费2', field: '已付款土建施工费2', width: 100 },
+                { title: '铁塔加工单位', field: '已付款铁塔加工单位Text', width: 100 },
+                { title: '铁塔加工费', field: '已付款铁塔加工费', width: 100 },
+                { title: '安装施工单位', field: '已付款安装施工单位Text', width: 100 },
+                { title: '安装施工费', field: '已付款安装施工费', width: 100 },
+                { title: '外电单位', field: '已付款外电单位Text', width: 100 },
+                { title: '外电施工费', field: '已付款外电施工费', width: 100 },
+                { title: '杆体搬运单位', field: '已付款杆体搬运单位Text', width: 100 },
+                { title: '杆体搬运费', field: '已付款杆体搬运费', width: 100 },
+                { title: '选址费用单位', field: '已付款选址费用单位Text', width: 100 },
+                { title: '选址费', field: '已付款选址费', width: 100 },
+                { title: '其他费用单位', field: '已付款其他费用单位Text', width: 100 },
+                { title: '其他费用', field: '已付款其他费用', width: 100 },
+
+                { title: '设备单位1', field: '发票情况设备单位1Text', width: 100 },
+                { title: '设备费1', field: '发票情况设备费1', width: 100 },
+                { title: '设备单位2', field: '发票情况设备单位2Text', width: 100 },
+                { title: '设备费2', field: '发票情况设备费2', width: 100 },
+                { title: '业主', field: '发票情况业主', width: 100 },
+                { title: '业主租金', field: '发票情况业主租金', width: 100 },
+                { title: '设计单位', field: '发票情况设计单位Text', width: 100 },
+                { title: '设计费', field: '发票情况设计费', width: 100 },
+                { title: '墈察单位', field: '发票情况墈察单位Text', width: 100 },
+                { title: '墈察费', field: '发票情况墈察费', width: 100 },
+                { title: '监理单位', field: '发票情况监理单位Text', width: 100 },
+                { title: '监理费', field: '发票情况监理费', width: 100 },
+                { title: '项目管理单位', field: '发票情况项目管理单位Text', width: 100 },
+                { title: '项目管理费', field: '发票情况项目管理费', width: 100 },
+                { title: '土建施工单位1', field: '发票情况土建施工单位1Text', width: 100 },
+                { title: '土建施工费1', field: '发票情况土建施工费1', width: 100 },
+                { title: '土建施工单位2', field: '发票情况土建施工单位2Text', width: 100 },
+                { title: '土建施工费2', field: '发票情况土建施工费2', width: 100 },
+                { title: '铁塔加工单位', field: '发票情况铁塔加工单位Text', width: 100 },
+                { title: '铁塔加工费', field: '发票情况铁塔加工费', width: 100 },
+                { title: '安装施工单位', field: '发票情况安装施工单位Text', width: 100 },
+                { title: '安装施工费', field: '发票情况安装施工费', width: 100 },
+                { title: '外电单位', field: '发票情况外电单位Text', width: 100 },
+                { title: '外电施工费', field: '发票情况外电施工费', width: 100 },
+                { title: '杆体搬运单位', field: '发票情况杆体搬运单位Text', width: 100 },
+                { title: '杆体搬运费', field: '发票情况杆体搬运费', width: 100 },
+                { title: '选址费用单位', field: '发票情况选址费用单位Text', width: 100 },
+                { title: '选址费', field: '发票情况选址费', width: 100 },
+                { title: '其他费用单位', field: '发票情况其他费用单位Text', width: 100 },
+                { title: '其他费用', field: '发票情况其他费用', width: 100 },
+
+                { title: '设备单位1', field: '已付款未回发票设备单位1Text', width: 100 },
+                { title: '设备费1', field: '已付款未回发票设备费1', width: 100 },
+                { title: '设备单位2', field: '已付款未回发票设备单位2Text', width: 100 },
+                { title: '设备费2', field: '已付款未回发票设备费2', width: 100 },
+                { title: '业主', field: '已付款未回发票业主', width: 100 },
+                { title: '业主租金', field: '已付款未回发票业主租金', width: 100 },
+                { title: '设计单位', field: '已付款未回发票设计单位Text', width: 100 },
+                { title: '设计费', field: '已付款未回发票设计费', width: 100 },
+                { title: '墈察单位', field: '已付款未回发票墈察单位Text', width: 100 },
+                { title: '墈察费', field: '已付款未回发票墈察费', width: 100 },
+                { title: '监理单位', field: '已付款未回发票监理单位Text', width: 100 },
+                { title: '监理费', field: '已付款未回发票监理费', width: 100 },
+                { title: '项目管理单位', field: '已付款未回发票项目管理单位Text', width: 100 },
+                { title: '项目管理费', field: '已付款未回发票项目管理费', width: 100 },
+                { title: '土建施工单位1', field: '已付款未回发票土建施工单位1Text', width: 100 },
+                { title: '土建施工费1', field: '已付款未回发票土建施工费1', width: 100 },
+                { title: '土建施工单位2', field: '已付款未回发票土建施工单位2Text', width: 100 },
+                { title: '土建施工费2', field: '已付款未回发票土建施工费2', width: 100 },
+                { title: '铁塔加工单位', field: '已付款未回发票铁塔加工单位Text', width: 100 },
+                { title: '铁塔加工费', field: '已付款未回发票铁塔加工费', width: 100 },
+                { title: '安装施工单位', field: '已付款未回发票安装施工单位Text', width: 100 },
+                { title: '安装施工费', field: '已付款未回发票安装施工费', width: 100 },
+                { title: '外电单位', field: '已付款未回发票外电单位Text', width: 100 },
+                { title: '外电施工费', field: '已付款未回发票外电施工费', width: 100 },
+                { title: '杆体搬运单位', field: '已付款未回发票杆体搬运单位Text', width: 100 },
+                { title: '杆体搬运费', field: '已付款未回发票杆体搬运费', width: 100 },
+                { title: '选址费用单位', field: '已付款未回发票选址费用单位Text', width: 100 },
+                { title: '选址费', field: '已付款未回发票选址费', width: 100 },
+                { title: '其他费用单位', field: '已付款未回发票其他费用单位Text', width: 100 },
+                { title: '其他费用', field: '已付款未回发票其他费用', width: 100 },
+
+                { title: '设备单位1', field: '未付款设备单位1Text', width: 100 },
+                { title: '设备费1', field: '未付款设备费1', width: 100 },
+                { title: '设备单位2', field: '未付款设备单位2Text', width: 100 },
+                { title: '设备费2', field: '未付款设备费2', width: 100 },
+                { title: '业主', field: '未付款业主', width: 100 },
+                { title: '业主租金', field: '未付款业主租金', width: 100 },
+                { title: '设计单位', field: '未付款设计单位Text', width: 100 },
+                { title: '设计费', field: '未付款设计费', width: 100 },
+                { title: '墈察单位', field: '未付款墈察单位Text', width: 100 },
+                { title: '墈察费', field: '未付款墈察费', width: 100 },
+                { title: '监理单位', field: '未付款监理单位Text', width: 100 },
+                { title: '监理费', field: '未付款监理费', width: 100 },
+                { title: '项目管理单位', field: '未付款项目管理单位Text', width: 100 },
+                { title: '项目管理费', field: '未付款项目管理费', width: 100 },
+                { title: '土建施工单位1', field: '未付款土建施工单位1Text', width: 100 },
+                { title: '土建施工费1', field: '未付款土建施工费1', width: 100 },
+                { title: '土建施工单位2', field: '未付款土建施工单位2Text', width: 100 },
+                { title: '土建施工费2', field: '未付款土建施工费2', width: 100 },
+                { title: '铁塔加工单位', field: '未付款铁塔加工单位Text', width: 100 },
+                { title: '铁塔加工费', field: '未付款铁塔加工费', width: 100 },
+                { title: '安装施工单位', field: '未付款安装施工单位Text', width: 100 },
+                { title: '安装施工费', field: '未付款安装施工费', width: 100 },
+                { title: '外电单位', field: '未付款外电单位Text', width: 100 },
+                { title: '外电施工费', field: '未付款外电施工费', width: 100 },
+                { title: '杆体搬运单位', field: '未付款杆体搬运单位Text', width: 100 },
+                { title: '杆体搬运费', field: '未付款杆体搬运费', width: 100 },
+                { title: '选址费用单位', field: '未付款选址费用单位Text', width: 100 },
+                { title: '选址费', field: '未付款选址费', width: 100 },
+                { title: '其他费用单位', field: '未付款其他费用单位Text', width: 100 },
+                { title: '其他费用', field: '未付款其他费用', width: 100 }
+                ]],
+            toolbar: [{
+                id: 'btnAdd_YzdjSy',
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    ShowAddDialog_YzdjSy();//实现添加记录的页面  
+                }
+            }, '-', {
+                id: 'btnEdit_YzdjSy',
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    ShowEditDialog_YzdjSy();//实现修改记录的方法  
+                }
+            }, '-', {
+                id: 'btnDelete_YzdjSy',
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    Delete_YzdjSy();//实现直接删除数据的方法  
+                }
+            }, '-', {
+                id: 'btnView_YzdjSy',
+                text: '查看',
+                iconCls: 'icon-search',
+                handler: function () {
+                    ShowViewDialog_YzdjSy();//实现查看记录详细信息的方法  
+                }
+            }, '-', {
+                id: 'btnReload_YzdjSy',
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    //实现刷新栏目中的数据  
+                    $(dg).datagrid("reload");
+                }
+            }],
+            onDblClickRow: function (rowIndex, rowData) {
+                $(dg).datagrid('uncheckAll');
+                $(dg).datagrid('checkRow', rowIndex);
+                ShowViewDialog_YzdjSy();
+            },
+            onLoadSuccess: function (data) {
+                if (hideColumns_YzdjSy != "") {
+                    hideColumnsarry = hideColumns_YzdjSy.split(",");//以逗号作为分隔字符串
+                    for (var i = 0; i < hideColumnsarry.length; i++) {
+                        $(dg).datagrid("hideColumn", hideColumnsarry[i]); // 设置隐藏列
+                    }
+                }
+            }
+        })
+    }
+    function ShowEditDialog_YzdjSy() {
+        var rows = $('#dg_YzdjSy').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_YzdjSy').dialog('open').dialog('setTitle', '修改');
+            $('#frm_YzdjSy').form('load', rows[0]);
+            $("#tr_time_YzdjSy").hide();
+            $("#btn_save_YzdjSy").show();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowViewDialog_YzdjSy() {
+        var rows = $('#dg_YzdjSy').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_YzdjSy').dialog('open').dialog('setTitle', '查看');
+            $('#frm_YzdjSy').form('load', rows[0]);
+            $("#tr_time_YzdjSy").show();
+            $("#btn_save_YzdjSy").hide();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowAddDialog_YzdjSy() {
+        $('#dlg_YzdjSy').dialog('open').dialog('setTitle', '添加');
+        $('#frm_YzdjSy').form('clear');
+        $("#tr_time_YzdjSy").hide();
+        $("#btn_save_YzdjSy").show();
+    }
+    function Save_YzdjSy() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var 部门 = $("#frm_YzdjSy_部门").combobox('getValue');
+        var 区域 = $("#frm_YzdjSy_区域").combobox('getValue');
+        var 客户名称 = $("#frm_YzdjSy_客户名称").combobox('getValue');
+        var 站点编码 = $("div#div_YzdjSy input[name='站点编码']").val();
+        var 站点名称 = $("div#div_YzdjSy input[name='站点名称']").val();
+
+        if (部门 == '') {
+            $.messager.alert("提示", '请选择部门');
+            return;
+        }
+        if (区域 == '') {
+            $.messager.alert("提示", '请选择区域');
+            return;
+        }
+        if (客户名称 == '') {
+            $.messager.alert("提示", '请选择客户名称');
+            return;
+        }
+        if (站点编码 == '') {
+            $.messager.alert("提示", '请填写站点编码');
+            return;
+        }
+        if (站点名称 == '') {
+            $.messager.alert("提示", '请填写站点名称');
+            return;
+        }
+        $('#frm_YzdjSy').form('submit', {
+            url: 'YzdjSy/Save',
+            onSubmit: function () {
+                var validate = $(this).form('validate');
+                if (validate) {
+                    SaveStatus = 0;
+                }
+                return validate;
+            },
+            success: function (data) {
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $('#dlg_YzdjSy').dialog('close');
+                    bindData_YzdjSy();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_YzdjSy() {
+        $('#dlg_YzdjSy').dialog('close');
+    }
+    function Delete_YzdjSy() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var rows = $('#dg_YzdjSy').datagrid('getSelections');
+        if (!rows || rows.length == 0) {
+            $.messager.alert("提示", "请选择要删除的数据.");
+            return;
+        }
+        $.messager.confirm('提示', '确认删除这' + rows.length + '条数据吗？', function (r) {
+            if (r) {
+                SaveStatus = 0;
+                var IDS = '';
+                for (var i = 0; i < rows.length; i++) {
+                    IDS += ',' + rows[i].id;
+                }
+                $.post('YzdjSy/Delete', { IDS: IDS }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_YzdjSy').dialog('close');
+                        bindData_YzdjSy();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+        });
+    }
+    function bindCombobox_YzdjSy() {
+        $.post('Department/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_YzdjSy_部门").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#YzdjSy_部门").combobox('loadData', resall);
+        });
+        $.post('Area/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_YzdjSy_区域").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#YzdjSy_区域").combobox('loadData', resall);
+        });
+        $.post('Customer/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_YzdjSy_客户名称").combobox('loadData', res);
+            var resall = eval('(' + data + ')');
+            resall.unshift({
+                'id': '',
+                'text': '全部'
+            });//向json添加全部
+            $("#YzdjSy_客户名称").combobox('loadData', resall);
+        });
+        $.post('Company/getComboboxJson', function (data) {
+            var res = eval('(' + data + ')');
+            $("#frm_YzdjSy_成本设备单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_成本设备单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_成本设计单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本地勘单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本监理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本项目管理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本土建施工单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_成本土建施工单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_成本铁塔加工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本安装施工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本外电单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本杆体搬运单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本选址费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_成本其他费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款设备单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款设备单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款设计单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款墈察单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款监理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款项目管理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款土建施工单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款土建施工单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款铁塔加工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款安装施工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款外电单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款杆体搬运单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款选址费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款其他费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况设备单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况设备单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况设计单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况墈察单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况监理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况项目管理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况土建施工单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况土建施工单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况铁塔加工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况安装施工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况外电单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况杆体搬运单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况选址费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_发票情况其他费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票设备单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票设备单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票设计单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票墈察单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票监理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票项目管理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票土建施工单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票土建施工单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票铁塔加工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票安装施工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票外电单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票杆体搬运单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票选址费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_已付款未回发票其他费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款设备单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款设备单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款设计单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款墈察单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款监理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款项目管理单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款土建施工单位1").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款土建施工单位2").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款铁塔加工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款安装施工单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款外电单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款杆体搬运单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款选址费用单位").combobox('loadData', res);
+            $("#frm_YzdjSy_未付款其他费用单位").combobox('loadData', res);
+        });
+    }
+
+
+    function Show_excel_import_YzdjSy() {
+        $('#dlg_excel_import_YzdjSy').dialog('open').dialog('setTitle', '导入信息');
+    }
+    function Save_excel_import_YzdjSy() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        file = $('#fileupload_excel_import_YzdjSy').val();
+        if (file == "") {
+            $.messager.alert("提示", "请选择要导入的数据.");
+            return;
+        }
+        SaveStatus = 0;
+        showdiv_excel_import_YzdjSy();
+        $('#frm_excel_import_YzdjSy').form('submit', {
+            url: 'YzdjSy/ExcelImport',
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                closediv_excel_import_YzdjSy();
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $.messager.alert("提示", res.Message);
+                    $('#dlg_excel_import_YzdjSy').dialog('close');
+                    bindData_YzdjSy();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_excel_import_YzdjSy() {
+        $('#dlg_excel_import_YzdjSy').dialog('close');
+    }
+    function closediv_excel_import_YzdjSy() {
+        $("#Conditionback_excel_import_YzdjSy").hide(); $("#ConditionShow_excel_import_YzdjSy").hide();
+    }
+    function showdiv_excel_import_YzdjSy() {
+        $("#Conditionback_excel_import_YzdjSy").show(); $("#ConditionShow_excel_import_YzdjSy").show();
+    }
+    function Do_excel_export_YzdjSy() {
+        url = "YzdjSy/ExcelExport";
+        部门 = $('#YzdjSy_部门').combobox('getValue');
+        区域 = $('#YzdjSy_区域').combobox('getValue');
+        客户名称 = $('#YzdjSy_客户名称').combobox('getValue');
+        站点编码 = $('#YzdjSy_站点编码').val();
+        站点名称 = $('#YzdjSy_站点名称').val();
+        params = "";
+        if (部门 != "") {
+            params += "部门=" + 部门 + "&&";
+        }
+        if (区域 != "") {
+            params += "区域=" + 区域 + "&&";
+        }
+        if (客户名称 != "") {
+            params += "客户名称=" + 客户名称 + "&&";
+        }
+        if (站点编码 != "") {
+            params += "站点编码=" + 站点编码 + "&&";
+        }
+        if (站点名称 != "") {
+            params += "站点名称=" + 站点名称 + "&&";
+        }
+        window.open(url + "?" + params);
+
+    }
+
+
+    function Show_hideColumns_YzdjSy() {
+        hideType_YzdjSy = "list";
+        bind_frm_hideColumns_YzdjSy(hideColumns_YzdjSy);
+        $("form#frm_hideColumns_YzdjSy [class='export_hide']").show();
+        $('#dlg_hideColumns_YzdjSy').dialog('open').dialog('setTitle', '列表显示列');
+    }
+    function Save_hideColumns_YzdjSy() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        if (hideType_YzdjSy == "list") {
+            $.messager.confirm('提示', '是否要保存数据？', function (r) {
+                if (r) {
+                    SaveStatus == 0
+                    var arry = $("form#frm_hideColumns_YzdjSy input[name='hideColumns']");
+                    hideColumns_YzdjSy = "";
+                    for (var i = 0; i < arry.length; i++) {
+                        if (!arry[i].checked) {
+                            hideColumns_YzdjSy += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                        }
+                    }
+                    hideColumns_YzdjSy = hideColumns_YzdjSy.trim(',');
+                    if (hideColumns_YzdjSy != "") {
+                        hideColumns_YzdjSy = hideColumns_YzdjSy.substring(0, hideColumns_YzdjSy.length - 1);
+                    }
+                    $.post('UserColumns/Save', { type: "list", tableName: "YzdjSy", hideColumns: hideColumns_YzdjSy }, function (data) {
+                        SaveStatus = 1;
+                        if (data.Status == 1) {
+                            $('#dlg_hideColumns_YzdjSy').dialog('close');
+                            bindData_YzdjSy();
+                        }
+                        else {
+                            $.messager.alert("提示", data.ErroMessage);
+                        }
+                    });
+                }
+            });
+        }
+        else {//导出
+            var arry = $("form#frm_hideColumns_YzdjSy input[name='hideColumns']");
+            var hideColumns = "";
+            for (var i = 0; i < arry.length; i++) {
+                if (!arry[i].checked) {
+                    hideColumns += arry[i].value + ','; //如果没有选中，将value添加到变量s中                       
+                }
+            }
+            hideColumns = hideColumns.trim(',');
+            if (hideColumns != "") {
+                hideColumns = hideColumns.substring(0, hideColumns.length - 1);
+            }
+            if (hideColumns != exporthideColumns_YzdjSy) {
+                SaveStatus == 0
+                exporthideColumns_YzdjSy = hideColumns;
+                $.post('UserColumns/Save', { type: "export", tableName: "YzdjSy", hideColumns: hideColumns }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_hideColumns_YzdjSy').dialog('close');
+                        Do_excel_export_YzdjSy();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+            else {
+                Do_excel_export_YzdjSy();
+            }
+        }
+    }
+    function Close_hideColumns_YzdjSy() {
+        $('#dlg_hideColumns_YzdjSy').dialog('close');
+    }
+    function all_hideColumns_YzdjSy() {
+        $("form#frm_hideColumns_YzdjSy input[name='hideColumns']").prop("checked", true);
+    }
+    function unall_hideColumns_YzdjSy() {
+        $("form#frm_hideColumns_YzdjSy input[name='hideColumns']").prop("checked", false);
+    }
+    function fx_hideColumns_YzdjSy() {
+        $("form#frm_hideColumns_YzdjSy input[name='hideColumns']").each(function () {
+            if ($(this).prop("checked")) {
+                $(this).prop("checked", false);
+            }
+            else {
+                $(this).prop("checked", true);
+            }
+        })
+    }
+    function Show_exportColumns_YzdjSy() {
+        hideType_YzdjSy = "export";
+        bind_frm_hideColumns_YzdjSy(exporthideColumns_YzdjSy);
+        $("form#frm_hideColumns_YzdjSy [class='export_hide']").hide();
+        $('#dlg_hideColumns_YzdjSy').dialog('open').dialog('setTitle', '导出指定列数据');
+    }
+</script>

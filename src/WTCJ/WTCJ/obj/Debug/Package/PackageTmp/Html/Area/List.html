@@ -1,0 +1,242 @@
+﻿<div id="div_Area">
+    <!--查询条件-->
+    <div class="easyui-panel">
+        区域名称：
+    <input id="Area_AreaName" class="easyui-textbox" style="width: 180px;">
+        <a href="javascript:void(0)" id="search_Area" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
+        <br />
+    </div>
+    <!--数据列表-->
+    <table id="dg_Area" style="width: 100%; height: auto">
+    </table>
+    <!--编辑页面-->
+    <div id="dlg_Area" class="easyui-dialog" style="width: 600px; height: 280px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div class="ftitle">
+            <b>区域名称</b>
+            <hr />
+        </div>
+        <form id="frm_Area" method="post" novalidate="novalidate">
+            <table>
+                <tr style="display: none">
+                    <td>ID：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="AreaID">
+                    </td>
+                </tr>
+                <tr>
+                    <td>区域名称：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" name="AreaName" data-options="required:true">
+                    </td>
+                    <td>排序：</td>
+                    <td>
+                        <input class="easyui-numberbox" name="OrderBy" data-options="min:1,required:true">
+                    </td>
+                </tr>
+                <tr id="tr_time_Area">
+                    <td>创建时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="CreateTime"></td>
+
+                    <td>更新时间：</td>
+                    <td>
+                        <input class="easyui-validatebox textbox" readonly="readonly" name="UpdateTime"></td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td colspan="3">
+                        <input class="easyui-textbox" type="text" name="Remark" style="width: 90%">
+                    </td>
+                </tr>
+            </table>
+            <div class="div_btn_manager">
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok'" id="btn_save_Area" onclick="Save_Area()">确定</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'" onclick="Close_Area()">关闭</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#search_Area').click(function () { bindData_Area() });
+    $(function () {
+        bindData_Area();
+    });
+    function bindData_Area() {
+        dg = '#dg_Area';
+        url = "Area/List";
+        title = "区域管理";
+        AreaName = $('#Area_AreaName').val();
+        queryParams = { AreaName: AreaName };
+        $(dg).datagrid({   //定位到Table标签，Table标签的ID是grid  
+            url: url,   //指向后台的Action来获取当前菜单的信息的Json格式的数据  
+            title: title,
+            iconCls: 'icon-view',
+            nowrap: true,
+            autoRowHeight: false,
+            striped: true,
+            collapsible: true,
+            pagination: true,
+            singleSelect:true, 
+            pageSize: 15,
+            pageList: [10,15, 20,30, 50],
+            rownumbers: true,
+            //sortName: 'ID',    //根据某个字段给easyUI排序  
+            //sortOrder: 'asc',
+            remoteSort: false,
+            idField: 'AreaID',
+            queryParams: queryParams,  //异步查询的参数  
+            columns: [[
+                { field: 'ck', checkbox: true },   //选择  
+                 { title: '区域名称', field: 'AreaName', width: 200 },
+                 { title: '排序', field: 'OrderBy', width: 50 },
+                 { title: '创建时间', field: 'CreateTime', width: 180 },
+                 { title: '修改时间', field: 'UpdateTime', width: 180 },
+                 { title: '备注', field: 'Remark', width: 300 }
+            ]],
+            toolbar: [{
+                id: 'btnAdd_Area',
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    ShowAddDialog_Area();//实现添加记录的页面  
+                }
+            }, '-', {
+                id: 'btnEdit_Area',
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    ShowEditDialog_Area();//实现修改记录的方法  
+                }
+            }, '-', {
+                id: 'btnDelete_Area',
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    Delete_Area();//实现直接删除数据的方法  
+                }
+            }, '-', {
+                id: 'btnView_Area',
+                text: '查看',
+                iconCls: 'icon-search',
+                handler: function () {
+                    ShowViewDialog_Area();//实现查看记录详细信息的方法  
+                }
+            }, '-', {
+                id: 'btnReload_Area',
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    //实现刷新栏目中的数据  
+                    $(dg).datagrid("reload");
+                }
+            }],
+            onDblClickRow: function (rowIndex, rowData) {
+                $(dg).datagrid('uncheckAll');
+                $(dg).datagrid('checkRow', rowIndex);
+                ShowViewDialog_Area();
+            }
+        })
+    }
+    function ShowEditDialog_Area() {
+        var rows = $('#dg_Area').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_Area').dialog('open').dialog('setTitle', '修改');
+            $('#frm_Area').form('load', rows[0]);
+            $("#tr_time_Area").hide();
+            $("#btn_save_Area").show();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowViewDialog_Area() {
+        var rows = $('#dg_Area').datagrid('getSelections');
+        if (rows && rows.length == 1) {
+            $('#dlg_Area').dialog('open').dialog('setTitle', '查看');
+            $('#frm_Area').form('load', rows[0]);
+            $("#tr_time_Area").show();
+            $("#btn_save_Area").hide();
+        } else {
+            $.messager.alert("提示", "请选择一条记录.");
+        }
+    }
+    function ShowAddDialog_Area() {
+        $('#dlg_Area').dialog('open').dialog('setTitle', '添加');
+        $('#frm_Area').form('clear');
+        $("#tr_time_Area").hide();
+        $("#btn_save_Area").show();
+    }
+    function Save_Area() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var AreaName = $("div#div_Area input[name='AreaName']").val();
+        var OrderBy = $("div#div_Area input[name='OrderBy']").val();
+
+        if (AreaName == '') {
+            $.messager.alert("提示", '请填写区域名称');
+            return;
+        }
+        if (OrderBy == '') {
+            $.messager.alert("提示", '请填写排序');
+            return;
+        }
+        $('#frm_Area').form('submit', {
+            url: 'Area/Save',
+            onSubmit: function () {
+                var validate = $(this).form('validate');
+                if (validate) {
+                    SaveStatus = 0;
+                }
+                return validate;
+            },
+            success: function (data) {
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $('#dlg_Area').dialog('close');
+                    bindData_Area();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_Area() {
+        $('#dlg_Area').dialog('close');
+    }
+    function Delete_Area() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        var rows = $('#dg_Area').datagrid('getSelections');
+        if (!rows || rows.length == 0) {
+            $.messager.alert("提示", "请选择要删除的数据.");
+            return;
+        }
+        $.messager.confirm('提示', '确认删除这' + rows.length + '条数据吗？', function (r) {
+            if (r) {
+                SaveStatus = 0;
+                var IDS = '';
+                for (var i = 0; i < rows.length; i++) {
+                    IDS += ',' + rows[i].AreaID;
+                }
+                $.post('Area/Delete', { IDS: IDS }, function (data) {
+                    SaveStatus = 1;
+                    if (data.Status == 1) {
+                        $('#dlg_Area').dialog('close');
+                        bindData_Area();
+                    }
+                    else {
+                        $.messager.alert("提示", data.ErroMessage);
+                    }
+                });
+            }
+        });
+    }
+</script>
