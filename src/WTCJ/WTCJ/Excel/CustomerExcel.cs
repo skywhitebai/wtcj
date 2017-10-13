@@ -9,9 +9,9 @@ using WTCJ.DBUtility;
 
 namespace WTCJ.Excel
 {
-    public class AreaExcel
+    public class CustomerExcel
     {
-        BLL.Area BLL = new WTCJ.BLL.Area();
+        BLL.Customer BLL = new WTCJ.BLL.Customer();
         public JsonObject Import(DataTable dt, DataTable dtTemplate)
         {
             JsonObject json = new JsonObject();
@@ -36,7 +36,7 @@ namespace WTCJ.Excel
                 return json;
             }
             StringBuilder sbErro = new StringBuilder();
-            List<Model.Area> list = new List<Model.Area>();
+            List<Model.Customer> list = new List<Model.Customer>();
             int parmInt = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -64,16 +64,23 @@ namespace WTCJ.Excel
                 {
                     continue;
                 }
-                Model.Area model = new Model.Area();
-                if (dt.Rows[i]["区域名称"] != null && dt.Rows[i]["区域名称"].ToString().Trim() != "")
-                { 
-                        model.AreaName = dt.Rows[i]["区域名称"].ToString().Trim();
+                Model.Customer model = new Model.Customer();
+                if (dt.Rows[i]["客户名称"] != null && dt.Rows[i]["客户名称"].ToString().Trim() != "")
+                {
+                    model.CustomerName = dt.Rows[i]["客户名称"].ToString().Trim();
                 }
                 else
                 {
-                    sbErroI.Append(",区域名称不能为空");
+                    sbErroI.Append(",客户名称不能为空");
                 }
-
+                if (dt.Rows[i]["联系人"] != null && dt.Rows[i]["联系人"].ToString().Trim() != "")
+                {
+                    model.Linkman = dt.Rows[i]["联系人"].ToString().Trim();
+                }
+                if (dt.Rows[i]["联系人电话"] != null && dt.Rows[i]["联系人电话"].ToString().Trim() != "")
+                {
+                    model.Telephone = dt.Rows[i]["联系人电话"].ToString().Trim();
+                }
                 if (dt.Rows[i]["排序"] != null && dt.Rows[i]["排序"].ToString().Trim() != "")
                 {
 
@@ -117,11 +124,11 @@ namespace WTCJ.Excel
                 DateTime timeNow = DateTime.Now;
                 for (int i = 0; i < list.Count; i++)
                 {
-                    List<Model.Area> modelExistsList = BLL.GetModelList("AreaName='" + list[i].AreaName + "' ");
+                    List<Model.Customer> modelExistsList = BLL.GetModelList("CustomerName='" + list[i].CustomerName + "' ");
                     if (modelExistsList != null && modelExistsList.Count > 0)
                     {
-                        list[i].AreaID = modelExistsList[0].AreaID;
-                        list[i].AreaName = modelExistsList[0].AreaName;
+                        list[i].CustomerID = modelExistsList[0].CustomerID;
+                        list[i].CustomerName = modelExistsList[0].CustomerName;
                         list[i].CreateBy = modelExistsList[0].CreateBy;
                         list[i].CreateTime = modelExistsList[0].CreateTime;
                         list[i].UpdateBy = userId;
@@ -133,7 +140,7 @@ namespace WTCJ.Excel
                     {
                         list[i].CreateBy = userId;
                         list[i].CreateTime = timeNow;
-                        list[i].AreaID = Guid.NewGuid().ToString();
+                        list[i].CustomerID = Guid.NewGuid().ToString();
                         BLL.Add(list[i]);
                         addCount++;
                     }

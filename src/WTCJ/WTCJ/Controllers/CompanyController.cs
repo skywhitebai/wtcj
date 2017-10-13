@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using System.Text;
+using System.IO;
 
 namespace WTCJ.Controllers
 {
@@ -202,5 +203,86 @@ namespace WTCJ.Controllers
             }
         }
 
+
+
+        /// <summary>
+        /// 导出数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ExcelExport(string CompanyName)
+        {
+            string where = "";
+            if (!string.IsNullOrEmpty(CompanyName) && CommonHelper.filterSql(CompanyName))
+            {
+                where += " and CompanyName like '%" + CompanyName + "%'";
+            }
+            DataSet ds = BLL.GetList(where);
+            DataTable dt = new DataTable();
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            dt = getDataTableExportInfo(dt);
+            string filePathTemplate = Server.MapPath("~/") + @"\Excel\Template\配置信息\合作公司管理模板.xlsx";
+            new NOPI_ExcelHelp().OutputExcel(dt, filePathTemplate, this.HttpContext
+                , "合作公司管理信息" + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            return null;
+        }
+        /// <summary>
+        /// 完善datatable数据  如果找不到，则显示ID或者value值
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        DataTable getDataTableExportInfo(DataTable dt)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return dt;
+            }
+            //遍历修改数据
+            dt.Columns.Add("序号", typeof(int));
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i]["序号"] = i + 1;
+            }
+            dt.Columns["CompanyName"].ColumnName = "合作公司名称";
+            dt.Columns["Linkman"].ColumnName = "联系人";
+            dt.Columns["Telephone"].ColumnName = "联系人电话";
+            dt.Columns["OrderBy"].ColumnName = "排序";
+            dt.Columns["Remark"].ColumnName = "备注";
+            return dt;
+        }
+
+        /// <summary>
+        /// 导入数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ExcelImport()
+        {
+            JsonObject json = new JsonObject();
+            HttpPostedFileBase file = Request.Files["fileImport"];
+            if (file == null || file.ContentLength <= 0)
+            {
+                json.Status = JsonObject.STATUS_FAIL;
+                json.ErroMessage = "文件不能为空";
+                return Json(json);
+            }
+            string[] FileType = new string[] { ".xls", ".xlsx" }; //定义上传文件的类型
+            string filename = Path.GetFileName(file.FileName);
+            int filesize = file.ContentLength;//获取上传文件的大小单位为字节byte  
+            string fileEx = System.IO.Path.GetExtension(filename);//获取上传文件的扩展名  
+            string NoFileName = System.IO.Path.GetFileNameWithoutExtension(filename);//获取无扩展名的文件名
+            if (!fileEx.Contains(fileEx.ToLower()))
+            {
+                json.Status = JsonObject.STATUS_FAIL;
+                json.ErroMessage = "文件类型不对，只能导入xls和xlsx格式的文件";
+                return Json(json);
+            }
+            DataTable dt = ExcelHelper.ReadExcelToDataTable(Server.MapPath("~/"), file, fileEx.ToLower());
+            //查询和模板页列是否相同
+            DataTable dtTemplate = NOPI_ExcelHelp.ImportDataTableFromExcel2007(Server.MapPath("~/") + @"\Excel\Template\配置信息\合作公司管理模板.xlsx");
+            json = new Excel.CompanyExcel().Import(dt, dtTemplate);
+            return Json(json);
+        }
     }
 }

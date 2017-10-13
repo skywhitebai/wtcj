@@ -4,6 +4,8 @@
         合作公司名称：
     <input id="Company_CompanyName" class="easyui-textbox" style="width: 180px;">
         <a href="javascript:void(0)" id="search_Company" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
+         <a href="javascript:void(0)" id="excel_import_Company" class="easyui-linkbutton" style="width: 80px" onclick="Show_excel_import_Company()">导 入</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 80px" onclick="Show_exportColumns_Company()">导 出</a>
         <br />
     </div>
     <!--数据列表-->
@@ -67,6 +69,48 @@
                     data-options="iconCls:'icon-cancel'" onclick="Close_Company()">关闭</a>
             </div>
         </form>
+    </div>
+    
+
+    <!--导入页面-->
+    <div id="dlg_excel_import_Company" class="easyui-dialog" style="width: 500px; height: 320px; padding: 10px 20px"
+        data-options="closed:true, resizable:true, modal:true, buttons:'#dlg-buttons', align:'center'">
+        <div>
+            <fieldset>
+                <legend>excel模版格式 </legend>
+                <p style="color: red">
+                    导入的模板格式如下，若模板格式不正确，则相应的数据不能导入<br />
+                    (第一列~开通的数据是表头或者示例数据不会被导入)!
+                </p>
+                <br />
+                <a href="../../Excel/Template/配置信息/合作公司管理模板.xlsx" title="下载模版">下载模版</a>
+            </fieldset>
+        </div>
+        <div style="margin-top: 20px;">
+            <fieldset>
+                <legend>客户信息导入</legend>
+                <form id="frm_excel_import_Company" method="post" enctype="multipart/form-data">
+                    <p>
+                        选择文件：<input id="fileupload_excel_import_Company" type="file" name="fileImport" style="width: 250px; height: 24px; background: White"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </p>
+                    <p>
+                        <br />
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'" onclick="Save_excel_import_Company()">导入</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                            data-options="iconCls:'icon-cancel'" onclick="Close_excel_import_Company()">关闭</a>
+                    </p>
+                </form>
+            </fieldset>
+        </div>
+        <div id="Conditionback_excel_import_Company" style="display: none; position: fixed; opacity: 0.5; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #ccc; overflow: hidden;">
+        </div>
+        <div id="ConditionShow_excel_import_Company" style="display: none; position: absolute; top: 100px; left: 40%; width: 20%; height: 50px; z-index: 1002; text-align: center; overflow: hidden; background-color: White;">
+            <img src="../../style/img/loadingbar.gif" />
+            <br />
+            数据上传中......
+        </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -245,5 +289,65 @@
                 });
             }
         });
+    }
+
+
+    function Show_excel_import_Company() {
+        $('#dlg_excel_import_Company').dialog('open').dialog('setTitle', '导入区域');
+    }
+    function Save_excel_import_Company() {
+        //防止重复点击
+        if (SaveStatus == 0) {
+            return;
+        }
+        file = $('#fileupload_excel_import_Company').val();
+        if (file == "") {
+            $.messager.alert("提示", "请选择要导入的数据.");
+            return;
+        }
+        SaveStatus = 0;
+        showdiv_excel_import_Company();
+        $('#frm_excel_import_Company').form('submit', {
+            url: 'Company/ExcelImport',
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                closediv_excel_import_Company();
+                SaveStatus = 1;
+                res = eval('(' + data + ')');
+                if (res.Status == 1) {
+                    $.messager.alert("提示", res.Message);
+                    $('#dlg_excel_import_Company').dialog('close');
+                    bindData_Company();
+                }
+                else {
+                    $.messager.alert("提示", res.ErroMessage);
+                }
+            }
+        });
+    }
+    function Close_excel_import_Company() {
+        $('#dlg_excel_import_Company').dialog('close');
+    }
+    function closediv_excel_import_Company() {
+        $("#Conditionback_excel_import_Company").hide(); $("#ConditionShow_excel_import_Company").hide();
+    }
+    function showdiv_excel_import_Company() {
+        $("#Conditionback_excel_import_Company").show(); $("#ConditionShow_excel_import_Company").show();
+    }
+    function Do_excel_export_Company() {
+        url = "Company/ExcelExport";
+        title = "区域管理";
+        CompanyName = $('#Company_CompanyName').val();
+        params = "";
+        if (CompanyName != "") {
+            params += "CompanyName=" + CompanyName;
+        }
+        window.open(url + "?" + params);
+    }
+
+    function Show_exportColumns_Company() {
+        Do_excel_export_Company();
     }
 </script>

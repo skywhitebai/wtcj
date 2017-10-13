@@ -58,10 +58,6 @@ namespace WTCJ.Controllers
             {
                 sbErro.Append(",区域名称不能为空");
             }
-            if (model.OrderBy == null)
-            {
-                sbErro.Append(",排序不能为空");
-            }
             if (sbErro.Length > 0)
             {
                 json.Status = JsonObject.STATUS_FAIL;
